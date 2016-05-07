@@ -1,6 +1,6 @@
 # A Song A Day
 
-Coming soon!
+For those "too busy" to discover new music.
 
 ## Development
 
