@@ -1,0 +1,6 @@
+admin:
+  id: 1
+  name: Administrator
+  email: admin@asongaday.co
+  curator: false
+  admin: true
