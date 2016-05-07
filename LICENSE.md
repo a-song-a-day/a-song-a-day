@@ -1,3 +1,3 @@
 # License
 
-Copyright asongaday. All rights reserved.
+Copyright A Song A Day, LLC. All rights reserved.
