@@ -4,3 +4,17 @@ admin:
   email: admin@asongaday.co
   curator: false
   admin: true
+
+shannon:
+  id: 2
+  name: Shannon Byrne
+  email: shannon@asongaday.co
+  curator: true
+  admin: true
+
+alisdair:
+  id: 3
+  name: Alisdair McDiarmid
+  email: alisdair@mcdiarmid.org
+  curator: false
+  admin: false

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507170815) do
+ActiveRecord::Schema.define(version: 20160507213912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,24 @@ ActiveRecord::Schema.define(version: 20160507170815) do
     t.datetime "updated_at", null: false
     t.index ["token"], name: "index_access_tokens_on_token", unique: true, using: :btree
     t.index ["user_id"], name: "index_access_tokens_on_user_id", using: :btree
+  end
+
+  create_table "curators", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title",       null: false
+    t.text     "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_curators_on_user_id", using: :btree
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "curator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curator_id"], name: "index_subscriptions_on_curator_id", using: :btree
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,4 +55,7 @@ ActiveRecord::Schema.define(version: 20160507170815) do
   end
 
   add_foreign_key "access_tokens", "users", on_delete: :cascade
+  add_foreign_key "curators", "users", on_delete: :cascade
+  add_foreign_key "subscriptions", "curators", on_delete: :cascade
+  add_foreign_key "subscriptions", "users", on_delete: :cascade
 end
