@@ -1,11 +1,13 @@
 language: ruby
 cache: bundler
-bundler_args: --without production
+bundler_args: "--without production"
 env:
   global:
-    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 before_script:
-  - RAILS_ENV=test bundle exec rake db:setup
+- RAILS_ENV=test bundle exec rake db:setup
 deploy:
   provider: heroku
   on: master
+  api_key:
+    secure: gLgldJqenlCXbCnK0HRXkCrGL3yYVCIeDrFpW5NJoQczU/Bbeng/+652lfez86ExziSHcztmxm5UOxOEsE1GzOj4bjCpkW4UjzqTlPh1k9g8G5K/9qkdnXIln5IW8/m19KiItjX8iUBjEc0Jtt2SrpzSzPTuj6Qx01Cd88rOnvEubTdOgLMIOrhefvVBuhFGM8qEY9dNjgIkjaSf0SaGiSYgIRP9FgMcG2n6vdwAonD9oKAA/qkj2zwYCJWXSKPiYHjSPWkkZPHWUsNkPnzDtuulwAJQCx/u0xbSI0EXP5pWuW1X0zeX9aaBMLFVXaw7dZ1pfoT0kzAD/EtET/L6pUsLXwf7UqZ9EGznZfsixo5mDYSQpROB5jtu/hT6l5LrwvnucHh++AQuZ0iNe+VbCY+sOD68+RrqvjronF3PBRIElCdJkia9yKTGixwRI5ryteO1DhyYPlezyReFMuJConAVeSF1jyyvLjqIclQsbEyldh284rj7tkfblvtzhkgviswsxT16PvWAAKbFMBbWgCErblU9okYPJs8M/XezUImVkh2UD8c3K5L6MNoHuygUWTgRUZVU5DVIwZIEJ9k97CLjFrQi9b26uQ/gUfeCEJf73st4BWXBcBQAdJzdrCirKmdfOZ8Y8kFo2lMUsDkzYRpXTDZSVrVyEwo5GBpaICs=
