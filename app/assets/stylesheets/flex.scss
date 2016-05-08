@@ -1,0 +1,11 @@
+.flex {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  &__block {
+    flex: 1;
+    max-width: 100%;
+    min-width: 0;
+  }
+}

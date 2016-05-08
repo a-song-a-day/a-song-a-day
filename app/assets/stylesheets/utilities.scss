@@ -1,0 +1,38 @@
+@import "spacing";
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-lg {
+  font-size: 2rem !important;
+}
+
+.text-xl {
+  font-size: 2.3rem !important;
+}
+
+.mrg-b-lg {
+  margin-bottom: $spacing * 3 !important;
+}
+
+.mrg-b-xl {
+  margin-bottom: $spacing * 4 !important;
+}
+
+.mrg-t-sm {
+  margin-top: $spacing !important;
+}
+
+.mrg-l-sm {
+  margin-left: $spacing !important;
+}
+
+.mrg-h-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.width-5--fixed {
+  width: 5 * 80px;
+}

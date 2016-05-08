@@ -1,0 +1,65 @@
+@import "colors";
+@import "spacing";
+
+.form-control {
+  background: white;
+  border: 1px solid $border-color;
+  border-radius: 2px;
+  box-shadow: inset 0 0 $spacing rgba(0, 0, 0, 0.2);
+  color: $color-default;
+  display: block;
+  padding: $spacing 1rem;
+  transition-duration: 150ms;
+  transition-property: all;
+  width: 100%;
+
+  &:focus, &:active, &:hover {
+    border-color: $color-accent;
+    box-shadow: none;
+    outline: none;
+  }
+
+  &--hero {
+    background: white;
+    border: 2px solid white;
+    box-shadow: none;
+    color: $color-default;
+    font-size: 1.5rem;
+    padding: $spacing-double 1.5rem;
+
+    &:focus, &:active, &:hover {
+      background: white;
+      border-color: white;
+      color: $color-default;
+    }
+  }
+}
+
+.btn {
+  background: $button-color;
+  border: 1px solid $border-color;
+  cursor: pointer;
+  padding: $spacing 1rem;
+  transition-duration: 150ms;
+  transition-property: all;
+
+  &:focus, &:active, &:hover {
+    background: lighten($button-color, 25%);
+    box-shadow: none;
+    outline: none;
+  }
+
+  &--hero {
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 3px;
+    color: white;
+    font-size: 1.5rem;
+    padding: $spacing-double 1.5rem;
+
+    &:focus, &:active, &:hover {
+      background: white;
+      color: $color-accent;
+    }
+  }
+}
