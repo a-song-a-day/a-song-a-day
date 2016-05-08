@@ -6,3 +6,6 @@ env:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 before_script:
   - RAILS_ENV=test bundle exec rake db:setup
+deploy:
+  provider: heroku
+  on: master
