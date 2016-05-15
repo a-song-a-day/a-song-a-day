@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="signup-max-width center-block">
+    <h1 class="display-4 m-b-1 text-sm-center">Let's get started!</h1>
+
+    <p class="lead">
+      We just need a few more details to start sending you music that you'll love.
+    </p>
+
+    <%= simple_form_for @user, url: signup_start_url, wrapper: :large_vertical_form do |f| %>
+      <%= f.input :name, autofocus: true, placeholder: "Lester Bangs", label: "What should we call you?" %>
+      
+      <%= f.input :email, label: "Your email address",
+        wrapper_html: { class: ("has-success" unless @user.errors.include?(:email)) },
+        input_html: { class: ("form-control-success" unless @user.errors.include?(:email)) } %>
+
+
+      <div class="form-group">
+        <label class="form-control-label form-control-lg">
+          What kind of music do you want?
+        </label>
+      </div>
+
+      <div class="m-b-1">
+        <button type="submit" name="curator" class="btn btn-lg btn-primary btn-block">
+          Let me choose a curator
+        </button>
+      </div>
+
+      <div class="m-b-1">
+        <button type="submit" name="random" class="btn btn-lg btn-warning btn-block">
+          Just send me great music!
+        </button>
+      </div>
+    <% end %>
+  </div>
+</div>

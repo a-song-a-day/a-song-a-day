@@ -1,0 +1,2 @@
+module Signup::StartHelper
+end

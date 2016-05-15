@@ -1,0 +1,18 @@
+<h1 class="display-4 m-b-1 text-sm-center">Welcome back!</h1>
+
+<p class="lead">
+  Type in your email address, and we'll send you a log-in link.
+</p>
+
+<%= form_tag sessions_url do %>
+  <div class="form-group">
+    <label class="form-control-label form-control-lg" for="email">
+      Email
+    </label>
+    <input class="form-control form-control-lg" placeholder="your@email.com" type="email" name="email">
+  </div>
+
+  <button type="submit" class="btn btn-lg btn-primary btn-block">
+    Send log-in email
+  </button>
+<% end %>

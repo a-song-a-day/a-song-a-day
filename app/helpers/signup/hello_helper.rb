@@ -1,0 +1,2 @@
+module Signup::HelloHelper
+end

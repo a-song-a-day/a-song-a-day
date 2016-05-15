@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>A Song A Day</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Montserrat:400,500|Roboto+Slab:400,700' %>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+  <%= render partial: "layouts/head" %>
 
   <body>
-    <%= yield %>
+    <%= link_to root_url do %>
+      <%= image_tag "logo-green.svg", alt: "A Song A Day", size: "180x72", class: "m-b-1 img-fluid center-block" %>
+    <% end %>
+
+    <%= render partial: "layouts/alerts" %>
+
+    <div class="application-container">
+      <%= yield %>
+    </div>
   </body>
 </html>
