@@ -1,6 +1,7 @@
 {
   "name": "a-song-a-day",
   "scripts": {
+    "postdeploy": "bundle exec rake db:migrate db:seed"
   },
   "env": {
     "LANG": {
