@@ -1,87 +1,79 @@
-<div class="home">
-  <div class="home__hero">
-    <div class="home__hero__content">
-      <%= image_tag "logo.svg", alt: "A Song A Day", size: "360x144" %>
+<div class="jumbotron jumbotron-fluid jumbotron-home">
+  <div class="container text-xs-center">
+    <%= image_tag "logo.svg", alt: "A Song A Day", size: "360x144", class: "m-b-1" %>
 
-      <div class="font-heading text-xl text-center mrg-b-xl">
-        For those &ldquo;too busy&rdquo; to discover new music.
+    <h2 class="h1 m-b-3 home-pitch center-block">
+      For those <nobr>&ldquo;too busy&rdquo;</nobr>
+      <nobr>to discover</nobr> new music.
+    </h2>
+
+    <form class="form-inline">
+      <div class="form-group">
+        <input type="email" class="form-control form-control-lg m-b-1 jumbotron-form-control" placeholder="send-me@awesome.music" required autofocus>
+        <button class="btn btn-lg btn-jumbotron m-b-1" type="submit">
+          Sign Up
+        </button>
       </div>
-
-      <form class="inline mrg-h-auto">
-        <div class="inline__item">
-          <input type="email" class="form-control form-control--hero width-5--fixed" placeholder="send-me@awesome.music" required>
-        </div>
-        <div class="inline__item mrg-l-sm">
-          <button class="btn btn--primary btn--hero" type="submit">
-            Sign Up
-          </button>
-        </div>
-      </form>
-    </div>
+    </form>
   </div>
+</div>
 
-  <div class="home__section">
-    <h2 class="text-center">The gist, yo</h2>
+<div class="container home-max-width">
+  <h2 class="text-sm-center m-b-1">The gist, yo</h2>
 
-    <div class="lede text-center">
-      A song based on your musical preferences,<br>
-      delivered to your inbox every day.
-    </div>
+  <p class="lead text-primary home-pitch center-block text-sm-center">
+    A song based on your musical preferences, <nobr>delivered to</nobr> your inbox every day.
+  </p>
 
-    <p>
-      No fancy algorithms (yet), no automation (yet). We will personally email you a song that we think you'll like Monday through Friday, entirely determined by your musical preferences indicated below and our own musical opinions. Most of us aren't experts, we're just a rag-tag team of volunteer curators who listen to a lot of music and keep up-to-date with lesser-known artists.
-    </p>
+  <p>
+    No fancy algorithms (yet), no automation (yet). We will personally email you a song that we think you'll like Monday through Friday, entirely determined by your musical preferences indicated below and our own musical opinions. Most of us aren't experts, we're just a rag-tag team of volunteer curators who listen to a lot of music and keep up-to-date with lesser-known artists.
+  </p>
 
-    <div class="mrg-t-sm text-center">
-      <%= image_tag "meetup.jpg", alt: "A Song A Day crew", size: "360x360", class: "image--shadow" %>
-    </div>
-  </div>
+  <%= image_tag "meetup.jpg", alt: "A Song A Day crew", size: "360x360", class: "img-fluid img-rounded center-block shadow-1" %>
 
-  <div class="inverted">
-    <div class="home__section">
-      <h2 class="text-center">About A Song A Day</h2>
+  <hr class="m-y-3">
 
-      <p>
-        A Song A Day originated from the realization that we all need that friend who’s really into music. Even if you were once that person, life happens—families, jobs… dogs? You’ve probably replaced the time once spent reading liner notes and scouring obscure music blogs with bigger priorities. The result is a void filled with shitty radio music and 90s rock ballads on repeat controlled by corporate advertisers and whoever has the thickest wallets.
-      </p>
+  <h2 class="text-sm-center m-b-1">About A Song A Day</h2>
 
-      <p>
-        A Song A Day is here to fill that void with music that doesn’t suck. We’re your personal music concierge, your friend to suggest that one song that we think you’ll like (almost) every day.
-      </p>
+  <p>
+    A Song A Day originated from the realization that we all need that friend who’s really into music. Even if you were once that person, life happens—families, jobs… dogs? You’ve probably replaced the time once spent reading liner notes and scouring obscure music blogs with bigger priorities. The result is a void filled with shitty radio music and 90s rock ballads on repeat controlled by corporate advertisers and whoever has the thickest wallets.
+  </p>
 
-      <p>
-        Our curators have made music discovery a routine. Some of us are music experts, some aren’t, but we all live and breath discovering emerging artists and b-sides to the 70s funk bands that no one’s ever heard of.
-      </p>
+  <p>
+    A Song A Day is here to fill that void with music that doesn’t suck. We’re your personal music concierge, your friend to suggest that one song that we think you’ll like (almost) every day.
+  </p>
 
-      <p>
-        We’re here to support the artists struggling to get their music out there while helping people develop better music taste in a world that commemorates Taylor Swift for being “brave enough” to live in New York on her own.
-      </p>
+  <p>
+    Our curators have made music discovery a routine. Some of us are music experts, some aren’t, but we all live and breath discovering emerging artists and b-sides to the 70s funk bands that no one’s ever heard of.
+  </p>
 
-      <p>
-        You can learn more about the backstory of A Song A Day and what propelled me to venture down this crazy path in these stories:
-      </p>
+  <p>
+    We’re here to support the artists struggling to get their music out there while helping people develop better music taste in a world that commemorates Taylor Swift for being “brave enough” to live in New York on her own.
+  </p>
 
-      <ul>
-        <li>
-          <a href="https://medium.com/@shannnonb/how-product-hunt-transformed-asongaday-co-from-an-email-to-friends-into-a-startup-in-3-hours-e6a6e5c3e14e">How Product Hunt Transformed asongaday.co from an Email to Friends Into a Startup in 3 Hours</a>
-        </li>
-        <li>
-          <a href="https://medium.com/@shannnonb/it-pains-me-but-here-s-why-i-m-sharing-my-first-product-demo-6cdf25a62939">It pains me, but here’s why I’m sharing my first product demo</a>
-        </li>
-      </ul>
+  <p>
+    You can learn more about the backstory of A Song A Day and what propelled me to venture down this crazy path in these stories:
+  </p>
 
-      <p>
-        I truly hope you enjoy your musical experience with us. Happy listening!
-      </p>
+  <ul>
+    <li>
+      <a href="https://medium.com/@shannnonb/how-product-hunt-transformed-asongaday-co-from-an-email-to-friends-into-a-startup-in-3-hours-e6a6e5c3e14e">How Product Hunt Transformed asongaday.co from an Email to Friends Into a Startup in 3 Hours</a>
+    </li>
+    <li>
+      <a href="https://medium.com/@shannnonb/it-pains-me-but-here-s-why-i-m-sharing-my-first-product-demo-6cdf25a62939">It pains me, but here’s why I’m sharing my first product demo</a>
+    </li>
+  </ul>
 
-      <p>
-        ~ Shannon B.<br>
-        <a href="https://twitter.com/ShannnonB">@ShannnonB</a>
-      </p>
+  <p>
+    I truly hope you enjoy your musical experience with us. Happy listening!
+  </p>
 
-      <p>
-        Have feedback or questions? Contact me anytime at <%= mail_to "shannon@asongaday.co" %>.
-      </p>
-    </div>
-  </div>
+  <p>
+    ~ Shannon B.<br>
+    <a href="https://twitter.com/ShannnonB">@ShannnonB</a>
+  </p>
+
+  <p>
+    Have feedback or questions? Contact me anytime at <%= mail_to "shannon@asongaday.co" %>.
+  </p>
 </div>

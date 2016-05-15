@@ -1,0 +1,45 @@
+.jumbotron-home {
+  background-attachment: scroll, fixed;
+  background-image: linear-gradient(transparentize($brand-primary, 0.05) 0%, transparentize($brand-primary, 0.35) 90%), image-url("hero.jpg");
+  background-position: center, center -80px;
+  background-repeat: no-repeat;
+  background-size: contain, cover;
+
+  & .container {
+    color: white;
+    text-align: center;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .jumbotron-form-control {
+    min-width: 300px;
+  }
+}
+
+.btn-jumbotron {
+  @include button-outline-variant(white);
+  box-shadow: inset 0 0 0 1px white;
+
+  @include hover {
+    color: $brand-primary;
+  }
+
+  &:focus {
+    color: $brand-primary;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .btn-jumbotron {
+    width: 100% !important;
+  }
+}
+
+.home-max-width {
+  max-width: 620px;
+}
+
+.home-pitch {
+  max-width: 500px;
+}
