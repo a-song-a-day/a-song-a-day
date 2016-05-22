@@ -14,6 +14,6 @@ Rails.application.routes.draw do
     get '/welcome', to: 'welcome#index'
   end
 
-  resources :sessions, path_names: { new: 'login' }, only: [:new, :create, :destroy]
-  get '/sessions/logout', to: 'sessions#destroy'
+  resource :session, path_names: { new: 'login' }, only: [:new, :create, :destroy]
+  get '/session/logout', to: 'sessions#destroy', as: 'logout'
 end
