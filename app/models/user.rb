@@ -3,6 +3,6 @@ class User < ApplicationRecord
   has_many :curators, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
 
-  validates_presence_of :name, :email
-  validates_uniqueness_of :email
+  validates :name, presence: true, on: [:create, :update]
+  validates :email, presence: true, uniqueness: true
 end

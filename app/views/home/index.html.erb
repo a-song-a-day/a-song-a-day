@@ -7,14 +7,14 @@
       <nobr>to discover</nobr> new music.
     </h2>
 
-    <form class="form-inline">
+    <%= form_tag signup_start_url, method: :get, class: "form-inline" do %>
       <div class="form-group">
-        <input type="email" class="form-control form-control-lg m-b-1 jumbotron-form-control" placeholder="send-me@awesome.music" required autofocus>
-        <button class="btn btn-lg btn-jumbotron m-b-1" type="submit">
+        <input type="email" name="email" class="form-control form-control-lg m-b-1 jumbotron-form-control" placeholder="send-me@awesome.music" required autofocus>
+        <button class="btn btn-lg btn-jumbotron m-b-1" type="submit" data-disable-with="Working…">
           Sign Up
         </button>
       </div>
-    </form>
+    <% end %>
   </div>
 </div>
 

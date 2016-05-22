@@ -1,0 +1,12 @@
+<% unless flash.empty? %>
+  <div class="application-container">
+    <% flash.each do |kind, message| %>
+      <div class="alert fade in <%= alert_class kind %>" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
