@@ -11,6 +11,8 @@
     wrapper_html: { class: ("has-success" unless @user.errors.include?(:email)) },
     input_html: { class: ("form-control-success" unless @user.errors.include?(:email)) } %>
 
+  <%= f.input :extra_information, label: "Anything else you want to tell us?" %>
+
 
   <div class="form-group">
     <label class="form-control-label form-control-lg">
