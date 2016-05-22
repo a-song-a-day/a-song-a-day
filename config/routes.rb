@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 
   resource :session, path_names: { new: 'login' }, only: [:new, :create, :destroy]
   get '/session/logout', to: 'sessions#destroy', as: 'logout'
+
+  resources :tokens, only: :show
 end

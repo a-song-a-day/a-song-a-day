@@ -5,15 +5,15 @@ class SessionsController < ApplicationController
   end
 
   def create
+    @email = params[:email]
+
     user = User.where(email: params[:email]).first
 
-    if user.nil?
-      redirect_to new_session_url, alert: 'No user found for that address.'
-      return
-    end
+    unless user.nil?
+      token = user.access_tokens.create!
 
-    session[:user_id] = user.id if user
-    redirect_to signup_welcome_url
+      TransactionalMailer.login(user, token).deliver
+    end
   end
 
   def destroy

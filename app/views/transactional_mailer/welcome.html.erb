@@ -1,0 +1,13 @@
+<h1><%= @name %>, it's almost time for music!</h1>
+
+<p>
+  Thanks for signing up to A Song A Day. Just one last step:
+  <%= link_to "click here to confirm your email address and start listening",
+    token_url(@token) %>.
+</p>
+
+<p>Link not working? Try this one:</p>
+
+<p><%= link_to token_url(@token), token_url(@token) %></p>
+
+<p>Not you? Don't worry, just ignore this email and we won't contact you again.</p>

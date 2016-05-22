@@ -18,6 +18,10 @@ class Signup::StartController < ApplicationController
     redirect_to signup_genres_url and return if params[:curator]
 
     @user.subscriptions.create(curator: Curator.random)
+    token = @user.access_tokens.create!
+
+    TransactionalMailer.welcome(@user, token).deliver
+
     redirect_to signup_welcome_url
   end
 
