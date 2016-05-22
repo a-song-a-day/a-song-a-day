@@ -5,7 +5,7 @@
 </p>
 
 <%= simple_form_for @user, url: signup_start_url, wrapper: :large_vertical_form do |f| %>
-  <%= f.input :name, autofocus: true, placeholder: "Lester Bangs", label: "What should we call you?" %>
+  <%= f.input :name, autofocus: true, label: "What should we call you?" %>
   
   <%= f.input :email, label: "Your email address",
     wrapper_html: { class: ("has-success" unless @user.errors.include?(:email)) },
