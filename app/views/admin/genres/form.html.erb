@@ -1,0 +1,16 @@
+<div class="clearfix m-b-2">
+  <h1 class="pull-xs-left">
+    <%= @genre.new_record? ? "Create" : "Edit" %>
+    Genre
+  </h1>
+  <% unless @genre.new_record? %>
+    <%= button_to "Delete genre", [:admin, @genre], method: :delete, data: { confirm: "Really delete #{@genre.name}?" }, class: "btn btn-danger-outline pull-xs-right" %>
+  <% end %>
+</div>
+
+<%= simple_form_for [:admin, @genre] do |f| %>
+  <%= f.input :name, autofocus: true %>
+  
+  <%= f.submit "Save genre", class: "btn btn-primary pull-xs-right" %>
+<% end %>
+
