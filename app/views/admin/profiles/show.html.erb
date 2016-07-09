@@ -16,10 +16,16 @@
           <li class="list-group-item"><%= current_user.extra_information %></li>
         <% end %>
         <% if current_user.curator? %>
-          <li class="list-group-item text-warning">Curator</li>
+          <li class="list-group-item text-warning">
+            Curator
+            <span class="pull-xs-right">&#x2714;</span>
+          </li>
         <% end %>
         <% if current_user.admin? %>
-          <li class="list-group-item text-info">Admin</li>
+          <li class="list-group-item text-info">
+            Admin
+            <span class="pull-xs-right">&#x2714;</span>
+          </li>
         <% end %>
       </ul>
     </div>
