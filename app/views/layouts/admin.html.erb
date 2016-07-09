@@ -4,11 +4,13 @@
 
   <body>
     <nav class="navbar navbar-light bg-faded m-b-2">
-      <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#admin-navbar">
+      <button class="navbar-toggler hidden-sm-up text-primary" type="button" data-toggle="collapse" data-target="#admin-navbar">
         &#9776;
       </button>
       <div class="collapse navbar-toggleable-xs" id="admin-navbar">
-        <%= link_to "A Song A Day", admin_dashboard_path, class: "navbar-brand font-weight-bold m-r-3" %>
+        <%= link_to admin_dashboard_path, class: "navbar-brand font-weight-bold m-r-3" do %>
+          <%= image_tag "logo-green.svg", alt: "A Song A Day", size: "90x36" %>
+        <% end %>
         <div class="nav navbar-nav">
           <%= nav_link_to "Home", admin_dashboard_path, active: :exact %>
           <% if current_user.curator? || current_user.admin? %>
