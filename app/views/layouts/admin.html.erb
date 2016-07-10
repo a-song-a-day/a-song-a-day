@@ -12,7 +12,7 @@
           <%= image_tag "logo-green.svg", alt: "A Song A Day", size: "90x36" %>
         <% end %>
         <div class="nav navbar-nav">
-          <%= nav_link_to "Home", admin_dashboard_path, active: :exact %>
+          <%= nav_link_to "Dashboard", admin_dashboard_path, active: :exact %>
           <% if current_user.curator? || current_user.admin? %>
             <%= nav_link_to "Curate", admin_curators_path %>
           <% end %>
