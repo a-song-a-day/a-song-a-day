@@ -11,6 +11,13 @@
     wrapper_html: { class: ("has-success" unless @user.errors.include?(:email)) },
     input_html: { class: ("form-control-success" unless @user.errors.include?(:email)) } %>
 
+  <% if @user.errors[:email].include? "has already been taken" %>
+    <div class="alert alert-warning">
+      <strong>Forgot you signed up?</strong>
+      No problem! <%= link_to "Log in using your email address", new_session_path(email: @user.email) %>.
+    </div>
+  <% end %>
+
   <%= f.input :extra_information, label: "Anything else you want to tell us?" %>
 
 
