@@ -16,43 +16,42 @@ random = Curator.create!(title: 'Random',
                          random: true)
 
 genres = <<EOF.split("\n")
-Acoustic
-Alternative Rock
-Americana
-Avant Garde
-Blues
-Bluegrass
-Chill (electronic)
-Classic Rock
 Classical
-Country
-Dance Pop
+Country/Blues
+EDM/Trance
 Electronic Pop
-Emo Rock
-Folk
-Funk
-Garage Rock
-Hip Hop & Rap
-House Music
-Indie Pop
+Folk/Americana
+Funk/Soul
+HipHop/Rap
+House/Techno
 Indie Rock
-Jam Bands
 Jazz
-Lo-Fi Rock
 Metal
-Motown
-New Wave
 Pop
-Prog Rock
 Punk
 R&B
 Rock
-Singer-Songwriter
 Shoegaze
-Soul
-Techno
-Trap
-Trance
+Trap/Future Bass
 World
 EOF
-genres.each {|name| Genre.create!(name: name) }
+genres.each {|name| Genre.create!(name: name, primary: true) }
+
+secondary_genres = <<EOF.split("\n")
+Acoustic
+Alternative Rock
+Ambient
+Bluegrass
+Classic Rock
+Dance Pop
+Electronic
+Emo Rock
+Garage Rock
+Indie Pop
+Lo-Fi Rock
+Motown
+New Wave
+Prog Rock
+Singer-Songwriter
+EOF
+secondary_genres.each {|name| Genre.create!(name: name) }

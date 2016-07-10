@@ -14,6 +14,18 @@ Rails.application.routes.draw do
     get '/welcome', to: 'welcome#index'
   end
 
+  namespace :admin do
+    get '/', to: 'dashboard#index', as: 'dashboard'
+
+    resources :curators
+
+    resources :subscriptions
+
+    resources :genres
+
+    resource :profile, only: [:show, :edit, :update]
+  end
+
   resource :session, path_names: { new: 'login' }, only: [:new, :create, :destroy]
   get '/session/logout', to: 'sessions#destroy', as: 'logout'
 

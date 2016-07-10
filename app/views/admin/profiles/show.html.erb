@@ -1,0 +1,33 @@
+<div class="clearfix m-b-2">
+  <h1 class="pull-xs-left">Profile</h1>
+  <%= link_to "Edit profile", edit_admin_profile_path, class: "btn btn-primary pull-xs-right" %>
+</div>
+
+<div class="row m-b-2">
+  <div class="col-sm-4 col-xs-6 center-block m-b-2">
+    <%= image_tag gravatar_url(current_user.email), alt: "Avatar for #{current_user.name}", class: "img-rounded img-fluid" %>
+  </div>
+  <div class="col-sm-8 col-xs-12">
+    <div class="card">
+      <h3 class="card-block"><%= current_user.name %></h3>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%= mail_to current_user.email %></li>
+        <% unless current_user.extra_information.blank? %>
+          <li class="list-group-item"><%= current_user.extra_information %></li>
+        <% end %>
+        <% if current_user.curator? %>
+          <li class="list-group-item text-warning">
+            Curator
+            <span class="pull-xs-right">&#x2714;</span>
+          </li>
+        <% end %>
+        <% if current_user.admin? %>
+          <li class="list-group-item text-info">
+            Admin
+            <span class="pull-xs-right">&#x2714;</span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

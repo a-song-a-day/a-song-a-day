@@ -1,0 +1,10 @@
+<h1 class="m-b-2">Edit Profile</h1>
+
+<%= simple_form_for current_user, url: [:admin, :profile] do |f| %>
+  <%= f.input :name, autofocus: true %>
+  <%= f.input :email %>
+  <%= f.input :extra_information %>
+  
+  <%= f.submit "Save profile", class: "btn btn-primary pull-xs-right" %>
+<% end %>
+

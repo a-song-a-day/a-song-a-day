@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <%= render partial: "layouts/head" %>
+
+  <body>
+    <nav class="navbar navbar-light bg-faded m-b-2">
+      <button class="navbar-toggler hidden-sm-up text-primary" type="button" data-toggle="collapse" data-target="#admin-navbar">
+        &#9776;
+      </button>
+      <div class="collapse navbar-toggleable-xs" id="admin-navbar">
+        <%= link_to admin_dashboard_path, class: "navbar-brand font-weight-bold m-r-3" do %>
+          <%= image_tag "logo-green.svg", alt: "A Song A Day", size: "90x36" %>
+        <% end %>
+        <div class="nav navbar-nav">
+          <%= nav_link_to "Dashboard", admin_dashboard_path, active: :exact %>
+          <% if current_user.curator? || current_user.admin? %>
+            <%= nav_link_to "Curate", admin_curators_path %>
+          <% end %>
+          <%= nav_link_to "Subscriptions", admin_subscriptions_path %>
+          <% if current_user.admin? %>
+            <%= nav_link_to "Genres", admin_genres_path %>
+          <% end %>
+        </ul>
+        <div class="nav navbar-nav pull-xs-right">
+          <%= nav_link_to "Profile", admin_profile_path %>
+          <%= link_to "Logout", session_path, method: :delete, class: "nav-item nav-link" %>
+        </div>
+      </div>
+    </nav>
+
+    <%= render partial: "layouts/alerts" %>
+
+    <div class="container m-y-2">
+      <%= yield %>
+    </div>
+  </body>
+</html>
