@@ -11,6 +11,13 @@
       <p class="lead">
         Logged in as <%= current_user.name %>.
         Welcome back!
+      </p>
+
+      <div class="btn-group" role="group" aria-label="Navigate">
+        <%= link_to "Dashboard", admin_dashboard_path, class: "btn btn-jumbotron" %>
+        <%= link_to "Subscriptions", admin_subscriptions_path, class: "btn btn-jumbotron" %>
+        <%= link_to "Logout", session_path, method: :delete, class: "btn btn-jumbotron" %>
+      </div>
     <% else %>
       <%= form_tag signup_start_url, method: :get, class: "form-inline" do %>
         <div class="form-group">
@@ -20,6 +27,12 @@
           </button>
         </div>
       <% end %>
+
+      <div class="m-t-2">
+        <span class="m-r-2">Already have an account?</span>
+
+        <%= link_to "Log In", new_session_path, class: "btn btn-jumbotron" %>
+      </div>
     <% end %>
   </div>
 </div>
