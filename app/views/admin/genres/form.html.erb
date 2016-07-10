@@ -10,6 +10,8 @@
 
 <%= simple_form_for [:admin, @genre] do |f| %>
   <%= f.input :name, autofocus: true %>
+
+  <%= f.input :primary, inline_label: "Primary genre?" %>
   
   <%= f.submit "Save genre", class: "btn btn-primary pull-xs-right" %>
 <% end %>

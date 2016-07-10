@@ -1,6 +1,7 @@
 class Admin::GenresController < Admin::AdminController
   def index
-    @genres = Genre.order(:name)
+    @primary_genres = Genre.primary.order(:name)
+    @secondary_genres = Genre.secondary.order(:name)
   end
 
   def new
@@ -51,6 +52,6 @@ class Admin::GenresController < Admin::AdminController
   private
 
   def genre_params
-    params.require(:genre).permit(:name)
+    params.require(:genre).permit(:name, :primary)
   end
 end
