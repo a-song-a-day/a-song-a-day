@@ -9,14 +9,21 @@
 </div>
 
 <%= simple_form_for [:admin, @user] do |f| %>
-  <%= f.input :name, autofocus: true %>
-  <%= f.input :email %>
-  <%= f.input :extra_information %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-9 m-b-1">
+      <%= f.input :name, autofocus: true %>
+      <%= f.input :email %>
+      <%= f.input :extra_information %>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-3 m-b-1">
+      <h5 class="m-b-2">Privileges</h5>
 
-  <hr>
-
-  <%= f.input :curator, inline_label: "Curator?" %>
-  <%= f.input :admin, inline_label: "Admin?" %>
+      <%= f.input :curator, inline_label: "Curator?" %>
+      <p class="text-info">Curators can queue songs and have subscribers.</p>
+      <%= f.input :admin, inline_label: "Administrator?" %>
+      <p class="text-danger">Administrators can do <strong>anything</strong>. Be careful!</p>
+    </div>
+  </div>
 
   <div class="pull-xs-right">
     <%= link_to "Cancel", admin_users_path, class: "btn btn-link m-r-1" %>
