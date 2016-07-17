@@ -6,6 +6,8 @@ class TokensController < ApplicationController
     user.confirmed_email = true
     user.save!
 
+    reset_session
+
     session[:user_id] = user.id
     redirect_to root_url
   end
