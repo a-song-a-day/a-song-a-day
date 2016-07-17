@@ -21,6 +21,7 @@
           <%= nav_link_to "Subscriptions", admin_subscriptions_path %>
           <% if current_user.admin? %>
             <%= nav_link_to "Genres", admin_genres_path %>
+            <%= nav_link_to "Users", admin_users_path %>
           <% end %>
         </ul>
         <div class="nav navbar-nav pull-xs-right">

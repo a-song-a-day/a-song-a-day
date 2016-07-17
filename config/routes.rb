@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
     resources :genres
 
+    resources :users
+
     resource :profile, only: [:show, :edit, :update]
   end
 

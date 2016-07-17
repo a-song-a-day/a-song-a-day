@@ -1,0 +1,26 @@
+<div class="clearfix m-b-2">
+  <h1 class="pull-xs-left">
+    <%= @user.new_record? ? "Create" : "Edit" %>
+    User
+  </h1>
+  <% unless @user.new_record? %>
+    <%= button_to "Delete user", [:admin, @user], method: :delete, data: { confirm: "Really delete #{@user.name}?" }, class: "btn btn-danger-outline pull-xs-right" %>
+  <% end %>
+</div>
+
+<%= simple_form_for [:admin, @user] do |f| %>
+  <%= f.input :name, autofocus: true %>
+  <%= f.input :email %>
+  <%= f.input :extra_information %>
+
+  <hr>
+
+  <%= f.input :curator, inline_label: "Curator?" %>
+  <%= f.input :admin, inline_label: "Admin?" %>
+
+  <div class="pull-xs-right">
+    <%= link_to "Cancel", admin_users_path, class: "btn btn-link m-r-1" %>
+    <%= f.submit "Save user", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
