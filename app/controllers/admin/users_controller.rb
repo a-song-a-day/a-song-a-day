@@ -23,7 +23,7 @@ class Admin::UsersController < Admin::AdminController
 
       TransactionalMailer.welcome(@user, token).deliver
 
-      redirect_to admin_user_path, notice: "User '#{@user.email}' created, welcome email sent"
+      redirect_to admin_users_path, notice: "User '#{@user.email}' created, welcome email sent"
       return
     end
 
