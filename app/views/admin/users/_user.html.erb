@@ -6,7 +6,17 @@
     <div class="card">
       <h3 class="card-block"><%= user.name %></h3>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><%= mail_to user.email %></li>
+        <li class="list-group-item">
+          <div><%= mail_to user.email %><div>
+          <% if user != current_user %>
+            <div class="m-t-1 clearfix">
+              Confirmed?
+              <span class="pull-xs-right">
+                <%= check_mark user.confirmed_email? %>
+              </span>
+            </div>
+          <% end %>
+        </li>
         <% unless user.extra_information.blank? %>
           <li class="list-group-item"><%= user.extra_information %></li>
         <% end %>
