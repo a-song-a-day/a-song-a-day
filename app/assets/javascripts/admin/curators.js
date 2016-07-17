@@ -3,7 +3,7 @@
 
 $(function() {
   var $description = $('.curator_description textarea');
-  var $hint = $description.parent().find('.text-info');
+  var $hint = $description.parent().find('.text-muted');
 
   $hint.addClass('clearfix');
 
