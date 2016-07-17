@@ -1,0 +1,18 @@
+<h1 class="m-b-2">
+  <%= @curator.new_record? ? "Create" : "Edit" %>
+  Curator Profile
+</h1>
+
+<%= simple_form_for [:admin, @curator], html: { class: "clearfix m-b-3" } do |f| %>
+  <%= f.input :title, autofocus: true, hint: "e.g. Modern Eclectic" %>
+  <%= f.input :description, hint: "Aim for around 20–50 words." %>
+
+  <div class="pull-xs-right">
+    <%= link_to "Cancel", admin_curators_path, class: "btn btn-link m-r-1" %>
+    <%= f.submit "Save curator profile", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<div class="text-muted">
+  Your curator page also shows <%= link_to "your profile name and Gravatar", edit_admin_profile_path %>.
+</div>

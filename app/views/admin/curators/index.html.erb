@@ -1,3 +1,32 @@
-<h1>Curate</h1>
+<div class="clearfix m-b-2">
+  <h1 class="pull-xs-left">Curator Profiles</h1>
+  <%= link_to "Add new curator profile", new_admin_curator_path, class: "btn btn-primary pull-xs-right" %>
+</div>
 
-<p class="text-danger">Coming soon!</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th class="text-xs-center">Subscribers</th>
+      <th class="text-xs-center">Songs</th>
+      <th class="text-xs-right">Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @curators.empty? %>
+      <tr class="table-warning">
+        <td colspan="4">
+          No curator profiles found.
+        </td>
+      </tr>
+    <% end %>
+    <% @curators.each do |curator| %>
+      <tr>
+        <th scope="row"><%= link_to curator.title, admin_curator_path(curator) %></th>
+        <td class="text-xs-center"><%= number_with_delimiter curator.subscribers %></td>
+        <td class="text-xs-center"><%= number_with_delimiter curator.songs %></td>
+        <td class="text-xs-right"><%= curator.created_at.to_s(:short) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

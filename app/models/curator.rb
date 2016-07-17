@@ -7,4 +7,12 @@ class Curator < ApplicationRecord
   def self.random
     where(random: true).first
   end
+
+  def songs
+    0
+  end
+
+  def subscribers
+    0
+  end
 end
