@@ -1,0 +1,9 @@
+.admin-body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.admin-content {
+  flex: 1;
+}

@@ -2,50 +2,76 @@
 <html>
   <%= render partial: "layouts/head" %>
 
-  <body>
-    <% if masquerade_user %>
-      <div class="clearfix bg-info p-x-1 small">
-        <div class="pull-sm-left text-xs-center text-sm-left p-t-2">
-          Masquerading as <%= masquerade_user.email %>
+  <body class="admin-body">
+    <header class="admin-header">
+      <% if masquerade_user %>
+        <div class="clearfix bg-info p-x-1 small">
+          <div class="pull-sm-left text-xs-center text-sm-left p-t-2">
+            Masquerading as <%= masquerade_user.email %>
+          </div>
+          <div class="pull-sm-right text-xs-center text-sm-right m-y-1">
+            <%= link_to "Remove masquerade", admin_masquerade_path, method: :delete, class: "btn btn-jumbotron btn-sm" %>
+          </div>
         </div>
-        <div class="pull-sm-right text-xs-center text-sm-right m-y-1">
-          <%= link_to "Remove masquerade", admin_masquerade_path, method: :delete, class: "btn btn-jumbotron btn-sm" %>
+      <% end %>
+
+      <nav class="navbar navbar-light bg-faded m-b-2">
+        <button class="navbar-toggler hidden-sm-up text-primary" type="button" data-toggle="collapse" data-target="#admin-navbar">
+          &#9776;
+        </button>
+        <div class="collapse navbar-toggleable-xs" id="admin-navbar">
+          <%= link_to current_user.admin? ? admin_dashboard_path : admin_profile_path, class: "navbar-brand font-weight-bold m-r-3" do %>
+            <%= image_tag "logo-green.svg", alt: "A Song A Day", size: "90x36" %>
+          <% end %>
+          <div class="nav navbar-nav">
+            <% if current_user.admin? %>
+              <%= nav_link_to "Dashboard", admin_dashboard_path, active: :exact %>
+            <% end %>
+            <% if current_user.curator? %>
+              <%= nav_link_to "Curate", admin_curators_path %>
+            <% end %>
+            <%= nav_link_to "Subscriptions", admin_subscriptions_path %>
+            <% if current_user.admin? %>
+              <%= nav_link_to "Genres", admin_genres_path %>
+              <%= nav_link_to "Users", admin_users_path %>
+            <% end %>
+          </ul>
+          <div class="nav navbar-nav pull-xs-right">
+            <%= nav_link_to "Profile", admin_profile_path %>
+            <%= link_to "Logout", session_path, method: :delete, class: "nav-item nav-link" %>
+          </div>
         </div>
+      </nav>
+      <%= render partial: "layouts/alerts" %>
+    </header>
+
+    <div class="admin-content">
+      <div class="container m-y-2">
+        <%= yield %>
       </div>
-    <% end %>
-
-    <nav class="navbar navbar-light bg-faded m-b-2">
-      <button class="navbar-toggler hidden-sm-up text-primary" type="button" data-toggle="collapse" data-target="#admin-navbar">
-        &#9776;
-      </button>
-      <div class="collapse navbar-toggleable-xs" id="admin-navbar">
-        <%= link_to current_user.admin? ? admin_dashboard_path : admin_profile_path, class: "navbar-brand font-weight-bold m-r-3" do %>
-          <%= image_tag "logo-green.svg", alt: "A Song A Day", size: "90x36" %>
-        <% end %>
-        <div class="nav navbar-nav">
-          <% if current_user.admin? %>
-            <%= nav_link_to "Dashboard", admin_dashboard_path, active: :exact %>
-          <% end %>
-          <% if current_user.curator? %>
-            <%= nav_link_to "Curate", admin_curators_path %>
-          <% end %>
-          <%= nav_link_to "Subscriptions", admin_subscriptions_path %>
-          <% if current_user.admin? %>
-            <%= nav_link_to "Genres", admin_genres_path %>
-            <%= nav_link_to "Users", admin_users_path %>
-          <% end %>
-        </ul>
-        <div class="nav navbar-nav pull-xs-right">
-          <%= nav_link_to "Profile", admin_profile_path %>
-          <%= link_to "Logout", session_path, method: :delete, class: "nav-item nav-link" %>
-        </div>
-      </div>
-    </nav>
-
-    <%= render partial: "layouts/alerts" %>
-
-    <div class="container m-y-2">
-      <%= yield %>
     </div>
+
+    <footer class="admin-footer m-t-3 small">
+      <hr class="m-b-2">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-5 text-muted m-b-1">
+            Copyright &copy; <%= Date.today.year %> A Song A Day, LLC<br>
+            For those "too busy" to discover new music.
+          </div>
+          <div class="col-xs-12 col-sm-3 text-sm-center text-muted m-b-1">
+            A Song A Day<br>
+            68 Jay Street, #718<br>
+            Brooklyn, NY 11201
+          </div>
+          <div class="col-xs-12 col-sm-4 text-sm-right text-muted m-b-1">
+            Problems or questions?<br>
+            Send us an email:<br>
+            <%= mail_to "help@asongaday.co" %>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
