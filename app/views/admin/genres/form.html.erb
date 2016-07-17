@@ -8,14 +8,19 @@
   <% end %>
 </div>
 
-<%= simple_form_for [:admin, @genre] do |f| %>
-  <%= f.input :name, autofocus: true %>
+<%= simple_form_for [:admin, @genre], html: { class: "clearfix" } do |f| %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-6 m-b-1">
+      <%= f.input :name, autofocus: true %>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-6 m-b-1">
+      <%= f.input :primary, inline_label: "Primary genre?" %>
+      <p class="text-info small">Primary genres are used to match curators to subscribers.</p>
+    </div>
+  </div>
 
-  <%= f.input :primary, inline_label: "Primary genre?" %>
-  
-  <div class="pull-xs-right">
+  <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_genres_path, class: "btn btn-link m-r-1" %>
     <%= f.submit "Save genre", class: "btn btn-primary" %>
   </div>
 <% end %>
-

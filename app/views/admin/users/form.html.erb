@@ -19,13 +19,13 @@
       <h5 class="m-b-2">Privileges</h5>
 
       <%= f.input :curator, inline_label: "Curator?" %>
-      <p class="text-info">Curators can queue songs and have subscribers.</p>
+      <p class="text-info small">Curators can queue songs and have subscribers.</p>
       <%= f.input :admin, inline_label: "Administrator?" %>
-      <p class="text-danger">Administrators can do <strong>anything</strong>. Be careful!</p>
+      <p class="text-danger small">Administrators can do <strong>anything</strong>. Be careful!</p>
     </div>
   </div>
 
-  <div class="pull-xs-right">
+  <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_users_path, class: "btn btn-link m-r-1" %>
     <%= f.submit "Save user", class: "btn btn-primary" %>
   </div>
