@@ -13,6 +13,9 @@
 
   <%= f.input :primary, inline_label: "Primary genre?" %>
   
-  <%= f.submit "Save genre", class: "btn btn-primary pull-xs-right" %>
+  <div class="pull-xs-right">
+    <%= link_to "Cancel", admin_genres_path, class: "btn btn-link m-r-1" %>
+    <%= f.submit "Save genre", class: "btn btn-primary" %>
+  </div>
 <% end %>
 
