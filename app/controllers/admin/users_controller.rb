@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::AdminController
   before_action :require_admin
 
   def index
-    @users = User.all.order(created_at: :desc)
+    @users = User.order(created_at: :desc).page params[:page]
   end
 
   def new

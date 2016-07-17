@@ -1,0 +1,9 @@
+<% if page.current? %>
+  <li class="page-item active">
+    <%= content_tag :span, page, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: 'page-link' %>
+  </li>
+<% else %>
+  <li class="page-item">
+    <%= link_to page, url, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: 'page-link' %>
+  </li>
+<% end %>

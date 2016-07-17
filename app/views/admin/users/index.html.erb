@@ -3,6 +3,8 @@
   <%= link_to "Add new user", new_admin_user_path, class: "btn btn-primary pull-xs-right" %>
 </div>
 
+<%= render partial: "pagination", items: @users %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -34,3 +36,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= render partial: "pagination", items: @users %>

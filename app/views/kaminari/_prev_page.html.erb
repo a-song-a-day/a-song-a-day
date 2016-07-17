@@ -1,0 +1,7 @@
+<li class="page-item <%= "disabled" if current_page.first? %>">
+  <%=
+    link_to_unless(current_page.first?, raw(t 'views.pagination.previous'), url, rel: 'prev', class: 'page-link') do
+      content_tag 'span', raw(t 'views.pagination.previous'), class: 'page-link'
+    end
+    %>
+</li>

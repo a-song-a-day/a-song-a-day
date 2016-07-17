@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'simple_form'
+gem 'kaminari'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
 source 'https://rails-assets.org' do
@@ -33,6 +34,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
