@@ -16,6 +16,8 @@
       <div class="btn-group" role="group" aria-label="Navigate">
         <% if current_user.admin? %>
           <%= link_to "Dashboard", admin_dashboard_path, class: "btn btn-jumbotron" %>
+        <% else %>
+          <%= link_to "Profile", admin_profile_path, class: "btn btn-jumbotron" %>
         <% end %>
         <%= link_to "Subscriptions", admin_subscriptions_path, class: "btn btn-jumbotron" %>
         <%= link_to "Logout", session_path, method: :delete, class: "btn btn-jumbotron" %>
