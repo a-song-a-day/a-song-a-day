@@ -2,9 +2,12 @@
 
 <%= simple_form_for current_user, url: [:admin, :profile] do |f| %>
   <%= f.input :name, autofocus: true %>
-  <%= f.input :email %>
-  <%= f.input :extra_information %>
-  
+  <%= f.input :email, hint: "Your profile picture is based on your Gravatar email." %>
+
+  <div class="m-y-2 clearfix">
+    <%= f.input :extra_information, input_html: { rows: 3 }, hint: "Anything that would help us choose better songs for you!" %>
+  </div>
+
   <div class="pull-xs-right">
     <%= link_to "Cancel", admin_profile_path, class: "btn btn-link m-r-1" %>
     <%= f.submit "Save profile", class: "btn btn-primary" %>
