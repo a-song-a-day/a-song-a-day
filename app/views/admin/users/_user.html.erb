@@ -36,3 +36,9 @@
     </div>
   </div>
 </div>
+
+<% if user.curator? && user.curators.size > 0 %>
+  <% user.curators.each do |curator| %>
+    <%= render curator %>
+  <% end %>
+<% end %>

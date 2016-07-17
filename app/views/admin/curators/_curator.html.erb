@@ -1,28 +1,21 @@
-<div class="row m-b-2">
-  <div class="col-sm-4 col-xs-6 center-block m-b-2">
-    <%= image_tag gravatar_url(curator.user.email), alt: "Avatar for #{curator.user.name}", class: "img-rounded img-fluid" %>
+<div class="card">
+  <div class="card-block">
+    <h3><%= curator.title %></h3>
+    <p class="lead"><%= curator.user.name %></p>
+    <%= simple_format curator.description %>
   </div>
-  <div class="col-sm-8 col-xs-12">
-    <div class="card">
-      <div class="card-block">
-        <h3><%= curator.title %></h3>
-        <p class="lead"><%= curator.user.name %></p>
-        <%= simple_format curator.description %>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item text-info">
-          Songs
-          <span class="pull-xs-right">
-            <%= number_with_delimiter curator.songs %>
-          </span>
-        </li>
-        <li class="list-group-item text-info">
-          Subscribers
-          <span class="pull-xs-right">
-            <%= number_with_delimiter curator.subscribers %>
-          </span>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item text-info col-xs-12 col-sm-6">
+      Songs
+      <span class="pull-xs-right">
+        <%= number_with_delimiter curator.songs %>
+      </span>
+    </li>
+    <li class="list-group-item text-info col-xs-12 col-sm-6">
+      Subscribers
+      <span class="pull-xs-right">
+        <%= number_with_delimiter curator.subscribers %>
+      </span>
+    </li>
+  </ul>
 </div>
