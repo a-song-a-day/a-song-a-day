@@ -1,4 +1,6 @@
 class Admin::GenresController < Admin::AdminController
+  before_action :require_admin
+
   def index
     @primary_genres = Genre.primary.order(:name)
     @secondary_genres = Genre.secondary.order(:name)

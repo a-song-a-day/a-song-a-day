@@ -13,6 +13,16 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_url unless current_user
   end
 
+  def require_admin
+    redirect_to new_session_url and return unless current_user
+    redirect_to admin_profile_url, alert: "Permission denied" unless current_user.admin?
+  end
+
+  def require_curator
+    redirect_to new_session_url and return unless current_user
+    redirect_to admin_profile_url, alert: "Permission denied" unless current_user.curator?
+  end
+
   def require_no_login
     redirect_to signup_welcome_url if current_user
   end
