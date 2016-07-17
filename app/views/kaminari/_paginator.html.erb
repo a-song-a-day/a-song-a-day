@@ -1,15 +1,8 @@
 <%= paginator.render do %>
-  <nav>
-    <ul class="pagination pagination-sm">
-      <%= first_page_tag %>
-      <%= prev_page_tag %>
-      <% each_page do |page| %>
-        <% if page.left_outer? || page.right_outer? || page.inside_window? %>
-          <%= page_tag page %>
-        <% end %>
-      <% end %>
-      <%= next_page_tag %>
-      <%= last_page_tag %>
-    </ul>
-  </nav>
+  <ul class="pagination pagination-sm d-block m-y-0">
+    <%= first_page_tag %>
+    <%= prev_page_tag %>
+    <%= next_page_tag %>
+    <%= last_page_tag %>
+  </ul>
 <% end %>

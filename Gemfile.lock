@@ -88,6 +88,10 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     pg (0.18.4)
+    pg_search (1.0.6)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     pkg-config (1.1.7)
     puma (3.4.0)
     rack (2.0.1)
@@ -176,6 +180,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0.5)
   pg
+  pg_search
   puma (~> 3.0)
   rails (>= 5.0.0, < 5.1)
   rails-assets-tether (>= 1.1.0)!

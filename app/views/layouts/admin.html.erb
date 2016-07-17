@@ -15,7 +15,7 @@
           <% if current_user.admin? %>
             <%= nav_link_to "Dashboard", admin_dashboard_path, active: :exact %>
           <% end %>
-          <% if current_user.curator? || current_user.admin? %>
+          <% if current_user.curator? %>
             <%= nav_link_to "Curate", admin_curators_path %>
           <% end %>
           <%= nav_link_to "Subscriptions", admin_subscriptions_path %>

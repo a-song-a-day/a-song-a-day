@@ -3,12 +3,11 @@
   <%= link_to "Add new user", new_admin_user_path, class: "btn btn-primary pull-xs-right" %>
 </div>
 
-<%= render partial: "pagination", items: @users %>
+<%= render partial: "pagination" %>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
       <th>Name</th>
       <th>Email</th>
       <th class="text-xs-center">Curator</th>
@@ -26,8 +25,7 @@
     <% end %>
     <% @users.each do |user| %>
       <tr>
-        <th scope="row"><%= user.id %></th>
-        <td><%= link_to user.name, admin_user_path(user) %></td>
+        <th scope="row"><%= link_to user.name, admin_user_path(user) %></th>
         <td><%= link_to user.email, admin_user_path(user) %></td>
         <td class="text-xs-center"><%= check_mark user.curator? %></td>
         <td class="text-xs-center"><%= check_mark user.admin? %></td>
@@ -37,4 +35,4 @@
   </tbody>
 </table>
 
-<%= render partial: "pagination", items: @users %>
+<%= render partial: "pagination" %>

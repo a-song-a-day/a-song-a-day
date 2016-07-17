@@ -2,7 +2,10 @@ class Admin::UsersController < Admin::AdminController
   before_action :require_admin
 
   def index
-    @users = User.order(created_at: :desc).page params[:page]
+    @search = params[:q]
+    @users = User.all
+    @users = @users.search(@search) unless @search.blank?
+    @users = @users.order(created_at: :desc).page(params[:page])
   end
 
   def new
