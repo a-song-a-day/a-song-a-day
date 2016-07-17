@@ -1,6 +1,9 @@
 <div class="clearfix m-b-2">
   <h1 class="pull-xs-left"><%= @user.name %></h1>
   <%= link_to "Edit profile", edit_admin_user_path(@user), class: "btn btn-primary pull-xs-right" %>
+  <% if current_user.admin? %>
+    <%= button_to "Masquerade as this user", admin_masquerade_path(user_id: @user), class: "btn btn-secondary pull-xs-right m-r-1" %>
+  <% end %>
 </div>
 
 <%= render @user %>

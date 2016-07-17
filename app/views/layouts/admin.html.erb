@@ -3,6 +3,17 @@
   <%= render partial: "layouts/head" %>
 
   <body>
+    <% if masquerade_user %>
+      <div class="clearfix bg-info p-x-1 small">
+        <div class="pull-sm-left text-xs-center text-sm-left p-t-2">
+          Masquerading as <%= masquerade_user.email %>
+        </div>
+        <div class="pull-sm-right text-xs-center text-sm-right m-y-1">
+          <%= link_to "Remove masquerade", admin_masquerade_path, method: :delete, class: "btn btn-jumbotron btn-sm" %>
+        </div>
+      </div>
+    <% end %>
+
     <nav class="navbar navbar-light bg-faded m-b-2">
       <button class="navbar-toggler hidden-sm-up text-primary" type="button" data-toggle="collapse" data-target="#admin-navbar">
         &#9776;

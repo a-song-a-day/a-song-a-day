@@ -3,10 +3,25 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  helper_method :current_user, :masquerade_user, :session_user
+
   private
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= (masquerade_user || session_user)
+  end
+
+  def masquerade_user
+    masquerade = session[:masquerade_user_id]
+    @masquerade_user ||= User.find(masquerade) if session_user.try(:admin?) && masquerade
+  rescue ActiveRecord::RecordNotFound
+    session.delete(:masquerade_user_id)
+  end
+
+  def session_user
+    @session_user ||= User.find(session[:user_id]) if session[:user_id]
+  rescue ActiveRecord::RecordNotFound
+    reset_session
   end
 
   def require_login

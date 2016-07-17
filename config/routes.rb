@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     resources :users
 
     resource :profile, only: [:show, :edit, :update]
+
+    resource :masquerade, only: [:create, :destroy]
   end
 
   resource :session, path_names: { new: 'login' }, only: [:new, :create, :destroy]
