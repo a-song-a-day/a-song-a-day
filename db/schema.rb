@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710155606) do
+ActiveRecord::Schema.define(version: 20160722210414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 20160710155606) do
     t.boolean  "primary",    default: false
   end
 
+  create_table "songs", force: :cascade do |t|
+    t.integer  "curator_id"
+    t.string   "url",         null: false
+    t.string   "title",       null: false
+    t.text     "description", null: false
+    t.string   "image_url"
+    t.datetime "sent_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["curator_id"], name: "index_songs_on_curator_id", using: :btree
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "curator_id"
@@ -65,6 +77,7 @@ ActiveRecord::Schema.define(version: 20160710155606) do
 
   add_foreign_key "access_tokens", "users", on_delete: :cascade
   add_foreign_key "curators", "users", on_delete: :cascade
+  add_foreign_key "songs", "curators"
   add_foreign_key "subscriptions", "curators", on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_delete: :cascade
 end
