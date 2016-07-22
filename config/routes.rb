@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
 
-    resources :curators
+    resources :curators do
+      resources :songs
+    end
 
     resources :subscriptions
 

@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-sm-3 col-xs-4 center-block">
+        <%= link_to song.url, target: "_blank" do %>
+          <%= image_tag song.image_url, alt: song.title, class: "img-rounded img-fluid" %>
+        <% end %>
+      </div>
+      <div class="col-sm-9 col-xs-8">
+        <h5><%= link_to song.title, song.url, target: "_blank" %></h5>
+
+        <% if song.description.blank? %>
+          <p class="text-warning">No description!</p>
+        <% else %>
+          <%= simple_format song.description %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

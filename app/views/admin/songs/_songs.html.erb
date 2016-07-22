@@ -1,0 +1,34 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Song Title</th>
+      <th>Sent</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if songs.queued.empty? %>
+      <tr class="table-warning">
+        <td colspan="3">
+          Whoops! There are no unsent songs in your queue.
+          Please <%= link_to "add a song now", new_admin_curator_song_path(@curator) %>.
+        </td>
+      </tr>
+    <% end %>
+    <% songs.each do |song| %>
+      <tr>
+        <td><%= link_to song.title, song.url, target: "_blank" %></td>
+        <td>
+          <% if song.sent_at.nil? %>
+            <span class="text-muted">&mdash;</span>
+          <% else %>
+            <%= song.sent_at.time_ago_in_words %>
+          <% end %>
+        </td>
+        <td class="text-xs-right">
+          <%= link_to "Edit song", edit_admin_curator_song_path(@curator, song), class: "btn btn-sm btn-secondary-outline" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

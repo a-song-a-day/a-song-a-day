@@ -1,0 +1,19 @@
+<ol class="breadcrumb">
+  <li><%= link_to "Curate", admin_curators_path %></li>
+  <li><%= link_to @curator.title, admin_curator_path(@curator) %></li>
+  <li class="active">Add New Song</li>
+</ol>
+
+<h1 class="m-b-2">Add New Song</h1>
+
+<p>Push a song onto your <strong><%= @curator.title %></strong> queue.</p>
+
+<%= simple_form_for [:admin, @curator, @song], html: { class: "clearfix m-b-3" } do |f| %>
+  <%= hidden_field_tag :oembed, true %>
+  <%= f.input :url, label: "Song URL", autofocus: true, hint: "YouTube, Soundcloud, Vimeo, etc" %>
+
+  <div class="pull-xs-right m-t-2">
+    <%= link_to "Cancel", admin_curator_songs_path(@curator), class: "btn btn-link" %>
+    <%= f.submit "Continue", class: "btn btn-primary" %>
+  </div>
+<% end %>

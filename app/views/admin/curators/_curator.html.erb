@@ -1,21 +1,30 @@
 <div class="card">
   <div class="card-block">
-    <h3><%= curator.title %></h3>
-    <p class="lead"><%= curator.user.name %></p>
-    <%= simple_format curator.description %>
+    <div class="row">
+      <div class="col-sm-3 col-xs-4 center-block">
+        <%= image_tag gravatar_url(curator.user.email), alt: "Avatar for #{curator.user.name}", class: "img-rounded img-fluid" %>
+      </div>
+      <div class="col-sm-9 col-xs-8">
+        <h3><%= curator.title %></h3>
+        <p class="lead"><%= curator.user.name %></p>
+        <%= simple_format curator.description %>
+      </div>
+    </div>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item text-info col-xs-12 col-sm-6">
-      Songs
-      <span class="pull-xs-right">
-        <%= number_with_delimiter curator.songs %>
-      </span>
-    </li>
-    <li class="list-group-item text-info col-xs-12 col-sm-6">
-      Subscribers
-      <span class="pull-xs-right">
-        <%= number_with_delimiter curator.subscribers %>
-      </span>
+    <li class="list-group-item clearfix">
+      <span class="m-r-1 hidden-sm-down">Last song:</span>
+
+      <% if curator.songs.first %>
+        <%= link_to raw("&#x25b6;"), curator.songs.first.url, target: "_blank", class: "btn btn-primary-outline m-r-1" %>
+        <strong>
+          <%= link_to curator.songs.first.title, curator.songs.first.url, target: "_blank" %>
+        </strong>
+      <% else %>
+        <span class="text-muted">No songs sent yet</span>
+      <% end %>
+
+      <button class="btn btn-primary-outline pull-xs-right">Subscribe!</button>
     </li>
   </ul>
 </div>

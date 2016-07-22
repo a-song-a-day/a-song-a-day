@@ -1,10 +1,27 @@
+<ol class="breadcrumb">
+  <li><%= link_to "Curate", admin_curators_path %></li>
+  <li class="active"><%= @curator.title %></li>
+</ol>
+
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left">Curator Profile</h1>
-  <%= link_to "Edit curator profile", edit_admin_curator_path(@curator), class: "btn btn-primary pull-xs-right" %>
+  <h1 class="pull-xs-left">Curate</h1>
+  <div class="pull-xs-right">
+    <%= link_to "Song queue", admin_curator_songs_path(@curator), class: "btn btn-secondary" %>
+    <%= link_to "Add song", new_admin_curator_song_path(@curator), class: "btn btn-primary" %>
+  </div>
 </div>
 
+<%= render partial: "admin/songs/songs", object: @curator.songs.limit(5) %>
+
+<hr class="m-t-3">
+
+<div class="clearfix m-t-3 m-b-2">
+  <h2 class="pull-xs-left">Curator Profile</h2>
+  <div class="pull-xs-right">
+    <%= link_to "Edit curator profile", edit_admin_curator_path(@curator), class: "btn btn-secondary" %>
+  </div>
+</div>
+
+<p>Here's how your curator profile looks to subscribers:</p>
+
 <%= render @curator %>
-
-<h2 class="m-t-3 m-b-2">Song Queue</h2>
-
-<p class="text-danger">Coming soon!</p>

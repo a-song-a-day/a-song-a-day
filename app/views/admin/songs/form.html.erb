@@ -1,0 +1,31 @@
+<% title = @song.new_record? ? "Add New Song" : "Edit Song" %>
+<ol class="breadcrumb">
+  <li><%= link_to "Curate", admin_curators_path %></li>
+  <li><%= link_to @curator.title, admin_curator_path(@curator) %></li>
+  <li class="active"><%= title %></li>
+</ol>
+
+<h1 class="m-b-2"><%= title %></h1>
+
+<p>Here's a preview of the song as seen by your subscribers:</p>
+
+<%= render @song %>
+
+<p>Edit the details below, and queue it up!</p>
+
+<hr>
+
+<%= simple_form_for [:admin, @curator, @song], html: { class: "clearfix m-b-3" } do |f| %>
+  <%= f.input :title, hint: "Include artist and title" %>
+  <%= f.input :description, input_html: { rows: 4 },
+    wrapper_html: { data: { word_count: "15:30" } },
+    hint: "Aim for around 15–30 words." %>
+  <%= f.input :url, label: "Song URL" %>
+  <%= f.input :image_url, label: "Image URL" %>
+
+  <div class="pull-xs-right m-t-2">
+    <%= link_to "Cancel", admin_curators_path, class: "btn btn-link" %>
+    <%= f.submit "Preview", name: "preview", class: "btn btn-warning-outline" %>
+    <%= f.submit @song.new_record? ? "Queue song" : "Save song", class: "btn btn-primary", disable_with: "Saving…" %>
+  </div>
+<% end %>
