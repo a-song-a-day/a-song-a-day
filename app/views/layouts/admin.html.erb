@@ -5,12 +5,14 @@
   <body class="admin-body">
     <header class="admin-header">
       <% if masquerade_user %>
-        <div class="clearfix bg-info p-x-1 small">
-          <div class="pull-sm-left text-xs-center text-sm-left p-t-2">
-            Masquerading as <%= masquerade_user.email %>
+        <div class="masquerade clearfix bg-info">
+          <div class="pull-sm-left text-xs-center text-sm-left">
+            Masquerading as
+            <%= masquerade_user.name %>
+            &lt;<%= link_to masquerade_user.email, masquerade_user.email, class: "bg-info" %>&gt;
           </div>
-          <div class="pull-sm-right text-xs-center text-sm-right m-y-1">
-            <%= link_to "Remove masquerade", admin_masquerade_path, method: :delete, class: "btn btn-jumbotron btn-sm" %>
+          <div class="pull-sm-right text-xs-center text-sm-right">
+            <%= link_to "Remove masquerade", admin_masquerade_path, method: :delete, class: "bg-info" %>
           </div>
         </div>
       <% end %>
