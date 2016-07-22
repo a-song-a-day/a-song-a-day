@@ -1,5 +1,9 @@
+<% content_for :title, "Curator Profiles" %>
+<% crumb "Curate", admin_curators_path %>
+<% crumb yield(:title), url_for %>
+
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left">Curator Profiles</h1>
+  <h1 class="pull-xs-left"><%= yield :title %></h1>
   <%= link_to "Add new curator profile", new_admin_curator_path, class: "btn btn-primary pull-xs-right" %>
 </div>
 
@@ -23,8 +27,8 @@
     <% @curators.each do |curator| %>
       <tr>
         <th scope="row"><%= link_to curator.title, admin_curator_path(curator) %></th>
-        <td class="text-xs-center"><%= number_with_delimiter curator.subscribers %></td>
-        <td class="text-xs-center"><%= number_with_delimiter curator.songs %></td>
+        <td class="text-xs-center"><%= number_with_delimiter curator.subscriptions.count %></td>
+        <td class="text-xs-center"><%= number_with_delimiter curator.songs.count %></td>
         <td class="text-xs-right"><%= curator.created_at.to_s(:short) %></td>
       </tr>
     <% end %>

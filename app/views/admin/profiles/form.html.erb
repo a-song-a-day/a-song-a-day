@@ -1,4 +1,8 @@
-<h1 class="m-b-2">Edit Profile</h1>
+<% content_for :title, "Edit Profile" %>
+<% crumb "Profile", admin_profile_path %>
+<% crumb yield(:title), url_for %>
+
+<h1 class="m-b-2"><%= yield :title %></h1>
 
 <%= simple_form_for current_user, url: [:admin, :profile], html: { class: "clearfix m-b-3" } do |f| %>
   <%= f.input :name, autofocus: true %>

@@ -1,5 +1,8 @@
+<% content_for :title, "Profile" %>
+<% crumb yield(:title), url_for %>
+
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left">Profile</h1>
+  <h1 class="pull-xs-left"><%= yield :title %></h1>
   <%= link_to "Edit profile", edit_admin_profile_path, class: "btn btn-primary pull-xs-right" %>
 </div>
 

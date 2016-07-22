@@ -1,10 +1,9 @@
-<ol class="breadcrumb">
-  <li><%= link_to "Curate", admin_curators_path %></li>
-  <li class="active"><%= @curator.title %></li>
-</ol>
+<% content_for :title, @curator.title %>
+<% crumb "Curate", admin_curators_path %>
+<% crumb yield(:title), url_for %>
 
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left">Curate</h1>
+  <h1 class="pull-xs-left"><%= yield :title %></h1>
   <div class="pull-xs-right">
     <%= link_to "Song queue", admin_curator_songs_path(@curator), class: "btn btn-secondary" %>
     <%= link_to "Add song", new_admin_curator_song_path(@curator), class: "btn btn-primary" %>

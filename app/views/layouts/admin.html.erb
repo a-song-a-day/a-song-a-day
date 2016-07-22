@@ -15,7 +15,7 @@
         </div>
       <% end %>
 
-      <nav class="navbar navbar-light bg-faded m-b-2">
+      <nav class="navbar navbar-light bg-faded">
         <button class="navbar-toggler hidden-sm-up text-primary" type="button" data-toggle="collapse" data-target="#admin-navbar">
           &#9776;
         </button>
@@ -42,6 +42,19 @@
           </div>
         </div>
       </nav>
+
+      <% if crumbs.empty? %>
+        <hr class="m-t-0 m-b-2">
+      <% else %>
+        <ol class="breadcrumb m-b-2">
+          <% crumbs.each do |crumb| %>
+            <li class="<%= "active" if current_page? crumb.path %>">
+              <%= link_to_unless_current crumb.name, crumb.path %>
+            </li>
+          <% end %>
+        </ol>
+      <% end %>
+
       <%= render partial: "layouts/alerts" %>
     </header>
 

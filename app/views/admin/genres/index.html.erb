@@ -1,5 +1,8 @@
+<% content_for :title, "Genres" %>
+<% crumb yield(:title), url_for %>
+
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left">Genres</h1>
+  <h1 class="pull-xs-left"><%= yield :title %></h1>
   <%= link_to "Add new genre", new_admin_genre_path, class: "btn btn-primary pull-xs-right" %>
 </div>
 

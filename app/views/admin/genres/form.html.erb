@@ -1,8 +1,11 @@
+<% content_for :title do %>
+  <%= @genre.new_record? ? "Create" : "Edit" %> Genre
+<% end %>
+<% crumb "Genres", admin_genres_path %>
+<% crumb yield(:title), url_for %>
+
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left">
-    <%= @genre.new_record? ? "Create" : "Edit" %>
-    Genre
-  </h1>
+  <h1 class="pull-xs-left"><%= yield :title %></h1>
   <% unless @genre.new_record? %>
     <%= button_to "Delete genre", [:admin, @genre], method: :delete, data: { confirm: "Really delete #{@genre.name}?" }, class: "btn btn-danger-outline pull-xs-right" %>
   <% end %>
