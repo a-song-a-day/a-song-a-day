@@ -51,6 +51,6 @@ class Admin::CuratorsController < Admin::AdminController
   private
 
   def curator_params
-    params.require(:curator).permit(:title, :description)
+    params.require(:curator).permit(:title, :description, :genre_id)
   end
 end

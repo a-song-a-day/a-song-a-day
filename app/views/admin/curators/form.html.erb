@@ -11,9 +11,20 @@
 
 <%= simple_form_for [:admin, @curator], html: { class: "clearfix m-b-3" } do |f| %>
   <%= f.input :title, autofocus: true, hint: "e.g. Modern Eclectic" %>
+
   <%= f.input :description, input_html: { rows: 4 },
     wrapper_html: { data: { word_count: "20:50" } },
-    hint: "Aim for around 20–50 words." %>
+    hint: "Pitch your song queue to listeners! Aim for around 20–50 words." %>
+
+  <div class="form-inline m-t-2">
+    <div class="row flex-items-xs-middle m-x-0">
+      <span class="form-control-static text-muted m-r-1">
+        Will be enjoyed by people who like…
+      </span>
+      <%= f.input_field :genre_id, as: :select, collection: Genre.primary.order('name'), prompt: "Choose genre",  class: "form-control c-select" %>
+      <%= f.error :genre, class: "form-control-static text-danger m-l-1" %>
+    </div>
+  </div>
 
   <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_curators_path, class: "btn btn-link" %>

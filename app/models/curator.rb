@@ -2,8 +2,9 @@ class Curator < ApplicationRecord
   belongs_to :user
   has_many :songs, -> { order('created_at DESC') }
   has_many :subscriptions, -> { order('created_at DESC') }
+  belongs_to :genre
 
-  validates_presence_of :user, :title, :description
+  validates_presence_of :user, :title, :description, :genre
   validates_uniqueness_of :random, conditions: -> { where(random: true) }
 
   def self.random

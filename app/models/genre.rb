@@ -1,13 +1,8 @@
 class Genre < ApplicationRecord
-  class << self
-    def primary
-      where(primary: true)
-    end
+  scope :primary, -> { where(primary: true) }
+  scope :secondary, -> { where(primary: false) }
 
-    def secondary
-      where(primary: false)
-    end
-  end
+  has_many :curators, dependent: :nullify
 
   validates :name, presence: true, uniqueness: true
 end
