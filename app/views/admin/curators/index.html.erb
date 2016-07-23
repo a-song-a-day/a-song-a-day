@@ -1,6 +1,5 @@
 <% content_for :title, "Curator Profiles" %>
 <% crumb "Curate", admin_curators_path %>
-<% crumb yield(:title), url_for %>
 
 <div class="clearfix m-b-2">
   <h1 class="pull-xs-left"><%= yield :title %></h1>
@@ -12,7 +11,8 @@
     <tr>
       <th>Title</th>
       <th class="text-xs-center">Subscribers</th>
-      <th class="text-xs-center">Songs</th>
+      <th class="text-xs-center">Queued Songs</th>
+      <th class="text-xs-center">Total Songs</th>
       <th class="text-xs-right">Created</th>
     </tr>
   </thead>
@@ -28,6 +28,11 @@
       <tr>
         <th scope="row"><%= link_to curator.title, admin_curator_path(curator) %></th>
         <td class="text-xs-center"><%= number_with_delimiter curator.subscriptions.count %></td>
+        <td class="text-xs-center">
+          <span class="<%= queue_count_class curator.songs.queued.count %>">
+            <%= number_with_delimiter curator.songs.queued.count %>
+          </span>
+        </td>
         <td class="text-xs-center"><%= number_with_delimiter curator.songs.count %></td>
         <td class="text-xs-right"><%= curator.created_at.to_s(:short) %></td>
       </tr>
