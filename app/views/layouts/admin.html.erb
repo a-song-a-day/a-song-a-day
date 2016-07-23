@@ -51,7 +51,7 @@
         <ol class="breadcrumb m-b-2">
           <% crumbs.each do |crumb| %>
             <li class="<%= "active" if current_page? crumb.path %>">
-              <%= link_to_unless_current crumb.name, crumb.path %>
+              <%= link_to_unless crumb == crumbs.last, crumb.name, crumb.path %>
             </li>
           <% end %>
         </ol>
