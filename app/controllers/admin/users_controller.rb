@@ -57,7 +57,7 @@ class Admin::UsersController < Admin::AdminController
     if @user.destroy
       redirect_to admin_users_path, notice: "User '#{@user.email}' deleted"
     else
-      redirect_to admin_users_path, error: "Failed to delete user user '#{@user.email}'"
+      redirect_to admin_users_path, error: "Failed to delete user '#{@user.email}'"
     end
   end
 
