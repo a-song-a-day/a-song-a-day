@@ -33,7 +33,7 @@ class Admin::SongsController < Admin::AdminController
     end
 
     if params[:commit] and @curator.save
-      redirect_to admin_curator_songs_path(@curator), notice: "Song queued!"
+      redirect_to admin_curator_songs_path(@curator)
       return
     end
 
