@@ -6,8 +6,7 @@
 <% crumb yield(:title), url_for %>
 
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left"><%= yield :title %>
-  </h1>
+  <h1 class="pull-xs-left"><%= yield :title %></h1>
   <% unless @user.new_record? %>
     <%= button_to "Delete user", [:admin, @user], method: :delete, data: { confirm: "Really delete #{@user.name}?" }, class: "btn btn-danger-outline pull-xs-right" %>
   <% end %>
