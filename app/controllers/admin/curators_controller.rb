@@ -41,7 +41,7 @@ class Admin::CuratorsController < Admin::AdminController
     @curator = current_user.curators.find(params[:id])
 
     if @curator.update(curator_params)
-      redirect_to admin_curators_path(@curator), notice: "Curator profile updated"
+      redirect_to admin_curators_path, notice: "Curator profile updated"
       return
     end
 
