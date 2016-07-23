@@ -22,7 +22,7 @@
           <% if song.sent_at.nil? %>
             <span class="text-muted">&mdash;</span>
           <% else %>
-            <%= song.sent_at.time_ago_in_words %>
+            <%= song.sent_at.to_s(:long) %>
           <% end %>
         </td>
         <td class="text-xs-right">
