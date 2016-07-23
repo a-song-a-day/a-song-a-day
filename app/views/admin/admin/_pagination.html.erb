@@ -1,15 +1,15 @@
 <div class="row flex-items-sm-middle flex-items-sm-between">
   <div class="col-xs-12 col-sm-5 col-md-4 m-b-1">
     <%= form_for url_for, method: :get do %>
-      <%= search_field_tag "q", @search, placeholder: "Search…", class: "form-control form-control-sm" %>
+      <%= search_field_tag "q", search, placeholder: "Search…", class: "form-control form-control-sm" %>
     <% end %>
   </div>
   <div class="col-xs-12 col-sm-7 col-md-8 m-b-1 text-sm-right">
     <div class="row p-x-1 flex-items-xs-middle flex-items-sm-right">
       <div class="text-muted small m-r-1">
-        <%= page_entries_info @users %>
+        <%= page_entries_info collection %>
       </div>
-      <%= paginate @users %>
+      <%= paginate collection %>
     </div>
   </div>
 </div>

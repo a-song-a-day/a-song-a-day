@@ -3,6 +3,10 @@ class Admin::SongsController < Admin::AdminController
   before_action :find_curator
 
   def index
+    @search = params[:q]
+    @songs = @curator.songs
+    @songs = @songs.search(@search) unless @search.blank?
+    @songs = @songs.order(created_at: :desc).page(params[:page])
   end
 
   def new

@@ -2,6 +2,7 @@
 <% crumb "Curate", admin_curators_path %>
 <% crumb @curator.title, admin_curator_path(@curator) %>
 <% crumb yield(:title), url_for %>
+<% crumb "Matching \"#{@search}\"", url_for(q: @search) if @search.presence %>
 
 <div class="clearfix m-b-2">
   <h1 class="pull-xs-left"><%= yield :title %></h1>
@@ -10,4 +11,8 @@
   </div>
 </div>
 
-<%= render partial: "songs", object: @curator.songs %>
+<%= render partial: "pagination", locals: { collection: @songs, search: @search } %>
+
+<%= render partial: "songs", object: @songs %>
+
+<%= render partial: "pagination", locals: { collection: @songs, search: @search } %>

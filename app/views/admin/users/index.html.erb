@@ -1,12 +1,13 @@
 <% content_for :title, "Users" %>
-<% crumb yield(:title), url_for %>
+<% crumb yield(:title), admin_users_path %>
+<% crumb "Matching \"#{@search}\"", url_for(q: @search) if @search.presence %>
 
 <div class="clearfix m-b-2">
   <h1 class="pull-xs-left"><%= yield :title %></h1>
   <%= link_to "Add new user", new_admin_user_path, class: "btn btn-primary pull-xs-right" %>
 </div>
 
-<%= render partial: "pagination" %>
+<%= render partial: "pagination", locals: { collection: @users, search: @search } %>
 
 <table class="table table-striped">
   <thead>
@@ -38,4 +39,4 @@
   </tbody>
 </table>
 
-<%= render partial: "pagination" %>
+<%= render partial: "pagination", locals: { collection: @users, search: @search } %>
