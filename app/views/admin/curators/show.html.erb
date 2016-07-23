@@ -10,7 +10,20 @@
   </div>
 </div>
 
+<% unless @curator.songs.empty? %>
+  <p class="text-muted clearfix">
+    Showing <%= pluralize @curator.songs.limit(5).count, "song" %>
+    out of a total of <%= @curator.songs.count %>.
+  </p>
+<% end %>
+
 <%= render partial: "admin/songs/songs", object: @curator.songs.limit(5) %>
+
+<% unless @curator.songs.empty? %>
+  <div class="m-t-1">
+    <%= link_to "View entire song queue", admin_curator_songs_path(@curator), class: "btn btn-secondary" %>
+  </div>
+<% end %>
 
 <hr class="m-t-3">
 
