@@ -16,6 +16,8 @@
       <div class="btn-group" role="group" aria-label="Navigate">
         <% if current_user.admin? %>
           <%= link_to "Dashboard", admin_dashboard_path, class: "btn btn-jumbotron" %>
+        <% elsif current_user.curator? %>
+          <%= link_to "Curate", admin_curators_path, class: "btn btn-jumbotron" %>
         <% else %>
           <%= link_to "Profile", admin_profile_path, class: "btn btn-jumbotron" %>
         <% end %>
