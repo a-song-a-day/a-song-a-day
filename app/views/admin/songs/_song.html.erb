@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-sm-3 col-xs-4 center-block">
         <%= link_to song.url, target: "_blank" do %>
-          <%= image_tag song.image_url, alt: song.title, class: "img-rounded img-fluid" %>
+          <%= image_tag song.image_url.presence || "default-art.jpg",
+            alt: song.title, class: "img-rounded img-fluid" %>
         <% end %>
       </div>
       <div class="col-sm-9 col-xs-8">
