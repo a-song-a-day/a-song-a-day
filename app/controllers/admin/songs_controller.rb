@@ -62,6 +62,16 @@ class Admin::SongsController < Admin::AdminController
     render "form"
   end
 
+  def destroy
+    @song = @curator.songs.find(params[:id])
+
+    if @song.destroy
+      redirect_to admin_curator_songs_path(@curator), notice: "Song '#{@song.title}' deleted"
+    else
+      redirect_to admin_curator_songs_path(@curator), error: "Failed to delete song '#{@song.title}'"
+    end
+  end
+
   private
 
   def find_curator

@@ -4,7 +4,16 @@
 <% crumb "Song Queue", admin_curator_songs_path(@curator) %>
 <% crumb yield(:title), url_for %>
 
-<h1 class="m-b-2"><%= yield :title %></h1>
+<div class="clearfix m-b-2">
+  <h1 class="pull-xs-left"><%= yield :title %></h1>
+  <div class="pull-xs-right">
+    <% unless @song.new_record? %>
+      <%= button_to "Delete song", [:admin, @curator, @song], method: :delete,
+        data: { confirm: "Really delete #{@song.title}?" },
+        class: "btn btn-danger-outline" %>
+    <% end %>
+  </div>
+</div>
 
 <div class="row bg-faded p-y-1 m-b-2">
   <div class="col-md-10 col-md-offset-1">
