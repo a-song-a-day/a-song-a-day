@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/lawadvisor/opengraph.git
+  revision: 56820b3c38dabad66479192d7129a4b051d76f3f
+  ref: 56820b3
+  specs:
+    opengraph (0.1.0)
+      hashie
+      nokogiri (~> 1.5)
+      rest-client (~> 1.6)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -58,6 +68,7 @@ GEM
     ffi (1.9.13)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    hashie (3.4.4)
     i18n (0.7.0)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
@@ -130,7 +141,8 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    ruby-oembed (0.10.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     sass (3.4.22)
     sass-rails (5.0.5)
       railties (>= 4.0.0, < 6)
@@ -180,13 +192,13 @@ DEPENDENCIES
   kaminari
   letter_opener
   listen (~> 3.0.5)
+  opengraph!
   pg
   pg_search
   puma (~> 3.0)
   rails (>= 5.0.0, < 5.1)
   rails-assets-tether (>= 1.1.0)!
   rails_12factor
-  ruby-oembed
   sass-rails (~> 5.0)
   simple_form
   spring

@@ -9,7 +9,7 @@
 <p>Push a song onto your <strong><%= @curator.title %></strong> queue.</p>
 
 <%= simple_form_for [:admin, @curator, @song], html: { class: "clearfix m-b-3" } do |f| %>
-  <%= hidden_field_tag :oembed, true %>
+  <%= hidden_field_tag :fetch, true %>
   <%= f.input :url, label: "Song URL", autofocus: true, hint: "YouTube, Soundcloud, Vimeo, etc" %>
 
   <div class="pull-xs-right m-t-2">

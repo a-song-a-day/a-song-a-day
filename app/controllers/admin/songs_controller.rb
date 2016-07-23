@@ -16,15 +16,16 @@ class Admin::SongsController < Admin::AdminController
   def create
     @song = @curator.songs.build(song_params)
 
-    if params[:oembed]
+    if params[:fetch]
       begin
-        result = OEmbed::Providers.get(@song.url)
+        result = OpenGraph.fetch(@song.url)
 
         @song.attributes = {
           title: result.title,
-          image_url: result.thumbnail_url
-        } unless result.nil?
-      rescue OEmbed::NotFound => e
+          image_url: result.image
+        } if result
+      rescue => e
+        Rails.logger.debug "OpenGraph fetch failed for #{@song.url}"
         Rails.logger.debug e
       end
 
