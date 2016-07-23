@@ -10,10 +10,6 @@ shannon = User.create!(name: 'Shannon Byrne',
                        email: 'shannon@asongaday.co',
                        curator: true,
                        admin: true)
-random = Curator.create!(title: 'Random',
-                         description: 'Just great music',
-                         user: shannon,
-                         random: true)
 
 genres = <<EOF.split("\n")
 Classical
@@ -55,3 +51,9 @@ Prog Rock
 Singer-Songwriter
 EOF
 secondary_genres.each {|name| Genre.create!(name: name) }
+
+random = Curator.create!(title: 'Random',
+                         description: 'Just great music',
+                         user: shannon,
+                         random: true,
+                         genre: Genre.find_by_name('Pop'))

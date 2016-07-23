@@ -1,7 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+classical:
+  name: Classical
 
-one:
-  name: MyString
-
-two:
-  name: MyString
+pop:
+  name: Pop
