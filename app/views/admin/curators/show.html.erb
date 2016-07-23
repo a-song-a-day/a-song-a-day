@@ -12,7 +12,7 @@
 
 <% unless @curator.songs.empty? %>
   <p class="text-muted clearfix">
-    Showing <%= pluralize @curator.songs.limit(5).count, "song" %>
+    Showing <%= pluralize @curator.songs.limit(3).count, "song" %>
     out of a total of <%= @curator.songs.count %>.
   </p>
 <% end %>
@@ -24,7 +24,7 @@
   </div>
 <% end %>
 
-<%= render partial: "admin/songs/songs", object: @curator.songs.limit(5) %>
+<%= render partial: "admin/songs/songs", object: @curator.songs.limit(3) %>
 
 <% unless @curator.songs.empty? %>
   <div class="m-t-1">
