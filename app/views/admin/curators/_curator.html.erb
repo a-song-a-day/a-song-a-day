@@ -7,14 +7,21 @@
       <div class="col-sm-9 col-xs-8">
         <div class="row m-x-0 flex-items-xs-top flex-items-xs-between">
           <h3><%= curator.title %></h3>
-          <% if curator.genre %>
-            <span class="label label-info m-b-1"><%= curator.genre.name %></span>
-          <% else %>
-            <span class="label label-default m-b-1">No genre</span>
-          <% end %>
         </div>
         <p class="lead"><%= curator.user.name %></p>
         <%= simple_format curator.description %>
+        <% unless curator.genre.nil? and curator.genres.empty? %>
+          <p>
+            <% if curator.genre %>
+              <span class="label label-info m-b-1"><%= curator.genre.name %></span>
+            <% else %>
+              <span class="label label-default m-b-1">No main genre</span>
+            <% end %>
+            <% curator.genres.each do |genre| %>
+              <span class="label label-warning"><%= genre.name %></span>
+            <% end %>
+          </p>
+        <% end %>
       </div>
     </div>
   </div>

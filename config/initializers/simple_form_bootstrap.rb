@@ -60,7 +60,11 @@ SimpleForm.setup do |config|
     b.use :html5
     b.optional :readonly
     b.use :label, class: 'form-control-label'
-    b.use :input
+
+    b.wrapper tag: 'div', class: 'd-block' do |ba|
+      ba.use :input
+    end
+
     b.use :error, wrap_with: { tag: 'p', class: 'text-help' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
   end

@@ -41,7 +41,7 @@ class Admin::CuratorsController < Admin::AdminController
     @curator = current_user.curators.find(params[:id])
 
     if @curator.update(curator_params)
-      redirect_to admin_curators_path, notice: "Curator profile updated"
+      redirect_to admin_curator_path(@curator), notice: "Curator profile updated"
       return
     end
 
@@ -51,6 +51,6 @@ class Admin::CuratorsController < Admin::AdminController
   private
 
   def curator_params
-    params.require(:curator).permit(:title, :description, :genre_id)
+    params.require(:curator).permit(:title, :description, :genre_id, genre_ids: [])
   end
 end

@@ -1,20 +1,3 @@
-@import "bootstrap-settings";
-@import "bootstrap-flex";
-@import "bootstrap-utilities-display"; // FIXME: remove when v4 released
-@import "bootstrap-utilities-flex"; // FIXME: remove when v4 released
-
-@import "shadows";
-
-@import "home";
-@import "admin";
-@import "alerts";
-@import "gravatar";
-
-.application-container {
-  margin: 0 auto;
-  max-width: 650px;
-}
-
 .option {
   margin: 0 0.5rem 0 0;
 

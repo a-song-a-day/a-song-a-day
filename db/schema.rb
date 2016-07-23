@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723110021) do
+ActiveRecord::Schema.define(version: 20160723124540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20160723110021) do
     t.index ["genre_id"], name: "index_curators_on_genre_id", using: :btree
     t.index ["random"], name: "index_curators_on_random", unique: true, where: "(random = true)", using: :btree
     t.index ["user_id"], name: "index_curators_on_user_id", using: :btree
+  end
+
+  create_table "curators_genres", id: false, force: :cascade do |t|
+    t.integer "curator_id", null: false
+    t.integer "genre_id",   null: false
+    t.index ["curator_id"], name: "index_curators_genres_on_curator_id", using: :btree
   end
 
   create_table "genres", force: :cascade do |t|
@@ -80,6 +86,8 @@ ActiveRecord::Schema.define(version: 20160723110021) do
   add_foreign_key "access_tokens", "users", on_delete: :cascade
   add_foreign_key "curators", "genres"
   add_foreign_key "curators", "users", on_delete: :cascade
+  add_foreign_key "curators_genres", "curators", on_delete: :cascade
+  add_foreign_key "curators_genres", "genres", on_delete: :cascade
   add_foreign_key "songs", "curators"
   add_foreign_key "subscriptions", "curators", on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_delete: :cascade

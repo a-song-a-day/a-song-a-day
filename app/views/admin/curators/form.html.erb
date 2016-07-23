@@ -16,7 +16,7 @@
     wrapper_html: { data: { word_count: "20:50" } },
     hint: "Pitch your song queue to listeners! Aim for around 20–50 words." %>
 
-  <div class="form-inline m-t-2">
+  <div class="form-inline m-t-2 m-b-1">
     <div class="row flex-items-xs-middle m-x-0">
       <span class="form-control-static text-muted m-r-1">
         Will be enjoyed by people who like…
@@ -24,6 +24,13 @@
       <%= f.input_field :genre_id, as: :select, collection: Genre.primary.order('name'), prompt: "Choose genre",  class: "form-control c-select" %>
       <%= f.error :genre, class: "form-control-static text-danger m-l-1" %>
     </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :genres, "Any other relevant genres?", class: "d-block text-muted m-b-1" %>
+    <%= f.collection_check_boxes :genre_ids, Genre.all.order("name"), :id, :name do |b| %>
+      <%= b.label(class: "option small") { b.check_box + content_tag("span", b.text, class: "option-name") } %>
+    <% end %>
   </div>
 
   <div class="pull-xs-right m-t-2">
