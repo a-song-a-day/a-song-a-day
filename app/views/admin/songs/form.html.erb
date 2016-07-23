@@ -1,6 +1,7 @@
 <% content_for :title, @song.new_record? ? "Add New Song" : "Edit Song" %>
 <% crumb "Curate", admin_curators_path %>
 <% crumb @curator.title, admin_curator_path(@curator) %>
+<% crumb "Song Queue", admin_curator_songs_path(@curator) %>
 <% crumb yield(:title), url_for %>
 
 <h1 class="m-b-2"><%= yield :title %></h1>
