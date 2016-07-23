@@ -6,13 +6,12 @@
 
 <h1 class="m-b-2"><%= yield :title %></h1>
 
-<p>Here's a preview of the song as seen by your subscribers:</p>
-
-<%= render @song %>
-
-<p>Edit the details below, and queue it up!</p>
-
-<hr>
+<div class="row bg-faded p-y-1 m-b-2">
+  <div class="col-md-10 col-md-offset-1">
+    <h2 class="m-b-2">Preview</h2>
+    <%= render @song %>
+  </div>
+</div>
 
 <%= simple_form_for [:admin, @curator, @song], html: { class: "clearfix m-b-3" } do |f| %>
   <%= f.input :title, hint: "Include artist and title" %>
