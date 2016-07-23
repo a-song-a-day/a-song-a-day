@@ -13,12 +13,16 @@ class Admin::SongsController < Admin::AdminController
     @song = @curator.songs.build(song_params)
 
     if params[:oembed]
-      result = OEmbed::Providers.get(@song.url)
+      begin
+        result = OEmbed::Providers.get(@song.url)
 
-      @song.attributes = {
-        title: result.title,
-        image_url: result.thumbnail_url
-      } unless result.nil?
+        @song.attributes = {
+          title: result.title,
+          image_url: result.thumbnail_url
+        } unless result.nil?
+      rescue OEmbed::NotFound => e
+        Rails.logger.debug e
+      end
 
       render "form"
       return
