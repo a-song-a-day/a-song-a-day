@@ -16,5 +16,13 @@ class SubscriptionTest < ActiveSupport::TestCase
       assert_includes subscription.errors, :curator
     end
   end
-end
 
+  test 'user and curator are unque' do
+    subscription = Subscription.create(user: users(:alisdair),
+                                       curator: curators(:shannon))
+    assert_no_difference -> { Subscription.count } do
+      subscription = Subscription.create(user: users(:alisdair),
+                                         curator: curators(:shannon))
+    end
+  end
+end

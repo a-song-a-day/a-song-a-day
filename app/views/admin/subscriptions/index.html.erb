@@ -5,7 +5,17 @@
 
 <% if @subscriptions.empty? %>
   <div class="alert alert-warning">
-    <strong>Whoa!</strong> You're not subscribed to anything!
+    <%= form_for [:admin, Subscription.new(curator_id: Curator.random.id)] do |f| %>
+      <%= f.hidden_field :curator_id %>
+      <div class="row m-x-0 flex-items-xs-middle flex-items-xs-between">
+        <div>
+          <strong>Whoa!</strong> You're not subscribed to anything!
+        </div>
+        <div>
+          <button type="submit" class="btn btn-sm bg-warning">Resubscribe?</button>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>
 
