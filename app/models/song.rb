@@ -11,5 +11,7 @@ class Song < ApplicationRecord
   scope :sent, -> { where.not(sent_at: nil) }
 
   belongs_to :curator
+  has_and_belongs_to_many :genres, -> { order('name') }
+
   validates_presence_of :url, :title, :description
 end

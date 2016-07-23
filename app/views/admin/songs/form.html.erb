@@ -30,6 +30,11 @@
   <%= f.input :url, label: "Song URL" %>
   <%= f.input :image_url, label: "Image URL" %>
 
+  <div class="form-group">
+    <%= f.label :genres, class: "form-control-label d-block" %>
+    <%= genre_options f %>
+  </div>
+
   <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_curators_path, class: "btn btn-link" %>
     <%= f.submit "Preview", name: "preview", class: "btn btn-warning-outline" %>

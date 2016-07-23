@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723124540) do
+ActiveRecord::Schema.define(version: 20160723143025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,12 @@ ActiveRecord::Schema.define(version: 20160723124540) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "primary",    default: false
+  end
+
+  create_table "genres_songs", id: false, force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.integer "song_id",  null: false
+    t.index ["song_id"], name: "index_genres_songs_on_song_id", using: :btree
   end
 
   create_table "songs", force: :cascade do |t|
@@ -88,6 +94,8 @@ ActiveRecord::Schema.define(version: 20160723124540) do
   add_foreign_key "curators", "users", on_delete: :cascade
   add_foreign_key "curators_genres", "curators", on_delete: :cascade
   add_foreign_key "curators_genres", "genres", on_delete: :cascade
+  add_foreign_key "genres_songs", "genres", on_delete: :cascade
+  add_foreign_key "genres_songs", "songs", on_delete: :cascade
   add_foreign_key "songs", "curators"
   add_foreign_key "subscriptions", "curators", on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_delete: :cascade

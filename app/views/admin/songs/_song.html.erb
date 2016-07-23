@@ -15,6 +15,14 @@
         <% else %>
           <%= simple_format song.description %>
         <% end %>
+
+        <% unless song.genres.empty? %>
+          <p>
+            <% song.genres.each do |genre| %>
+              <span class="label label-warning"><%= genre.name %></span>
+            <% end %>
+          </p>
+        <% end %>
       </div>
     </div>
   </div>

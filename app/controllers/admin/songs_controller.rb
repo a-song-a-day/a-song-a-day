@@ -79,6 +79,6 @@ class Admin::SongsController < Admin::AdminController
   end
 
   def song_params
-    params.require(:song).permit(:url, :title, :description, :image_url)
+    params.require(:song).permit(:url, :title, :description, :image_url, genre_ids: [])
   end
 end
