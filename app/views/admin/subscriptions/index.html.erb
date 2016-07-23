@@ -3,4 +3,20 @@
 
 <h1 class="m-b-2"><%= yield :title %></h1>
 
-<p class="text-danger">Coming soon!</p>
+<% if @subscriptions.empty? %>
+  <div class="alert alert-warning">
+    <strong>Whoa!</strong> You're not subscribed to anything!
+  </div>
+<% end %>
+
+<% @subscriptions.each do |subscription| %>
+  <p class="lead">
+    Subscribed since <%= subscription.created_at.to_date.to_s(:long) %>:
+  </p>
+
+  <%= render subscription.curator do %>
+    <%= link_to "Unsubscribe", admin_subscription_path(subscription),
+      method: :delete, data: { confirm: "Really unsubscribe?" },
+      class: "btn btn-danger pull-xs-right" %>
+  <% end %>
+<% end %>

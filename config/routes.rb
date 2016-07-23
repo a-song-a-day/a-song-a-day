@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       resources :songs
     end
 
-    resources :subscriptions
+    resources :subscriptions, only: [:index, :destroy]
 
     resources :genres
 
