@@ -9,38 +9,9 @@
 @import "admin";
 @import "alerts";
 @import "gravatar";
+@import "option";
 
 .application-container {
   margin: 0 auto;
   max-width: 650px;
-}
-
-.option {
-  margin: 0 0.5rem 0 0;
-
-  input {
-    display: none;
-  }
-
-  &-name {
-    background: white;
-    border: 1px solid $gray-lighter;
-    border-radius: $border-radius-sm;
-    display: inline-block;
-    padding: 0.5rem;
-
-    &:hover {
-      border-color: darken($gray-lighter, 15%);
-    }
-
-    &:active {
-      background: $gray-lightest;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) inset;
-    }
-  }
-
-  input:checked + &-name {
-    border-color: $brand-primary;
-    box-shadow: 0 0 0 1px $brand-primary;
-  }
 }
