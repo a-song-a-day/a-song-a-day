@@ -6,7 +6,7 @@ class Admin::SongsController < Admin::AdminController
     @search = params[:q]
     @songs = @curator.songs
     @songs = @songs.search(@search) unless @search.blank?
-    @songs = @songs.order(created_at: :desc).page(params[:page])
+    @songs = @songs.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new

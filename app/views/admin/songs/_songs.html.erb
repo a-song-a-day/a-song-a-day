@@ -1,34 +1,29 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Song Title</th>
-      <th>Sent</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if songs.queued.empty? %>
-      <tr class="table-warning">
-        <td colspan="3">
-          Whoops! There are no unsent songs in your queue.
-          Please <%= link_to "add a song now", new_admin_curator_song_path(@curator) %>.
-        </td>
-      </tr>
-    <% end %>
-    <% songs.each do |song| %>
-      <tr>
-        <td><%= link_to song.title, song.url, target: "_blank" %></td>
-        <td>
+<% songs.each do |song| %>
+  <div class="row m-b-1">
+    <div class="col-sm-8 col-md-9">
+      <%= render song %>
+    </div>
+    <div class="col-sm-4 col-md-3">
+      <div class="list-group text-md-center">
+        <%= link_to "Edit song", edit_admin_curator_song_path(@curator, song),
+          class: "list-group-item" %>
+        <div class="list-group-item bg-faded small">
           <% if song.sent_at.nil? %>
-            <span class="text-muted">&mdash;</span>
+            <span class="text-warning">
+              Queued to send
+            </span>
           <% else %>
-            <%= song.sent_at.to_s(:long) %>
+            <span class="text-success">
+              Sent <%= song.sent_at.to_date.to_s(:long) %>
+          </span>
           <% end %>
-        </td>
-        <td class="text-xs-right">
-          <%= link_to "Edit song", edit_admin_curator_song_path(@curator, song), class: "btn btn-sm btn-secondary-outline" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </div>
+        <div class="list-group-item bg-faded small">
+          <span class="text-muted">
+            Added <%= song.created_at.to_date.to_s(:long) %>
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

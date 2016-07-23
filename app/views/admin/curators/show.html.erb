@@ -17,6 +17,13 @@
   </p>
 <% end %>
 
+<% if @curator.songs.queued.empty? %>
+  <div class="alert alert-warning">
+    Whoops! There are no unsent songs in your queue.
+    Please <%= link_to "add a song now", new_admin_curator_song_path(@curator) %>.
+  </div>
+<% end %>
+
 <%= render partial: "admin/songs/songs", object: @curator.songs.limit(5) %>
 
 <% unless @curator.songs.empty? %>
