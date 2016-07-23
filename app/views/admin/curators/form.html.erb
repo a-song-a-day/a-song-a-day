@@ -28,9 +28,7 @@
 
   <div class="form-group">
     <%= f.label :genres, "Any other relevant genres?", class: "d-block text-muted m-b-1" %>
-    <%= f.collection_check_boxes :genre_ids, Genre.all.order("name"), :id, :name do |b| %>
-      <%= b.label(class: "option small") { b.check_box + content_tag("span", b.text, class: "option-name") } %>
-    <% end %>
+    <%= genre_options f %>
   </div>
 
   <div class="pull-xs-right m-t-2">
