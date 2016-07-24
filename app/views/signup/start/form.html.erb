@@ -18,9 +18,13 @@
     </div>
   <% end %>
 
-  <%= f.input :extra_information, label: "Anything else you want to tell us?" %>
+  <%= f.input :extra_information, label: "What kind of music do you like?" %>
 
+  <button type="submit" name="random" class="btn btn-lg btn-warning btn-block m-b-3">
+    Send me great music!
+  </button>
 
+  <%#
   <div class="form-group">
     <label class="form-control-label form-control-lg">
       What kind of music do you want?
@@ -40,4 +44,5 @@
       </button>
     </div>
   </div>
+  %>
 <% end %>
