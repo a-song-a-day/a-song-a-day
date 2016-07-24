@@ -97,6 +97,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
+    multi_json (1.12.1)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -152,6 +153,8 @@ GEM
       ffi (>= 0.5.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rollbar (2.12.0)
+      multi_json
     sass (3.4.22)
     sass-rails (5.0.5)
       railties (>= 4.0.0, < 6)
@@ -210,6 +213,7 @@ DEPENDENCIES
   rails (>= 5.0.0, < 5.1)
   rails-assets-tether (>= 1.1.0)!
   rails_12factor
+  rollbar
   sass-rails (~> 5.0)
   simple_form
   spring
