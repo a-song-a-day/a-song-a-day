@@ -9,6 +9,7 @@ class Admin::SubscriptionsController < Admin::AdminController
     @subscription = @user.subscriptions.build(subscription_params)
 
     if @subscription.save
+      SubscriptionMailer.created(@subscription).deliver
       redirect_to action: :index
       return
     end
@@ -17,7 +18,9 @@ class Admin::SubscriptionsController < Admin::AdminController
   end
 
   def destroy
-    @user.subscriptions.destroy(params[:id])
+    if @user.subscriptions.destroy(params[:id])
+      SubscriptionMailer.destroyed(@subscription).deliver
+    end
 
     redirect_to action: :index
   end
