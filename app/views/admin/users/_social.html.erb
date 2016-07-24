@@ -1,0 +1,11 @@
+<% if user.social_links? %>
+  <li class="list-group-item">
+    <div class="row flex-items-xs-between">
+      <% %w(Twitter Instagram Spotify Soundcloud).each do |social| %>
+        <div class="m-x-1">
+          <%= link_to social, user.social_url(social), target: "_blank" %>
+        </div>
+      <% end %>
+    </div>
+  </li>
+<% end %>

@@ -32,17 +32,7 @@
             <span class="pull-xs-right">&#x2714;</span>
           </li>
         <% end %>
-        <% if user.social_links? %>
-          <li class="list-group-item">
-            <div class="row flex-items-xs-between">
-              <% %w(Twitter Instagram Spotify Soundcloud).each do |social| %>
-                <div class="col-xs-3">
-                  <%= link_to social, user.social_url(social), target: "_blank" %>
-                </div>
-              <% end %>
-            </div>
-          </li>
-        <% end %>
+        <%= render partial: "admin/users/social", object: user, as: :user %>
       </ul>
     </div>
   </div>
