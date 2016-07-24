@@ -4,10 +4,12 @@
   <p>
     Thanks for signing up to A Song A Day. Just one last step:
   </p>
+<% end %>
 
-  <%= render "layouts/mailer_button" do %>
-    <%= link_to "Confirm your email address", token_url(@token) %>
-  <% end %>
+<%= render "layouts/mailer_button" do %>
+  <%= link_to "Confirm your email address", token_url(@token) %>
+<% end %>
 
+<%= render "layouts/mailer_body" do %>
   <p>Not you? Don't worry, just ignore this email and we won't contact you again.</p>
 <% end %>

@@ -4,10 +4,12 @@
   <p>
     Nice to see you again.
   </p>
+<% end %>
 
-  <%= render "layouts/mailer_button" do %>
-    <%= link_to "Log in to your account", token_url(@token) %>
-  <% end %>
+<%= render "layouts/mailer_button" do %>
+  <%= link_to "Log in to your account", token_url(@token) %>
+<% end %>
 
+<%= render "layouts/mailer_body" do %>
   <p>Not you? Don't worry, just ignore this email.</p>
 <% end %>

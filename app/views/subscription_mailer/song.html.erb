@@ -1,0 +1,29 @@
+<%= render "layouts/mailer_body" do %>
+  <p>
+    Here's today's song from <b><%= @curator.title %></b> by <b><%= @curator.user.name %>.
+  </p>
+<% end %>
+
+<%= render "layouts/mailer_columns", image_url: @song.image_url, url: @song.url do %>
+  <h2><%= link_to @song.title, @song.url, target: "_blank" %></h2>
+
+  <%= simple_format @song.description %>
+
+  <% unless @song.genres.empty? %>
+    <p>
+      <% @song.genres.each do |genre| %>
+        <span class="label label-warning"><%= genre.name %></span>
+      <% end %>
+    </p>
+  <% end %>
+<% end %>
+
+<%= render "layouts/mailer_button" do %>
+  <%= link_to "Listen Now", @song.url, target: "_blank" %>
+<% end %>
+
+<%= render "layouts/mailer_body" do %>
+  <p>
+    We hope you love your songs. <%= mail_to @curator.user.email, "Let us know what you think!", subject: "A Song A Day: song for #{@date} from #{@curator.title}" %>
+  </p>
+<% end %>

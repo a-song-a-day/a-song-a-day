@@ -221,7 +221,7 @@
 			.headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */{
 				/*@editable*/ color:#39d7c2;
 				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
+				/*@editable*/ text-decoration:none;
 			}
 
 			#headerImage{
@@ -236,7 +236,7 @@
 			* @section body style
 			* @tip Set the background color and borders for your email's body area.
 			*/
-			#templateBody{
+			.templateBody{
 				/*@editable*/ background-color:#FFFFFF;
 			}
 
@@ -266,7 +266,7 @@
 			.bodyContent a:link, .bodyContent a:visited, /* Yahoo! Mail Override */ .bodyContent a .yshortcuts /* Yahoo! Mail Override */{
 				/*@editable*/ color:#39d7c2;
 				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
+				/*@editable*/ text-decoration:none;
 			}
 
 			.bodyContent img{
@@ -285,8 +285,9 @@
 			* @section column style
 			* @tip Set the background color and borders for your email's column area.
 			*/
-			#templateColumns{
+			.templateColumns{
 				/*@editable*/ background-color:#FFFFFF;
+        border-top: 1px solid #eceeef;
 			}
 
 			/**
@@ -314,7 +315,7 @@
 			.leftColumnContent a:link, .leftColumnContent a:visited, /* Yahoo! Mail Override */ .leftColumnContent a .yshortcuts /* Yahoo! Mail Override */{
 				/*@editable*/ color:#39d7c2;
 				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
+				/*@editable*/ text-decoration:none;
 			}
 
 			/**
@@ -342,7 +343,7 @@
 			.centerColumnContent a:link, .centerColumnContent a:visited, /* Yahoo! Mail Override */ .centerColumnContent a .yshortcuts /* Yahoo! Mail Override */{
 				/*@editable*/ color:#39d7c2;
 				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
+				/*@editable*/ text-decoration:none;
 			}
 
 			/**
@@ -370,14 +371,38 @@
 			.rightColumnContent a:link, .rightColumnContent a:visited, /* Yahoo! Mail Override */ .rightColumnContent a .yshortcuts /* Yahoo! Mail Override */{
 				/*@editable*/ color:#39d7c2;
 				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
+				/*@editable*/ text-decoration:none;
 			}
+
+      h2 a:link, h2 a:visited, a2 a, h2 a .yshortcuts {
+        font-weight:bold !important;
+      }
 
 			.leftColumnContent img, .rightColumnContent img{
 				display:inline;
 				height:auto;
 				max-width:260px;
+        border-radius: 3px;
 			}
+      .label-info {
+        background-color: #5bc0de;
+      }
+      .label-warning {
+        background-color: #f0ad4e;
+      }
+      .label {
+        display: inline-block;
+        padding: .25em .4em;
+        font-size: 75%;
+        font-weight: bold;
+        line-height: 1;
+        margin-bottom: 0.25em;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25rem;
+      }
 
 			/* ========== Footer Styles ========== */
 
@@ -445,7 +470,7 @@
 					from rendering media query styles on
 					desktop.
 				*/
-				table[id="emailBody"], table[class="flexibleContainer"]{width:100% !important;}
+				table[class="flexibleContainer"]{width:100% !important;}
 				/*
 					Make buttons in the email span the
 					full width of their container, allowing
@@ -644,7 +669,7 @@
                           <%= image_tag "email-logo.png", style: "max-width:168px;", alt: "A Song A Day", id: "headerImage" %>
                         </td>
                         <td valign="middle" width="160px" class="headerContent headerDate">
-                          <%= @subheading %>
+                          <%= @date %>
                         </td>
                       </tr>
                     </table>

@@ -1,0 +1,31 @@
+<%= render "layouts/mailer_body" do %>
+  <p>
+    <b>It's music time!</b> Here's what you've got to look forward to:
+  </p>
+<% end %>
+
+<%= render "layouts/mailer_columns", image_url: gravatar_url(@curator.user.email) do %>
+  <h2><%= @curator.title %></h2>
+  <h3><%= @curator.user.name %></h3>
+
+  <%= simple_format @curator.description %>
+
+  <% unless @curator.genre.nil? and @curator.genres.empty? %>
+    <p>
+      <% if @curator.genre %>
+        <span class="label label-info"><%= @curator.genre.name %></span>
+      <% else %>
+        <span class="label label-default">No main genre</span>
+      <% end %>
+      <% @curator.genres.each do |genre| %>
+        <span class="label label-warning"><%= genre.name %></span>
+      <% end %>
+    </p>
+  <% end %>
+<% end %>
+
+<% render "layouts/mailer_body" do %>
+  <p>
+    We hope you love your songs. <a href="mailto:help@asongaday.co">Let us know what you think!</a>
+  </p>
+<% end %>
