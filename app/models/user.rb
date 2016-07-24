@@ -14,13 +14,10 @@ class User < ApplicationRecord
   validates :name, presence: true, on: [:create, :update]
   validates :email, presence: true, uniqueness: true
 
-  def social_links?
-    %w(twitter_url instagram_url spotify_url soundcloud_url).any? do |url|
-      attributes[url].present?
-    end
-  end
-
-  def social_url(social)
-    attributes["#{social.downcase}_url"]
+  def social_links
+    %w(Twitter Instagram Spotify Soundcloud).map do |provider|
+      url = attributes["#{provider.downcase}_url"]
+      [provider, url] unless url.blank?
+    end.compact
   end
 end

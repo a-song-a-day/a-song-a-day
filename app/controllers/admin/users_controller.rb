@@ -64,6 +64,8 @@ class Admin::UsersController < Admin::AdminController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :extra_information, :curator, :admin)
+    params.require(:user).permit(:name, :email, :extra_information, :curator, :admin,
+                                 :twitter_url, :instagram_url, :spotify_url,
+                                 :soundcloud_url)
   end
 end

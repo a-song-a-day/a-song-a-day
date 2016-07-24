@@ -14,20 +14,7 @@
 
   <hr>
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <%= f.input :twitter_url, label: "Twitter", placeholder: "https://www.twitter.com/yourname" %>
-    </div>
-    <div class="col-xs-12 col-sm-6">
-      <%= f.input :instagram_url, label: "Instagram", placeholder: "https://www.instagram.com/yourname" %>
-    </div>
-    <div class="col-xs-12 col-sm-6">
-      <%= f.input :spotify_url, label: "Spotify", placeholder: "https://open.spotify.com/user/yourname" %>
-    </div>
-    <div class="col-xs-12 col-sm-6">
-      <%= f.input :soundcloud_url, label: "Soundcloud", placeholder: "https://soundcloud.com/yourname" %>
-    </div>
-  </div>
+  <%= render partial: "admin/users/social_form", object: f, as: :f %>
 
   <div class="pull-xs-right">
     <%= link_to "Cancel", admin_profile_path, class: "btn btn-link" %>

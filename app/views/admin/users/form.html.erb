@@ -29,6 +29,8 @@
     </div>
   </div>
 
+  <%= render partial: "admin/users/social_form", object: f, as: :f %>
+
   <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_users_path, class: "btn btn-link" %>
     <%= f.submit "Save user", class: "btn btn-primary" %>

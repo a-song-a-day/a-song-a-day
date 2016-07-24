@@ -1,9 +1,9 @@
-<% if user.social_links? %>
+<% unless user.social_links.empty? %>
   <li class="list-group-item">
     <div class="row flex-items-xs-between">
-      <% %w(Twitter Instagram Spotify Soundcloud).each do |social| %>
+      <% user.social_links.each do |name, url| %>
         <div class="m-x-1">
-          <%= link_to social, user.social_url(social), target: "_blank" %>
+          <%= link_to name, url, target: "_blank" %>
         </div>
       <% end %>
     </div>
