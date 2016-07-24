@@ -4,7 +4,7 @@ class SubscriptionTest < ActiveSupport::TestCase
   test 'can create' do
     assert_difference -> { Subscription.count }, 1 do
       subscription = Subscription.create(user: users(:alisdair),
-                                         curator: curators(:shannon))
+                                         curator: curators(:electropop))
     end
   end
 
@@ -19,10 +19,10 @@ class SubscriptionTest < ActiveSupport::TestCase
 
   test 'user and curator are unque' do
     subscription = Subscription.create(user: users(:alisdair),
-                                       curator: curators(:shannon))
+                                       curator: curators(:electropop))
     assert_no_difference -> { Subscription.count } do
       subscription = Subscription.create(user: users(:alisdair),
-                                         curator: curators(:shannon))
+                                         curator: curators(:electropop))
     end
   end
 end

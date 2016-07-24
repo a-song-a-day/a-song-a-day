@@ -23,17 +23,17 @@ class CuratorTest < ActiveSupport::TestCase
 
   test 'one user can be multiple curators' do
     assert_difference -> { Curator.count }, 2 do
-      curator = Curator.create(user: users(:shannon),
+      curator = Curator.create(user: users(:alisdair),
                                title: 'First',
                                description: 'first',
                                genre: genres(:pop))
-      curator = Curator.create(user: users(:shannon),
+      curator = Curator.create(user: users(:alisdair),
                                title: 'Second',
                                description: 'second',
                                genre: genres(:classical))
     end
 
-    assert_equal 2, users(:shannon).curators.count
+    assert_equal 2, users(:alisdair).curators.count
   end
 
   test 'random is false by default' do
