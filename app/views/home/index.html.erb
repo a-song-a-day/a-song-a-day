@@ -21,14 +21,14 @@
         <% else %>
           <%= link_to "Profile", admin_profile_path, class: "btn btn-jumbotron" %>
         <% end %>
-        <%= link_to "Subscriptions", admin_subscriptions_path, class: "btn btn-jumbotron" %>
+        <%= link_to "Subscriptions", admin_subscriptions_path, class: "btn btn-jumbotron hidden-xs-down" %>
         <%= link_to "Logout", session_path, method: :delete, class: "btn btn-jumbotron" %>
       </div>
     <% else %>
       <%= form_tag signup_start_url, method: :get, class: "form-inline" do %>
         <div class="form-group">
           <input type="email" name="email" class="form-control form-control-lg m-b-1 jumbotron-form-control" placeholder="send-me@awesome.music" required autofocus>
-          <button class="btn btn-lg btn-jumbotron m-b-1" type="submit" data-disable-with="Working…">
+          <button class="btn btn-lg btn-jumbotron btn-xs-down-block m-b-1" type="submit" data-disable-with="Working…">
             Sign Up
           </button>
         </div>
@@ -37,7 +37,7 @@
       <div class="m-t-2">
         <span class="m-r-2">Already have an account?</span>
 
-        <%= link_to "Log In", new_session_path, class: "btn btn-jumbotron" %>
+        <%= link_to "Log In", new_session_path, class: "btn btn-jumbotron btn-xs-down-block" %>
       </div>
     <% end %>
   </div>

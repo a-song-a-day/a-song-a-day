@@ -6,7 +6,7 @@ class TokensController < ApplicationController
     user.confirmed_email = true
     user.save!
 
-    next_url = session.delete(:return_to) || root_url
+    next_url = session.delete(:return_to) || admin_profile_path
     reset_session
 
     session[:user_id] = user.id

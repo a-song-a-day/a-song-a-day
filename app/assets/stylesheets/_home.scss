@@ -36,7 +36,7 @@
 }
 
 @include media-breakpoint-down(xs) {
-  .btn-jumbotron {
+  .btn-xs-down-block {
     width: 100% !important;
   }
 }
