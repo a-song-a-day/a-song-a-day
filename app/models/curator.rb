@@ -11,4 +11,8 @@ class Curator < ApplicationRecord
   def self.random
     where(random: true).first
   end
+
+  def title_and_name
+    "#{title} #{user.name}"
+  end
 end

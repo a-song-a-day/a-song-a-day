@@ -47,7 +47,7 @@
   <% end %>
 
   <%= simple_form_for Subscription.new, url: url_for do |f| %>
-    <%= f.association :curator, input_html: { class: "c-select" } %>
+    <%= f.association :curator, collection: Curator.includes(:user), label_method: :title_and_name, input_html: { class: "c-select" } %>
 
     <div class="pull-xs-right m-t-2">
       <%= f.submit "Create subscription", class: "btn btn-primary" %>
