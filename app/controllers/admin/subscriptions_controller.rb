@@ -18,7 +18,9 @@ class Admin::SubscriptionsController < Admin::AdminController
   end
 
   def destroy
-    if @user.subscriptions.destroy(params[:id])
+    @subscription = @user.subscriptions.find(params[:id])
+
+    if @subscription.destroy
       SubscriptionMailer.destroyed(@subscription).deliver
     end
 
