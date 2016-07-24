@@ -13,6 +13,6 @@ class Curator < ApplicationRecord
   end
 
   def title_and_name
-    "#{title} #{user.name}"
+    "#{title} (#{user.name})"
   end
 end
