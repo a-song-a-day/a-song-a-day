@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723200459) do
+ActiveRecord::Schema.define(version: 20160724185807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,10 @@ ActiveRecord::Schema.define(version: 20160723200459) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.boolean  "confirmed_email",   default: false, null: false
+    t.string   "twitter_url"
+    t.string   "instagram_url"
+    t.string   "spotify_url"
+    t.string   "soundcloud_url"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

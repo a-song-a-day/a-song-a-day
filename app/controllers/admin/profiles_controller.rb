@@ -19,6 +19,8 @@ class Admin::ProfilesController < Admin::AdminController
 
   def user_params
     # FIXME: should really reverify email once edited
-    params.require(:user).permit(:name, :email, :extra_information)
+    params.require(:user).permit(:name, :email, :extra_information,
+                                 :twitter_url, :instagram_url, :spotify_url,
+                                 :soundcloud_url)
   end
 end
