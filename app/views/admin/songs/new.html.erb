@@ -14,6 +14,7 @@
 
   <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_curator_songs_path(@curator), class: "btn btn-link" %>
-    <%= f.submit "Continue", class: "btn btn-primary" %>
+    <%= f.submit "Continue", class: "btn btn-primary",
+      data: { disable_with: "Fetching…" } %>
   </div>
 <% end %>

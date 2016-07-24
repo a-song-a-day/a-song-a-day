@@ -8,7 +8,9 @@
 <div class="clearfix m-b-2">
   <h1 class="pull-xs-left"><%= yield :title %></h1>
   <% unless @user.new_record? %>
-    <%= button_to "Delete user", [:admin, @user], method: :delete, data: { confirm: "Really delete #{@user.name}?" }, class: "btn btn-danger-outline pull-xs-right" %>
+    <%= button_to "Delete user", [:admin, @user], method: :delete,
+      data: { confirm: "Really delete #{@user.name}?", disable_with: "Deleting…" },
+      class: "btn btn-danger-outline pull-xs-right" %>
   <% end %>
 </div>
 
@@ -33,6 +35,7 @@
 
   <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_users_path, class: "btn btn-link" %>
-    <%= f.submit "Save user", class: "btn btn-primary" %>
+    <%= f.submit "Save user", class: "btn btn-primary",
+      data: { disable_with: "Saving…" } %>
   </div>
 <% end %>

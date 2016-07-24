@@ -7,7 +7,9 @@
 <div class="clearfix m-b-2">
   <h1 class="pull-xs-left"><%= yield :title %></h1>
   <% unless @genre.new_record? %>
-    <%= button_to "Delete genre", [:admin, @genre], method: :delete, data: { confirm: "Really delete #{@genre.name}?" }, class: "btn btn-danger-outline pull-xs-right" %>
+    <%= button_to "Delete genre", [:admin, @genre], method: :delete,
+      data: { confirm: "Really delete #{@genre.name}?", disable_with: "Deleting…" },
+      class: "btn btn-danger-outline pull-xs-right" %>
   <% end %>
 </div>
 
@@ -24,6 +26,7 @@
 
   <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_genres_path, class: "btn btn-link" %>
-    <%= f.submit "Save genre", class: "btn btn-primary" %>
+    <%= f.submit "Save genre", class: "btn btn-primary",
+      data: { disable_with: "Saving…" } %>
   </div>
 <% end %>

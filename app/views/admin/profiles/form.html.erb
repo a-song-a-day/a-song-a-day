@@ -18,7 +18,8 @@
 
   <div class="pull-xs-right">
     <%= link_to "Cancel", admin_profile_path, class: "btn btn-link" %>
-    <%= f.submit "Save profile", class: "btn btn-primary" %>
+    <%= f.submit "Save profile", class: "btn btn-primary",
+      data: { disable_with: "Saving…" } %>
   </div>
 <% end %>
 

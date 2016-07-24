@@ -33,7 +33,8 @@
 
   <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_curators_path, class: "btn btn-link" %>
-    <%= f.submit "Save curator profile", class: "btn btn-primary" %>
+    <%= f.submit "Save curator profile", class: "btn btn-primary",
+      data: { disable_with: "Saving profile…" } %>
   </div>
 <% end %>
 

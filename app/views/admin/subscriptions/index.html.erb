@@ -16,7 +16,7 @@
           not subscribed to anything!
         </div>
         <div>
-          <button type="submit" class="btn btn-sm bg-warning">Resubscribe?</button>
+          <button type="submit" class="btn btn-sm bg-warning" data-disable-with="Subscribing…">Resubscribe?</button>
         </div>
       </div>
     <% end %>
@@ -30,7 +30,7 @@
 
   <%= render subscription.curator do %>
     <%= link_to "Unsubscribe", url_for(action: :destroy, id: subscription),
-      method: :delete, data: { confirm: "Really unsubscribe?" },
+      method: :delete, data: { confirm: "Really unsubscribe?", disable_with: "Unsubscribing…" },
       class: "btn btn-danger pull-xs-right" %>
   <% end %>
 <% end %>
@@ -50,7 +50,8 @@
     <%= f.association :curator, collection: Curator.includes(:user), label_method: :title_and_name, input_html: { class: "c-select" } %>
 
     <div class="pull-xs-right m-t-2">
-      <%= f.submit "Create subscription", class: "btn btn-primary" %>
+      <%= f.submit "Create subscription", class: "btn btn-primary",
+        data: { disable_with: "Subscribing…" } %>
     </div>
   <% end %>
 <% end %>

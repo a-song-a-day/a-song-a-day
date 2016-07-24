@@ -20,7 +20,7 @@
 
   <%= f.input :extra_information, label: "What kind of music do you like?" %>
 
-  <button type="submit" name="random" class="btn btn-lg btn-warning btn-block m-b-3">
+  <button type="submit" name="random" class="btn btn-lg btn-warning btn-block m-b-3" data-disable-with="Signing up…">
     Send me great music!
   </button>
 
@@ -33,13 +33,13 @@
 
   <div class="row">
     <div class="col-xs-12 col-md-6 m-b-1">
-      <button type="submit" name="curator" class="btn btn-lg btn-primary btn-block">
+      <button type="submit" name="curator" class="btn btn-lg btn-primary btn-block" data-disable-with="Working on it…">
         Let me choose a curator
       </button>
     </div>
 
     <div class="col-xs-12 col-md-6 m-b-1">
-      <button type="submit" name="random" class="btn btn-lg btn-warning btn-block">
+      <button type="submit" name="random" class="btn btn-lg btn-warning btn-block" data-disable-with="Signing up…">
         Just send me great music!
       </button>
     </div>
