@@ -1,0 +1,29 @@
+<tr>
+  <td align="center" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateColumns">
+      <tr>
+        <% if @image_url %>
+          <td align="center" valign="top" class="templateColumnContainer" style="padding-top:20px;">
+            <table border="0" cellpadding="20" cellspacing="0" width="100%">
+              <tr>
+                <td class="leftColumnContent">
+                  <%= image_tag @image_url, style: "max-width:160px;", class: "columnImage" %>
+                </td>
+              </tr>
+            </table>
+          </td>
+        <% end %>
+        <td align="center" valign="top" class="templateTwoColumnContainer" style="padding-top:20px;">
+          <table border="0" cellpadding="20" cellspacing="0" width="100%">
+            <tr>
+              <td valign="top" class="centerColumnContent">
+                <%= yield %>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+

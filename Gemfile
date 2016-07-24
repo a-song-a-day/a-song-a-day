@@ -15,6 +15,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'simple_form'
 gem 'kaminari'
 
+gem 'premailer-rails'
+gem 'nokogiri'
+
 gem 'opengraph', github:'lawadvisor/opengraph', ref: '56820b3'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'

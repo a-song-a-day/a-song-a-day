@@ -60,6 +60,8 @@ GEM
     builder (3.2.2)
     byebug (9.0.5)
     concurrent-ruby (1.0.2)
+    css_parser (1.4.5)
+      addressable
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -69,6 +71,7 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.4)
+    htmlentities (4.3.4)
     i18n (0.7.0)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
@@ -104,6 +107,12 @@ GEM
       activesupport (>= 3.1)
       arel
     pkg-config (1.1.7)
+    premailer (1.8.7)
+      css_parser (>= 1.4.5)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.9.4)
+      actionmailer (>= 3, < 6)
+      premailer (~> 1.7, >= 1.7.9)
     puma (3.4.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -192,9 +201,11 @@ DEPENDENCIES
   kaminari
   letter_opener
   listen (~> 3.0.5)
+  nokogiri
   opengraph!
   pg
   pg_search
+  premailer-rails
   puma (~> 3.0)
   rails (>= 5.0.0, < 5.1)
   rails-assets-tether (>= 1.1.0)!

@@ -1,13 +1,13 @@
-<h1>Welcome back, <%= @name %></h1>
+<%= render "layouts/mailer_body" do %>
+  <h1>Welcome back, <%= @name %></h1>
 
-<p>
-  Nice to see you again.
-  <%= link_to "Click on this magic link to log in to your account",
-    token_url(@token) %>.
-</p>
+  <p>
+    Nice to see you again.
+  </p>
 
-<p>Link not working? Try this one:</p>
+  <%= render "layouts/mailer_button" do %>
+    <%= link_to "Log in to your account", token_url(@token) %>
+  <% end %>
 
-<p><%= link_to token_url(@token), token_url(@token) %></p>
-
-<p>Not you? Don't worry, just ignore this email.</p>
+  <p>Not you? Don't worry, just ignore this email.</p>
+<% end %>
