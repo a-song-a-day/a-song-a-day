@@ -6,7 +6,8 @@
   <h1 class="pull-xs-left">Profile</h1>
   <div class="pull-xs-right text-nowrap">
     <% if current_user.admin? %>
-      <%= link_to "Masquerade as this user", admin_masquerade_path(user_id: @user), method: "post", class: "btn btn-secondary" %>
+      <%= link_to "Masquerade", admin_masquerade_path(user_id: @user), method: "post", class: "btn btn-secondary" %>
+      <%= link_to "Subscriptions", admin_user_subscriptions_path(@user), class: "btn btn-secondary" %>
     <% end %>
     <%= link_to "Edit profile", edit_admin_user_path(@user), class: "btn btn-primary" %>
   </div>

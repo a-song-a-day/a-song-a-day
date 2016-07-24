@@ -1,26 +1,37 @@
 class Admin::SubscriptionsController < Admin::AdminController
+  before_action :find_user
+
   def index
-    @subscriptions = current_user.subscriptions.includes(:curator).order('created_at')
+    @subscriptions = @user.subscriptions.includes(:curator).order('created_at')
   end
 
   def create
-    @subscription = current_user.subscriptions.build(subscription_params)
+    @subscription = @user.subscriptions.build(subscription_params)
 
     if @subscription.save
-      redirect_to admin_subscriptions_path
+      redirect_to action: :index
       return
     end
 
-    redirect_to admin_subscriptions_path, alert: "Couldn't create subscription :("
+    redirect_to action: :index, alert: "Couldn't create subscription :("
   end
 
   def destroy
-    current_user.subscriptions.destroy(params[:id])
+    @user.subscriptions.destroy(params[:id])
 
-    redirect_to admin_subscriptions_path
+    redirect_to action: :index
   end
 
   private
+
+  def find_user
+    if params[:user_id]
+      require_admin
+      @user = User.find(params[:user_id])
+    else
+      @user = current_user
+    end
+  end
 
   def subscription_params
     params.require(:subscription).permit(:curator_id)

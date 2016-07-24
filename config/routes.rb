@@ -25,7 +25,9 @@ Rails.application.routes.draw do
 
     resources :genres
 
-    resources :users
+    resources :users do
+      resources :subscriptions, only: [:index, :create, :destroy]
+    end
 
     resource :profile, only: [:show, :edit, :update]
 

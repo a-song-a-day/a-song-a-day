@@ -18,7 +18,7 @@
           <% end %>
         </li>
         <% unless user.extra_information.blank? %>
-          <li class="list-group-item"><%= user.extra_information %></li>
+          <li class="list-group-item"><%= simple_format user.extra_information %></li>
         <% end %>
         <% if user.curator? %>
           <li class="list-group-item text-warning">
