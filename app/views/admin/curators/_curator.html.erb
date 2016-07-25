@@ -28,8 +28,8 @@
   <ul class="list-group list-group-flush">
     <%= render partial: "admin/users/social", object: curator.user, as: :user %>
     <li class="list-group-item">
-      <div class="row m-x-0 flex-items-xs-middle flex-items-xs-between">
-        <div>
+      <div class="row flex-nowrap flex-items-xs-middle flex-items-xs-between">
+        <div class="m-x-1 text-truncate">
           <span class="m-r-1 hidden-sm-down">Last song:</span>
           <% song = curator.songs.sent.first %>
           <% if song %>
