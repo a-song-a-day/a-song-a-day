@@ -5,13 +5,17 @@
 <div class="clearfix m-b-2">
   <h1 class="pull-sm-left">Profile</h1>
   <div class="pull-sm-right">
-    <div class="btn-group">
+    <%= form_tag admin_masquerade_path(user_id: @user), class: "btn-group" do %>
       <% if current_user.admin? %>
-        <%= link_to "Masquerade", admin_masquerade_path(user_id: @user), method: "post", class: "btn btn-sm btn-sm btn-secondary" %>
-        <%= link_to "Subscriptions", admin_user_subscriptions_path(@user), class: "btn btn-sm btn-sm btn-secondary" %>
+        <button type="submit" class="btn btn-sm btn-sm btn-secondary" data-disable-with="Masquerading…">
+          Masquerade
+        </button>
+        <%= link_to "Subscriptions", admin_user_subscriptions_path(@user),
+          class: "btn btn-sm btn-sm btn-secondary" %>
       <% end %>
-      <%= link_to "Edit profile", edit_admin_user_path(@user), class: "btn btn-sm btn-sm btn-primary" %>
-    </div>
+      <%= link_to "Edit profile", edit_admin_user_path(@user),
+        class: "btn btn-sm btn-sm btn-primary" %>
+    <% end %>
   </div>
 </div>
 
