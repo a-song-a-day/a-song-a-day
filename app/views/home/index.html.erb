@@ -54,9 +54,20 @@
     No fancy algorithms (yet), no automation (yet). We will personally email you a song that we think you'll like Monday through Friday, entirely determined by your musical preferences indicated below and our own musical opinions. Most of us aren't experts, we're just a rag-tag team of volunteer curators who listen to a lot of music and keep up-to-date with lesser-known artists.
   </p>
 
-  <%= image_tag "meetup.jpg", alt: "A Song A Day crew", size: "360x360", class: "img-fluid img-rounded center-block shadow-1" %>
+  <%= image_tag "meetup.jpg", alt: "A Song A Day crew", size: "512x360", class: "img-fluid img-rounded center-block shadow-1" %>
 
-  <hr class="m-y-3">
+  <% unless current_user %>
+    <%= form_tag signup_start_url, method: :get, class: "form-inline m-y-3 text-xs-center" do %>
+      <div class="form-group">
+        <input type="email" name="email" class="form-control form-control-lg m-b-1 jumbotron-form-control" placeholder="send-me@awesome.music" required>
+        <button class="btn btn-primary btn-lg btn-xs-down-block m-b-1" type="submit" data-disable-with="Working…">
+          Sign Up
+        </button>
+      </div>
+    <% end %>
+  <% else %>
+    <hr class="m-y-3">
+  <% end %>
 
   <h2 class="text-sm-center m-b-1">About A Song A Day</h2>
 
