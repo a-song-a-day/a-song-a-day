@@ -1,5 +1,6 @@
 class Admin::CuratorsController < Admin::AdminController
   before_action :require_curator
+  before_action :find_curator, only: [:show, :edit, :update]
 
   def index
     @curators = current_user.curators.order(title: :desc)
@@ -28,18 +29,13 @@ class Admin::CuratorsController < Admin::AdminController
   end
 
   def show
-    @curator = current_user.curators.find(params[:id])
   end
 
   def edit
-    @curator = current_user.curators.find(params[:id])
-
     render "form"
   end
 
   def update
-    @curator = current_user.curators.find(params[:id])
-
     if @curator.update(curator_params)
       redirect_to admin_curator_path(@curator), notice: "Curator profile updated"
       return
@@ -52,5 +48,13 @@ class Admin::CuratorsController < Admin::AdminController
 
   def curator_params
     params.require(:curator).permit(:title, :description, :genre_id, genre_ids: [])
+  end
+
+  def find_curator
+    if current_user.admin?
+      @curator = Curator.find(params[:id])
+    else
+      @curator = current_user.curators.find(params[:id])
+    end
   end
 end

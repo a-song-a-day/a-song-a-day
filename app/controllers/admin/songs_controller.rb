@@ -76,7 +76,11 @@ class Admin::SongsController < Admin::AdminController
   private
 
   def find_curator
-    @curator = current_user.curators.find(params[:curator_id])
+    if current_user.admin?
+      @curator = Curator.find(params[:curator_id])
+    else
+      @curator = current_user.curators.find(params[:curator_id])
+    end
   end
 
   def song_params
