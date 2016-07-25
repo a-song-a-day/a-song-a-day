@@ -1,7 +1,7 @@
 class Curator < ApplicationRecord
   belongs_to :user
-  has_many :songs, -> { order('created_at DESC') }
-  has_many :subscriptions, -> { order('created_at DESC') }
+  has_many :songs, -> { order('created_at DESC') }, dependent: :destroy
+  has_many :subscriptions, -> { order('created_at DESC') }, dependent: :destroy
   belongs_to :genre
   has_and_belongs_to_many :genres, -> { order('name') }
 

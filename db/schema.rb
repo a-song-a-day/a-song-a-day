@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724185807) do
+ActiveRecord::Schema.define(version: 20160725234001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20160724185807) do
   add_foreign_key "curators_genres", "genres", on_delete: :cascade
   add_foreign_key "genres_songs", "genres", on_delete: :cascade
   add_foreign_key "genres_songs", "songs", on_delete: :cascade
-  add_foreign_key "songs", "curators"
+  add_foreign_key "songs", "curators", on_delete: :cascade
   add_foreign_key "subscriptions", "curators", on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_delete: :cascade
 end
