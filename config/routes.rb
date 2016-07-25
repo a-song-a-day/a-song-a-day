@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     resource :profile, only: [:show, :edit, :update]
 
     resource :masquerade, only: [:create, :destroy]
+
+    post '/random/:song_id', to: 'random#copy', as: 'random_copy'
   end
 
   resource :session, path_names: { new: 'login' }, only: [:new, :create, :destroy]

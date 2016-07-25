@@ -1,6 +1,110 @@
 <% content_for :title, "Dashboard" %>
 <% crumb yield(:title), url_for %>
 
-<h1 class="m-b-2">Dashboard</h1>
+<% if @queues.length > 0 %>
+  <h2 class="m-b-2">Empty Queues</h2>
 
-<p class="text-danger">Coming soon!</p>
+  <p>
+    Found <%= pluralize @queues.length, 'active song queue' %>
+    with fewer than 2 queued songs:
+  </p>
+
+  <table class="table table-striped table-middle">
+    <thead>
+      <tr>
+        <th>Song Queue</th>
+        <th>Curator</th>
+        <th class="text-xs-center">Queued</th>
+        <th class="text-xs-center">Subscribers</th>
+        <th><span class="sr-only">Actions</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @queues.each do |curator| %>
+        <tr>
+          <td><%= curator.title %></td>
+          <td>
+            <%= mail_to curator.user.email, curator.user.name %>
+          </td>
+          <td class="text-xs-center">
+            <span class="<%= queue_count_class curator.songs.queued.count %>">
+              <%= curator.songs.queued.count %>
+            </span>
+          </td>
+          <td class="text-xs-center">
+            <%= curator.subscriptions.count %>
+          </th>
+          <td class="text-xs-right">
+            <%= button_to "Masquerade", admin_masquerade_path(user_id: curator.user),
+              method: "post", class: "btn btn-sm btn-secondary",
+              data: { disable: true } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<h2 class="m-y-2">Queued Songs</h2>
+
+<% unless @songs.empty? %>
+  <p>
+    Showing <%= pluralize @songs.limit(10).count, 'queued song' %>
+    out of a total of <%= @songs.count %>:
+  </p>
+<% end %>
+
+<table class="table table-striped table-middle">
+  <thead>
+    <tr>
+      <th><span class="sr-only">Image</span></th>
+      <th>Song</th>
+      <th>Song Queue</th>
+      <th><span class="sr-only">Actions</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @songs.empty? %>
+      <tr class="table-warning">
+        <td colspan="4">
+          No queued songs.
+        </td>
+      </tr>
+    <% else %>
+      <% @songs.limit(30).each do |song| %>
+        <tr>
+          <td>
+            <%= link_to song.url, target: "_blank" do %>
+              <%= image_tag song.image_url, width: 64, class: "img-rounded" %>
+            <% end %>
+          </td>
+          <td>
+            <div><%= link_to song.title, song.url, target: "_blank" %></div>
+            <div>
+              <% if song.genres.empty? %>
+                <span class="label label-default">No genres</span>
+              <% else %>
+                <% song.genres.each do |genre| %>
+                  <span class="label label-info"><%= genre.name %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <div><%= song.curator.title %></div>
+            <div class="text-muted"><%= song.curator.user.name %></div>
+          </td>
+          <td class="text-xs-right">
+            <%= button_to "Random!", admin_random_copy_path(song_id: song.id),
+              method: "post", class: "btn btn-sm btn-secondary",
+              disabled: song.curator == Curator.random,
+              data: {
+                confirm: "Really copy to random song queue?",
+                disable: true
+              } %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
