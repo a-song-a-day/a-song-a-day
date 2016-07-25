@@ -20,7 +20,7 @@ class Admin::CuratorsController < Admin::AdminController
   def create
     @curator = current_user.curators.build(curator_params)
 
-    if @curator.save
+    if params[:commit] and @curator.save
       redirect_to admin_curator_path(@curator)
       return
     end
@@ -36,7 +36,9 @@ class Admin::CuratorsController < Admin::AdminController
   end
 
   def update
-    if @curator.update(curator_params)
+    @curator.attributes = curator_params
+
+    if params[:commit] and @curator.save
       redirect_to admin_curator_path(@curator), notice: "Curator profile updated"
       return
     end

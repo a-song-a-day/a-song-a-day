@@ -38,8 +38,8 @@
   <div class="pull-xs-right m-t-2">
     <%= link_to "Cancel", admin_curators_path, class: "btn btn-link" %>
     <%= f.submit "Preview", name: "preview", class: "btn btn-warning-outline",
-      disable_with: "Previewing…" %>
+      disable: true %>
     <%= f.submit @song.new_record? ? "Queue song" : "Save song",
-      class: "btn btn-primary", disable_with: "Saving…" %>
+      class: "btn btn-primary", disable: true %>
   </div>
 <% end %>
