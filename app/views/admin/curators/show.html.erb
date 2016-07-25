@@ -3,11 +3,11 @@
 <% crumb yield(:title), url_for %>
 
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left"><%= yield :title %></h1>
-  <div class="pull-xs-right">
-    <%= link_to "Edit profile", edit_admin_curator_path(@curator), class: "btn btn-secondary" %>
-    <%= link_to "Song queue", admin_curator_songs_path(@curator), class: "btn btn-secondary" %>
-    <%= link_to "Add song", new_admin_curator_song_path(@curator), class: "btn btn-primary" %>
+  <h1 class="pull-sm-left"><%= yield :title %></h1>
+  <div class="pull-sm-right btn-group">
+    <%= link_to "Edit profile", edit_admin_curator_path(@curator), class: "btn btn-sm btn-secondary" %>
+    <%= link_to "Song queue", admin_curator_songs_path(@curator), class: "btn btn-sm btn-secondary" %>
+    <%= link_to "Add song", new_admin_curator_song_path(@curator), class: "btn btn-sm btn-primary" %>
   </div>
 </div>
 

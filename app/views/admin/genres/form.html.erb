@@ -5,11 +5,11 @@
 <% crumb yield(:title), url_for %>
 
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left"><%= yield :title %></h1>
+  <h1 class="pull-sm-left"><%= yield :title %></h1>
   <% unless @genre.new_record? %>
     <%= button_to "Delete genre", [:admin, @genre], method: :delete,
       data: { confirm: "Really delete #{@genre.name}?", disable_with: "Deleting…" },
-      class: "btn btn-danger-outline pull-xs-right" %>
+      class: "btn btn-sm btn-danger-outline pull-sm-right" %>
   <% end %>
 </div>
 

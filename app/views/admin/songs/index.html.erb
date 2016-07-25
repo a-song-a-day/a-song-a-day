@@ -5,9 +5,9 @@
 <% crumb "Matching \"#{@search}\"", url_for(q: @search) if @search.presence %>
 
 <div class="clearfix m-b-2">
-  <h1 class="pull-xs-left"><%= yield :title %></h1>
-  <div class="pull-xs-right">
-    <%= link_to "Add song", new_admin_curator_song_path(@curator), class: "btn btn-primary" %>
+  <h1 class="pull-sm-left"><%= yield :title %></h1>
+  <div class="pull-sm-right">
+    <%= link_to "Add song", new_admin_curator_song_path(@curator), class: "btn btn-sm btn-primary" %>
   </div>
 </div>
 
