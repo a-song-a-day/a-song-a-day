@@ -1,13 +1,8 @@
 <% songs.each do |song| %>
-  <div class="row m-b-1">
-    <div class="col-sm-8 col-md-9">
-      <%= render song %>
-    </div>
-    <div class="col-sm-4 col-md-3">
-      <div class="list-group text-md-center">
-        <%= link_to "Edit song", edit_admin_curator_song_path(@curator, song),
-          class: "list-group-item" %>
-        <div class="list-group-item bg-faded small">
+  <%= render song do %>
+    <div class="card-footer">
+      <div class="row m-x-0 flex-items-xs-between flex-items-xs-middle">
+        <div class="text-nowrap">
           <% if song.sent_at.nil? %>
             <span class="text-warning">
               Queued to send
@@ -15,15 +10,16 @@
           <% else %>
             <span class="text-success">
               Sent <%= song.sent_at.to_date.to_s(:long) %>
-          </span>
+            </span>
           <% end %>
-        </div>
-        <div class="list-group-item bg-faded small">
-          <span class="text-muted">
+          <span class="text-muted hidden-xs-down m-x-1">
             Added <%= song.created_at.to_date.to_s(:long) %>
-        </span>
+          </span>
+        </div>
+        <div>
+          <%= link_to "Edit song", edit_admin_curator_song_path(@curator, song), class: "btn btn-secondary" %>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
