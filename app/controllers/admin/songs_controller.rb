@@ -33,7 +33,7 @@ class Admin::SongsController < Admin::AdminController
       return
     end
 
-    if params[:commit] and @curator.save
+    if params[:commit] and @song.save
       redirect_to admin_curator_songs_path(@curator)
       return
     end
