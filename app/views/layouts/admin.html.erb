@@ -2,7 +2,7 @@
 <html>
   <%= render partial: "layouts/head" %>
 
-  <body class="admin-body">
+  <body class="application-body">
     <header class="admin-header">
       <% if masquerade_user %>
         <div class="masquerade clearfix bg-info">
@@ -60,7 +60,7 @@
       <%= render partial: "layouts/alerts" %>
     </header>
 
-    <div class="admin-content">
+    <div class="application-content">
       <div class="container">
         <%= yield %>
       </div>

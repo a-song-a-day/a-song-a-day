@@ -2,15 +2,23 @@
 <html>
   <%= render partial: "layouts/head" %>
 
-  <body>
-    <%= link_to root_url do %>
-      <%= image_tag "logo-green.svg", alt: "A Song A Day", size: "180x72", class: "m-b-1 img-fluid center-block" %>
-    <% end %>
+  <body class="application-body">
+    <header class="application-header">
+      <%= link_to root_url do %>
+        <%= image_tag "logo-green.svg", alt: "A Song A Day", size: "180x72", class: "m-b-1 img-fluid center-block" %>
+      <% end %>
 
-    <%= render partial: "layouts/alerts" %>
+      <%= render partial: "layouts/alerts" %>
+    </header>
 
-    <div class="container application-container">
-      <%= yield %>
+    <div class="application-content">
+      <div class="container application-container">
+        <%= yield %>
+      </div>
     </div>
+
+    <footer class="application-footer bg-faded m-t-3 p-y-2 small">
+      <%= render partial: "layouts/footer" %>
+    </footer>
   </body>
 </html>
