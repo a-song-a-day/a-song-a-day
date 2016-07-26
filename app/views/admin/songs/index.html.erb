@@ -11,8 +11,15 @@
   </div>
 </div>
 
-<%= render partial: "pagination", locals: { collection: @songs, search: @search } %>
+<% if @songs.empty? %>
+  <div class="alert alert-warning">
+    Whoops! There are no songs in your queue.
+    Please <%= link_to "add a song now", new_admin_curator_song_path(@curator) %>.
+  </div>
+<% else %>
+  <%= render partial: "pagination", locals: { collection: @songs, search: @search } %>
 
-<%= render partial: "songs", object: @songs %>
+  <%= render partial: "songs", object: @songs %>
 
-<%= render partial: "pagination", locals: { collection: @songs, search: @search } %>
+  <%= render partial: "pagination", locals: { collection: @songs, search: @search } %>
+<% end %>
