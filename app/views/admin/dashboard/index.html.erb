@@ -2,7 +2,7 @@
 <% crumb yield(:title), url_for %>
 
 <% if @queues.length > 0 %>
-  <h2 class="m-b-2">Empty Queues</h2>
+  <h1 class="m-b-2">Empty Queues</h1>
 
   <p>
     Found <%= pluralize @queues.length, 'active song queue' %>
@@ -45,11 +45,11 @@
   </table>
 <% end %>
 
-<h2 class="m-y-2">Queued Songs</h2>
+<h1 class="m-y-2">Queued Songs</h1>
 
 <% unless @songs.empty? %>
   <p>
-    Showing <%= pluralize @songs.limit(10).count, 'queued song' %>
+    Showing <%= pluralize @songs.limit(30).count, 'queued song' %>
     out of a total of <%= @songs.count %>:
   </p>
 <% end %>
@@ -74,8 +74,10 @@
       <% @songs.limit(30).each do |song| %>
         <tr>
           <td>
-            <%= link_to song.url, target: "_blank" do %>
-              <%= image_tag song.image_url, width: 64, class: "img-rounded" %>
+            <% unless song.image_url.blank? %>
+              <%= link_to song.url, target: "_blank" do %>
+                <%= image_tag song.image_url, width: 64, class: "img-rounded" %>
+              <% end %>
             <% end %>
           </td>
           <td>
@@ -92,7 +94,7 @@
           </td>
           <td>
             <div><%= song.curator.title %></div>
-            <div class="text-muted"><%= song.curator.user.name %></div>
+            <div><%= link_to song.curator.user.name, [:admin, song.curator.user] %></div>
           </td>
           <td class="text-xs-right">
             <%= button_to "Random!", admin_random_copy_path(song_id: song.id),
