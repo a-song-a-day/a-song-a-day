@@ -9,7 +9,7 @@ class TransactionalMailerTest < ActionMailer::TestCase
 
     assert_equal 'Log in to A Song A Day', mail.subject
     assert_equal [user.email], mail.to
-    assert_equal ['help@asongaday.co'], mail.from
+    assert_equal ['curators@asongaday.co'], mail.from
     assert_match token.token, mail.body.encoded
   end
 
@@ -21,7 +21,7 @@ class TransactionalMailerTest < ActionMailer::TestCase
 
     assert_equal 'Welcome to A Song A Day!', mail.subject
     assert_equal [user.email], mail.to
-    assert_equal ['help@asongaday.co'], mail.from
+    assert_equal ['curators@asongaday.co'], mail.from
     assert_match token.token, mail.body.encoded
   end
 end

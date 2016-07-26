@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'help@asongaday.co'
+  default from: 'curators@asongaday.co'
   layout 'mailer'
 end

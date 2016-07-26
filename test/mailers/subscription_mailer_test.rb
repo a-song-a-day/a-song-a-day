@@ -11,7 +11,7 @@ class SubscriptionMailerTest < ActionMailer::TestCase
     mail = SubscriptionMailer.created(subscription)
     assert_equal 'Subscribed to A Song A Day', mail.subject
     assert_equal [user.email], mail.to
-    assert_equal ['help@asongaday.co'], mail.from
+    assert_equal ['curators@asongaday.co'], mail.from
     assert_match curator.title, mail.body.encoded
   end
 
@@ -23,7 +23,7 @@ class SubscriptionMailerTest < ActionMailer::TestCase
     mail = SubscriptionMailer.destroyed(subscription)
     assert_equal 'Unsubscribed from A Song A Day', mail.subject
     assert_equal [user.email], mail.to
-    assert_equal ['help@asongaday.co'], mail.from
+    assert_equal ['curators@asongaday.co'], mail.from
   end
 
   test "song" do
@@ -38,7 +38,7 @@ class SubscriptionMailerTest < ActionMailer::TestCase
     mail = SubscriptionMailer.song(song, date, subscription)
     assert_equal "Song for #{date} from #{curator.title} by #{curator.user.name}", mail.subject
     assert_equal [user.email], mail.to
-    assert_equal ['help@asongaday.co'], mail.from
+    assert_equal ['curators@asongaday.co'], mail.from
     assert_match song.title, mail.body.encoded
     assert_match date, mail.body.encoded
   end
