@@ -9,7 +9,7 @@
     <label class="form-control-label form-control-lg" for="email">
       Email
     </label>
-    <%= text_field_tag :email, @email, class: "form-control form-control-lg", placeholder: "your@email.com", type: "email" %>
+    <%= text_field_tag :email, @email, class: "form-control form-control-lg", placeholder: "your@email.com", type: "email", autofocus: true %>
   </div>
 
   <button type="submit" class="btn btn-lg btn-primary btn-block" data-disable-with="Sending…">
