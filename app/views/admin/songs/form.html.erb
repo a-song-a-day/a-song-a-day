@@ -23,7 +23,7 @@
 </div>
 
 <%= simple_form_for [:admin, @curator, @song], html: { class: "clearfix m-b-3" } do |f| %>
-  <%= f.input :title, hint: "Include artist and title" %>
+  <%= f.input :title, label: "Artist and Title" %>
   <%= f.input :description, input_html: { rows: 4 },
     wrapper_html: { data: { word_count: "15:30" } },
     hint: "Aim for around 15–30 words." %>
