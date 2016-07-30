@@ -7,6 +7,9 @@ class User < ApplicationRecord
       tsearch: { prefix: true }
     }
 
+  scope :admin, -> { where(admin: true) }
+  scope :curator, -> { where(curator: true) }
+
   has_many :access_tokens, dependent: :destroy
   has_many :curators, dependent: :destroy
   has_many :subscriptions, dependent: :destroy

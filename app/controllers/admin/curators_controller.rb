@@ -50,7 +50,9 @@ class Admin::CuratorsController < Admin::AdminController
   private
 
   def curator_params
-    params.require(:curator).permit(:title, :description, :genre_id, genre_ids: [])
+    permitted = [:title, :description, :genre_id, genre_ids: []]
+    permitted.unshift :user_id if current_user.admin?
+    params.require(:curator).permit(permitted)
   end
 
   def find_curators

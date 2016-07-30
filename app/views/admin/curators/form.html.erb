@@ -9,7 +9,14 @@
   <%= yield :title %>
 </h1>
 
-<% unless @curator.title.blank? %>
+<% if @curator.errors.any? %>
+  <div class="alert alert-danger">
+    <strong>Whoops!</strong>
+    We couldn't save your profile. Please fix the errors below.
+  </div>
+<% end %>
+
+<% unless @curator.user.nil? or @curator.title.blank? %>
   <div class="row bg-faded p-y-1 m-b-2">
     <div class="col-md-10 col-md-offset-1">
       <h2 class="m-b-2">Preview</h2>
@@ -19,6 +26,11 @@
 <% end %>
 
 <%= simple_form_for [:admin, @curator], html: { class: "clearfix m-b-3" } do |f| %>
+  <% if current_user.admin? %>
+    <%= f.input :user_id, as: :select,
+      collection: User.curator.order('name'), prompt: "Choose curator",
+      input_html: { class: "form-control c-select" } %>
+  <% end %>
   <%= f.input :title, autofocus: true, hint: "e.g. Modern Eclectic" %>
 
   <%= f.input :description, input_html: { rows: 4 },
