@@ -20,7 +20,11 @@
         <%= image_tag gravatar_url(@curator.user.email), alt: "Avatar for #{@curator.user.name}", class: "img-rounded img-fluid gravatar m-b-1" %>
       </div>
       <div class="col-xs-8 col-md-12">
-        <h2 class="h5 m-b-2"><%= @curator.user.name %></h2>
+        <div class="clearfix">
+          <h2 class="h5 m-b-1 pull-sm-left pull-md-none"><%= @curator.user.name %></h2>
+          <div class="m-b-1 pull-sm-right pull-md-none small text-muted"><%= pluralize @curator.subscriptions.count, "subscriber" %></div>
+        </div>
+
         <div class="m-b-2 text-muted">
           <%= simple_format @curator.description %>
         </div>
