@@ -1,3 +1,5 @@
+require 'CSV'
+
 class User < ApplicationRecord
   include PgSearch
 
@@ -16,6 +18,14 @@ class User < ApplicationRecord
 
   validates :name, presence: true, on: [:create, :update]
   validates :email, presence: true, uniqueness: true
+
+  def self.to_csv
+    CSV.generate(headers: true, encoding: 'utf-8') do |csv|
+      csv << attribute_names
+
+      all.each {|user| csv << user.attributes }
+    end
+  end
 
   def social_links
     %w(Twitter Instagram Spotify Soundcloud).map do |provider|

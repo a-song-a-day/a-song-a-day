@@ -5,7 +5,11 @@ class Admin::UsersController < Admin::AdminController
     @search = params[:q]
     @users = User.all
     @users = @users.search(@search) unless @search.blank?
-    @users = @users.order(created_at: :desc).page(params[:page])
+    @users = @users.order(created_at: :desc)
+    respond_to do |format|
+      format.html { @users = @users.page(params[:page]) }
+      format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
+    end
   end
 
   def new

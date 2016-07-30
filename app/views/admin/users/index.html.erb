@@ -4,7 +4,12 @@
 
 <div class="clearfix m-b-2">
   <h1 class="pull-sm-left"><%= yield :title %></h1>
-  <%= link_to "Add new user", new_admin_user_path, class: "btn btn-sm btn-primary pull-sm-right" %>
+  <div class="btn-group pull-sm-right">
+    <%= link_to "Export CSV", admin_users_path(format: :csv), target: "_blank",
+      class: "btn btn-sm btn-secondary" %>
+    <%= link_to "Add new user", new_admin_user_path,
+      class: "btn btn-sm btn-primary" %>
+  </div>
 </div>
 
 <%= render partial: "pagination", locals: { collection: @users, search: @search } %>

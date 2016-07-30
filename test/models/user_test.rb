@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'CSV'
 
 class UserTest < ActiveSupport::TestCase
   test 'requires name and email' do
@@ -49,5 +50,29 @@ class UserTest < ActiveSupport::TestCase
       ["Spotify", "spotify"],
       ["Soundcloud", "whatever"]
     ], user.social_links
+  end
+
+  test 'export to CSV' do
+    users = User.where(id: [users(:alisdair).id, users(:shannon).id]).order(:name)
+    csv = users.to_csv
+
+    assert_equal String, csv.class, "creates a CSV string of users"
+
+    parsed = CSV.parse(csv, headers: true)
+
+    assert_equal User.attribute_names, parsed.headers, "exports all attributes"
+    assert_equal 2, parsed.length, "exports all users"
+
+    alisdair = parsed[0]
+
+    assert_equal users(:alisdair).id.to_s, alisdair['id']
+    assert_equal users(:alisdair).name, alisdair['name']
+    assert_equal users(:alisdair).email, alisdair['email']
+
+    shannon = parsed[1]
+
+    assert_equal users(:shannon).id.to_s, shannon['id']
+    assert_equal users(:shannon).name, shannon['name']
+    assert_equal users(:shannon).email, shannon['email']
   end
 end
