@@ -6,10 +6,17 @@
   <%= link_to "Add new curator profile", new_admin_curator_path, class: "btn btn-sm btn-primary pull-sm-right" %>
 </div>
 
+<% if current_user.admin? %>
+  <p>Showing all <%= pluralize @curators.count, "curator" %>:</p>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
+      <% if current_user.admin? %>
+        <th>Curator</th>
+      <% end %>
       <th class="text-xs-center">Subscribers</th>
       <th class="text-xs-center">Queued Songs</th>
       <th class="text-xs-center">Total Songs</th>
@@ -19,7 +26,7 @@
   <tbody>
     <% if @curators.empty? %>
       <tr class="table-warning">
-        <td colspan="4">
+        <td colspan="<%= current_user.admin? ? 5 : 4 %>">
           No curator profiles found.
         </td>
       </tr>
@@ -27,6 +34,9 @@
     <% @curators.each do |curator| %>
       <tr>
         <th scope="row"><%= link_to curator.title, admin_curator_path(curator) %></th>
+        <% if current_user.admin? %>
+          <td><%= link_to curator.user.name, admin_user_path(curator.user) %></td>
+        <% end %>
         <td class="text-xs-center"><%= number_with_delimiter curator.subscriptions.count %></td>
         <td class="text-xs-center">
           <span class="<%= queue_count_class curator.songs.queued.count %>">

@@ -1,9 +1,10 @@
 class Admin::CuratorsController < Admin::AdminController
   before_action :require_curator
+  before_action :find_curators
   before_action :find_curator, only: [:show, :edit, :update]
 
   def index
-    @curators = current_user.curators.order(title: :desc)
+    @curators = @curators.order(:title)
 
     case @curators.count
     when 0 then redirect_to new_admin_curator_path
@@ -12,13 +13,13 @@ class Admin::CuratorsController < Admin::AdminController
   end
 
   def new
-    @curator = current_user.curators.build
+    @curator = @curators.build
 
     render "form"
   end
 
   def create
-    @curator = current_user.curators.build(curator_params)
+    @curator = @curators.build(curator_params)
 
     if params[:commit] and @curator.save
       redirect_to admin_curator_path(@curator)
@@ -52,11 +53,15 @@ class Admin::CuratorsController < Admin::AdminController
     params.require(:curator).permit(:title, :description, :genre_id, genre_ids: [])
   end
 
-  def find_curator
+  def find_curators
     if current_user.admin?
-      @curator = Curator.find(params[:id])
+      @curators = Curator.all
     else
-      @curator = current_user.curators.find(params[:id])
+      @curators = current_user.curators
     end
+  end
+
+  def find_curator
+    @curator = @curators.find(params[:id])
   end
 end
