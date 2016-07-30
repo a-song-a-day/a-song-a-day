@@ -24,6 +24,6 @@
 
 <%= render "layouts/mailer_body" do %>
   <p>
-    We hope you love your songs. <%= mail_to @curator.user.email, "Let us know what you think!", subject: "A Song A Day: song for #{@date} from #{@curator.title}" %>
+    We hope you love your songs. <%= mail_to "curators@asongaday.co", "Let us know what you think!", subject: "A Song A Day: song for #{@date} from #{@curator.title}" %>
   </p>
 <% end %>
