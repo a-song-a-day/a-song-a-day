@@ -1,5 +1,5 @@
 <head>
-  <title><%= [yield(:title).presence, "A Song A Day"].join(" :: ") %></title>
+  <title><%= [yield(:title).presence, "A Song A Day"].compact.join(" :: ") %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 
