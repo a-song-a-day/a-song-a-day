@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'CSV'
+require 'csv'
 
 class UserTest < ActiveSupport::TestCase
   test 'requires name and email' do
