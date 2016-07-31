@@ -84,4 +84,30 @@ class ProfileTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Profile'
     assert_profile user
   end
+
+  test 'edit user profile: validation error' do
+    user = users(:alisdair)
+    login_as user
+
+    get edit_admin_profile_path
+    assert_response :success
+
+    patch admin_profile_path, params: {
+      user: {
+        name: ' ',
+        email: '',
+      }
+    }
+
+    assert_response :success
+    assert_select 'h1', 'Edit Profile'
+    assert_select "form[action='#{admin_profile_path}']" do
+      assert_select ".has-danger input[name='user[name]']", 1
+      assert_select ".has-danger input[name='user[email]']", 1
+    end
+
+    user.reload
+    assert_equal user.name, 'Alisdair McDiarmid'
+    assert_equal user.email, 'alisdair@mcdiarmid.org'
+  end
 end
