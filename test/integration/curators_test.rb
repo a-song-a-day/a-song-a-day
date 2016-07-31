@@ -1,5 +1,6 @@
 require 'test_helper'
 require_relative '../support/integration_test_helpers'
+require 'minitest/mock'
 
 class CuratorsTest < ActionDispatch::IntegrationTest
   include IntegrationTestHelpers
@@ -24,6 +25,92 @@ class CuratorsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_select 'h1', curator.title
+  end
+
+  test 'add song to queue' do
+    user = users(:janet)
+    curator = user.curators.first
+
+    login_as user
+
+    # Check for "Add song" link to the new song page
+    get admin_curator_path(curator)
+    assert_response :success
+    assert_select "a[href='#{new_admin_curator_song_path(curator)}']", 'Add song'
+
+    get new_admin_curator_song_path(curator)
+    assert_response :success
+
+    # Verify initial new song form
+    assert_select "form[action='#{admin_curator_songs_path(curator)}']" do
+      assert_select "input[type=hidden][name=fetch][value=true]", 1
+      assert_select "input[name='song[url]']", 1
+      assert_select "input[type=submit][value='Continue']"
+    end
+
+    # Stub out the OpenGraphService so that we don't hit the network
+    perform = Proc.new do |song|
+      song.attributes = {
+        title: 'Rick Astley - Never Gonna Give You Up',
+        image_url: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg'
+      }
+    end
+
+    # Submit the initial song URL
+    OpenGraphService.stub :perform, perform do
+      post admin_curator_songs_path(curator), params: {
+        song: {
+          url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+        },
+        fetch: 'true'
+      }
+    end
+
+    assert_response :success
+
+    # Should show us a form with values pulled from OpenGraph
+    assert_select "form[action='#{admin_curator_songs_path(curator)}']" do
+      assert_select "input[name='song[title]'][value='Rick Astley - Never Gonna Give You Up']", 1
+      assert_select "input[name='song[url]']", 1
+      assert_select "input[name='song[image_url]'][value='https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg']", 1
+      assert_select "input[type=submit][value=Preview][name=preview]"
+      assert_select "input[type=submit][value='Queue song'][name=commit]"
+    end
+
+    # Create the song
+    assert_difference -> { curator.songs.queued.count }, 1 do
+      post admin_curator_songs_path(curator), params: {
+        song: {
+          title: 'Rick Astley - Never Gonna Give You Up',
+          description: 'Blue-eyed soul classic',
+          url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          image_url: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+          genre_ids: [ '', genres(:pop).id ]
+        },
+        commit: 'Queue song'
+      }
+    end
+
+    # Check the song was created correctly
+    song = curator.songs.queued.first
+    assert_equal song.title, 'Rick Astley - Never Gonna Give You Up'
+    assert_equal song.description, 'Blue-eyed soul classic'
+    assert_equal song.url, 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+    assert_equal song.image_url, 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg'
+    assert_equal song.genres, [ genres(:pop) ]
+
+    assert_redirected_to admin_curator_songs_path(curator)
+
+    follow_redirect!
+    assert_response :success
+
+    # Song queue displays the song
+    assert_select 'h1', 'Song Queue'
+    assert_select '.text-muted', 'Displaying 1 song'
+    assert_select '.card', 1 do
+      assert_select 'h5', song.title
+      assert_select 'p', song.description
+    end
   end
 
   test 'edit curator profile' do
