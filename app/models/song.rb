@@ -20,4 +20,8 @@ class Song < ApplicationRecord
       'sent_subscription_ids = array_append(sent_subscription_ids, ?)', subscription_id
     ])
   end
+
+  def sent!
+    update(sent_at: Time.now)
+  end
 end

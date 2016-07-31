@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'minitest/mock'
 
 class SongTest < ActiveSupport::TestCase
   test 'requires url, title, description' do
@@ -25,5 +26,17 @@ class SongTest < ActiveSupport::TestCase
     song.reload
 
     assert_equal [1, 5], song.sent_subscription_ids
+  end
+
+  test 'sent!' do
+    song = songs(:two_moons)
+
+    assert_equal nil, song.sent_at
+
+    Time.stub :now, Time.at(0) do
+      song.sent!
+      assert_not song.changed?
+      assert_equal Time.at(0), song.sent_at
+    end
   end
 end

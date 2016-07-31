@@ -17,7 +17,7 @@ task daily_song: :environment do
       SendSongToSubscriptionWorker.perform_async(song.id, date, subscription.id)
     end
 
-    song.update(sent_at: Time.now)
+    song.sent!
     Rails.logger.info "Song '#{song.title}' sent!"
   end
 
