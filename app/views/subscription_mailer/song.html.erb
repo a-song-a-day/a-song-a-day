@@ -1,6 +1,6 @@
 <%= render "layouts/mailer_body" do %>
   <p>
-    Here's today's song from <b><%= @curator.title %></b> by <b><%= @curator.user.name %></b>.
+    Here's today's song curated by <b><%= @curator.title %></b> by <b><%= @curator.user.name %></b>.
   </p>
 <% end %>
 
@@ -24,6 +24,6 @@
 
 <%= render "layouts/mailer_body" do %>
   <p>
-    We hope you love your songs. <%= mail_to "curators@asongaday.co", "Let us know what you think!", subject: "A Song A Day: song for #{@date} from #{@curator.title}" %>
+    We hope you love today's song! <%= mail_to "curators@asongaday.co", "Let us know what you think!", subject: "A Song A Day: song for #{@date} from #{@curator.title}" %>
   </p>
 <% end %>
