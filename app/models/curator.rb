@@ -1,7 +1,7 @@
 class Curator < ApplicationRecord
   belongs_to :user
-  has_many :songs, -> { order('created_at DESC') }, dependent: :destroy
-  has_many :subscriptions, -> { order('created_at DESC') }, dependent: :destroy
+  has_many :songs, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   belongs_to :genre
   has_and_belongs_to_many :genres, -> { order('name') }
 
@@ -15,6 +15,10 @@ class Curator < ApplicationRecord
 
   def self.random
     where(random: true).first
+  end
+
+  def next_song
+    songs.queued.order(:created_at).first
   end
 
   def title_and_name
