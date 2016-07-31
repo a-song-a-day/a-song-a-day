@@ -12,11 +12,16 @@
               Sent <%= song.sent_at.to_date.to_s(:long) %>
             </span>
           <% end %>
-          <span class="text-muted hidden-xs-down m-x-1">
-            Added <%= song.created_at.to_date.to_s(:long) %>
-          </span>
         </div>
-        <div>
+        <div class="row m-x-0">
+          <% if current_user.admin? and song.curator != Curator.random %>
+            <%= button_to "Random!", admin_random_copy_path(song_id: song.id),
+              method: "post", class: "btn btn-secondary m-r-1",
+              data: {
+                confirm: "Really copy to random song queue?",
+                disable: true
+              } %>
+          <% end %>
           <%= link_to "Edit song", edit_admin_curator_song_path(@curator, song), class: "btn btn-secondary" %>
         </div>
       </div>
