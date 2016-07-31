@@ -14,9 +14,9 @@
         <% unless curator.genre.nil? and curator.genres.empty? %>
           <p>
             <% if curator.genre %>
-              <span class="label label-info m-b-1"><%= curator.genre.name %></span>
+              <span class="label label-info"><%= curator.genre.name %></span>
             <% else %>
-              <span class="label label-default m-b-1">No main genre</span>
+              <span class="label label-default">No main genre</span>
             <% end %>
             <% curator.genres.each do |genre| %>
               <span class="label label-warning"><%= genre.name %></span>
