@@ -61,4 +61,25 @@ class LoginTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Profile'
     assert_select 'h3', 'Alisdair McDiarmid'
   end
+
+  test 'redirect back to login-protected page' do
+    user = users(:alisdair)
+
+    # Visit subscriptions page while logged out
+    get admin_subscriptions_path
+
+    # Redirects to login path
+    assert_response :redirect
+    assert_redirected_to new_session_path
+
+    # Log in, click on link in email
+    post session_path, params: { email: user.email }
+
+    token = user.access_tokens.order(updated_at: :desc).first!
+
+    get token_url(token)
+
+    # Redirected back to the page we tried to get to
+    assert_redirected_to admin_subscriptions_path
+  end
 end
