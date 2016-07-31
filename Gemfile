@@ -22,6 +22,8 @@ gem 'rollbar'
 
 gem 'opengraph', github:'lawadvisor/opengraph', ref: '56820b3'
 
+gem 'coveralls', require: false
+
 # Do not upgrade Bootstrap lightly, lots of incompatibilities
 gem 'bootstrap', '4.0.0.alpha3'
 source 'https://rails-assets.org' do
