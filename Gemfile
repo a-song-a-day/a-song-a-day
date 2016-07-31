@@ -2,35 +2,49 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'rails', '>= 5.0.0', '< 5.1'
+
+# Postgres and full-text search
 gem 'pg'
 gem 'pg_search'
 
+# Sidekiq
 gem 'sidekiq'
 
-gem 'puma', '~> 3.0'
+# Sinatra for the Sidekiq monitoring interface
+# For Rails 5 compatibility: https://github.com/sinatra/sinatra/issues/1135
+gem 'sinatra', github: 'sinatra/sinatra', require: false
+gem 'rack-protection', github: 'sinatra/rack-protection'
+
+# Asset gems
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-
 gem 'jquery-rails'
-gem 'bcrypt', '~> 3.1.7'
-
-gem 'simple_form'
-gem 'kaminari'
-
-gem 'premailer-rails'
-gem 'nokogiri'
-
-gem 'rollbar'
-
-gem 'opengraph', github:'lawadvisor/opengraph', ref: '56820b3'
-
-gem 'coveralls', require: false
 
 # Do not upgrade Bootstrap lightly, lots of incompatibilities
 gem 'bootstrap', '4.0.0.alpha3'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
+
+# For fetching song information
+gem 'opengraph', github:'lawadvisor/opengraph', ref: '56820b3'
+
+# Rails helpers
+gem 'simple_form'
+gem 'kaminari'
+
+# Inlining CSS and generating text emails
+gem 'premailer-rails'
+
+# For testing
+gem 'nokogiri'
+
+# CI driven code coverage
+gem 'coveralls', require: false
+
+# Deployment
+gem 'puma', '~> 3.0'
+gem 'rollbar'
 
 group :production do
   gem 'rails_12factor'

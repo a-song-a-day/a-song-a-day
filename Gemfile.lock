@@ -8,6 +8,23 @@ GIT
       nokogiri (~> 1.5)
       rest-client (~> 1.6)
 
+GIT
+  remote: git://github.com/sinatra/rack-protection.git
+  revision: 729059ba862f9e3775e13bb1f17813fd6840d314
+  specs:
+    rack-protection (2.0.0)
+      rack
+
+GIT
+  remote: git://github.com/sinatra/sinatra.git
+  revision: 3e2379d7175ea7f5896f7a6f9c010c56e587ff03
+  specs:
+    sinatra (2.0.0.pre.alpha)
+      mustermann (~> 0.4)
+      rack (~> 2.0)
+      rack-protection (~> 2.0)
+      tilt (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -53,7 +70,6 @@ GEM
     arel (7.0.0)
     autoprefixer-rails (6.3.7)
       execjs
-    bcrypt (3.1.11)
     bootstrap (4.0.0.alpha3)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
@@ -105,6 +121,8 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
+    mustermann (0.4.0)
+      tool (~> 0.2)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -199,6 +217,7 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.5)
     tins (1.11.0)
+    tool (0.2.3)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
@@ -211,7 +230,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
   bootstrap (= 4.0.0.alpha3)
   coveralls
   faker
@@ -225,6 +243,7 @@ DEPENDENCIES
   pg_search
   premailer-rails
   puma (~> 3.0)
+  rack-protection!
   rails (>= 5.0.0, < 5.1)
   rails-assets-tether (>= 1.1.0)!
   rails_12factor
@@ -232,6 +251,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sidekiq
   simple_form
+  sinatra!
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
