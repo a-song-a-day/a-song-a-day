@@ -1,6 +1,9 @@
 require 'test_helper'
+require_relative '../support/integration_test_helpers'
 
 class LoginTest < ActionDispatch::IntegrationTest
+  include IntegrationTestHelpers
+
   test 'can log in through the home page' do
     # Visit homepage
     get '/'
@@ -12,6 +15,8 @@ class LoginTest < ActionDispatch::IntegrationTest
     # Click "Log In"
     get new_session_path
     assert_response :success
+    assert_select 'h1', 'Welcome back!'
+    assert_select 'p.lead', /Type in your email address/
 
     # Verify login form
     assert_select "form[action='#{session_path}'][method=post]" do
@@ -49,6 +54,7 @@ class LoginTest < ActionDispatch::IntegrationTest
     # Shows welcome back page
     assert_response :success
     assert_select 'h1', 'Welcome back!'
+    assert_select 'p.lead', /Thanks!/
 
     # Simulate clicking on the token link from welcome email
     get token_url(token)
@@ -60,6 +66,38 @@ class LoginTest < ActionDispatch::IntegrationTest
     # Showing my profile
     assert_select 'h1', 'Profile'
     assert_select 'h3', 'Alisdair McDiarmid'
+  end
+
+  test 'login requires email' do
+    post session_path, params: { email: '' }
+
+    # Shows login page again
+    assert_response :success
+    assert_select 'h1', 'Welcome back!'
+    assert_select 'p.lead', /Type in your email address/
+
+    # Error shown
+    assert_select '.alert.alert-danger', /Email address can't be blank/
+
+    # Login form is present
+    assert_select "form[action='#{session_path}'][method=post]" do
+      assert_select 'input[type=email]', 1
+      assert_select 'button', 'Send log-in email'
+    end
+  end
+
+  test 'login does not show error if no such email' do
+    assert_no_difference -> { ActionMailer::Base.deliveries.count } do
+      post session_path, params: { email: 'test@example.com' }
+    end
+
+    # Shows welcome back page
+    assert_response :success
+    assert_select 'h1', 'Welcome back!'
+    assert_select 'p.lead', /Thanks!/
+
+    # No alerts shown
+    assert_select '.alert', 0
   end
 
   test 'redirect back to login-protected page' do
@@ -87,5 +125,24 @@ class LoginTest < ActionDispatch::IntegrationTest
 
     # Shows subscriptions page
     assert_select 'h1', 'Subscriptions'
+  end
+
+  test 'can log out' do
+    login_as users(:alisdair)
+
+    get admin_profile_path
+    assert_response :success
+
+    assert_select "a.nav-link[href='#{session_path}']", 'Logout'
+
+    # Logging out redirects to home page
+    delete session_path
+    assert_redirected_to root_url
+
+    follow_redirect!
+    assert_response :success
+
+    # Check we're logged out by looking for log in link
+    assert_select "a[href='#{new_session_path}']", 'Log In'
   end
 end
