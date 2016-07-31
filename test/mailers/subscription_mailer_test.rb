@@ -3,7 +3,7 @@ require 'test_helper'
 class SubscriptionMailerTest < ActionMailer::TestCase
   test "created" do
     curator = curators(:electropop)
-    assert_equal curator, users(:shannon).curators.first
+    assert_equal users(:shannon), curator.user
 
     user = users(:alisdair)
     subscription = Subscription.create(curator: curator, user: user)

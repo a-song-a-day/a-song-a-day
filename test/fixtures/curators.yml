@@ -3,3 +3,9 @@ electropop:
   title: Electropop and blues
   description: Only the best bleeps and bloops about lost love
   genre: pop
+random:
+  user: shannon
+  title: Random
+  description: Just great music
+  genre: pop
+  random: true

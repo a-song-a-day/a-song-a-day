@@ -81,5 +81,11 @@ class LoginTest < ActionDispatch::IntegrationTest
 
     # Redirected back to the page we tried to get to
     assert_redirected_to admin_subscriptions_path
+    
+    follow_redirect!
+    assert_response :success
+
+    # Shows subscriptions page
+    assert_select 'h1', 'Subscriptions'
   end
 end

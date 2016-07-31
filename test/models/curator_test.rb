@@ -46,13 +46,7 @@ class CuratorTest < ActiveSupport::TestCase
   end
 
   test 'only one curator can be random' do
-    assert_difference -> { Curator.count }, 1 do
-      Curator.create(user: users(:shannon),
-                     title: 'Random',
-                     description: 'random',
-                     random: true,
-                     genre: genres(:pop))
-    end
+    assert_equal curators(:random), Curator.random
 
     assert_no_difference -> { Curator.count } do
       curator = Curator.create(user: users(:shannon),
