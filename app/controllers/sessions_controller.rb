@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
     user = User.where(email: params[:email]).first
 
     unless user.nil?
+      user.access_tokens.expired.destroy_all
       token = user.access_tokens.create!
 
       TransactionalMailer.login(user, token).deliver

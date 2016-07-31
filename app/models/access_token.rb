@@ -1,5 +1,6 @@
 class AccessToken < ApplicationRecord
   scope :unexpired, -> { where("NOW() - updated_at < INTERVAL '4 weeks'") }
+  scope :expired, -> { where("NOW() - updated_at >= INTERVAL '4 weeks'") }
 
   belongs_to :user
 
