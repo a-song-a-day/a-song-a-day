@@ -17,6 +17,10 @@ class Curator < ApplicationRecord
     where(random: true).first
   end
 
+  def next_song
+    songs.queued.order(:created_at).first
+  end
+
   def title_and_name
     "#{title} (#{user.name})"
   end
