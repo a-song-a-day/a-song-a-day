@@ -15,3 +15,9 @@ alisdair:
   email: alisdair@mcdiarmid.org
   curator: false
   admin: false
+
+janet:
+  name: Janet Choi
+  email: janet@asongaday.co
+  curator: true
+  admin: false

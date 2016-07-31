@@ -9,3 +9,8 @@ random:
   description: Just great music
   genre: pop
   random: true
+classical:
+  user: janet
+  title: Classical and Indie Smash
+  description: Modern classical plus chamber pop, art rock, and genre-benders.
+  genre: classical

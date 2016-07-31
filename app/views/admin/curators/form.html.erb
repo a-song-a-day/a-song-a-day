@@ -38,7 +38,7 @@
     hint: "Pitch your song queue to listeners! Aim for around 20–50 words." %>
 
   <div class="form-inline m-t-2 m-b-1">
-    <div class="row flex-items-xs-middle m-x-0">
+    <div class="row flex-items-xs-middle m-x-0 <%= "has-danger" if @curator.errors[:genre].any? %>">
       <span class="form-control-static text-muted m-r-1">
         Will be enjoyed by people who like…
       </span>
