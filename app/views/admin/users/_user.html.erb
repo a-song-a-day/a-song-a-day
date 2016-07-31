@@ -1,13 +1,13 @@
-<div class="row m-b-2">
+<div class="row m-b-2 user-profile">
   <div class="col-sm-4 col-xs-6 center-block m-b-2">
     <%= image_tag gravatar_url(user.email), alt: "Avatar for #{user.name}", class: "img-rounded img-fluid gravatar" %>
   </div>
   <div class="col-sm-8 col-xs-12">
     <div class="card">
-      <h3 class="card-block"><%= user.name %></h3>
+      <h3 class="card-block user-profile__name"><%= user.name %></h3>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <div><%= mail_to user.email %><div>
+          <div class="user-profile__email"><%= mail_to user.email %></div>
           <% if user != current_user %>
             <div class="m-t-1 clearfix">
               Confirmed?
@@ -18,7 +18,9 @@
           <% end %>
         </li>
         <% unless user.extra_information.blank? %>
-          <li class="list-group-item"><%= simple_format user.extra_information %></li>
+          <li class="list-group-item user-profile__extra-information">
+            <%= simple_format user.extra_information %>
+          </li>
         <% end %>
         <% if user.curator? %>
           <li class="list-group-item text-warning">

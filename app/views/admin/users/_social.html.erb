@@ -2,7 +2,7 @@
   <li class="list-group-item">
     <div class="row <%= "flex-items-xs-between" if user.social_links.size > 2 %>">
       <% user.social_links.each do |name, url| %>
-        <div class="m-x-1">
+        <div class="m-x-1 user-profile__<%= name.dasherize.downcase %>">
           <%= link_to name, url, target: "_blank" %>
         </div>
       <% end %>
