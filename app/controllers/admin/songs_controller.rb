@@ -17,17 +17,7 @@ class Admin::SongsController < Admin::AdminController
     @song = @curator.songs.build(song_params)
 
     if params[:fetch]
-      begin
-        result = OpenGraph.fetch(@song.url)
-
-        @song.attributes = {
-          title: result.title,
-          image_url: result.image
-        } if result
-      rescue => e
-        Rails.logger.debug "OpenGraph fetch failed for #{@song.url}"
-        Rails.logger.debug e
-      end
+      OpenGraphService.perform(@song)
 
       render "form"
       return
