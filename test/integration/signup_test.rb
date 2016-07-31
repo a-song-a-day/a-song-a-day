@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SignupTest < ActionDispatch::IntegrationTest
-  test 'the truth' do
+  test 'can sign up through home page' do
     get '/'
     assert_response :success
 
@@ -29,6 +29,9 @@ class SignupTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     user = User.find_by_email('test@example.com')
+    assert_equal 'Joe', user.name
+    assert_not user.confirmed_email
+
     token = user.access_tokens.first
 
     assert_select_email do
@@ -40,5 +43,10 @@ class SignupTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'Thanks for signing up!'
+
+    visit token_url(token)
+
+    user.reload!
+    assert 'Joe', user.conf
   end
 end
