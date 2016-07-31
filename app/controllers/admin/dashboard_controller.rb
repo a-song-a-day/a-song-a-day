@@ -3,6 +3,6 @@ class Admin::DashboardController < Admin::AdminController
 
   def index
     @queues = Curator.empty_queue.includes(:user).order(:title)
-    @songs = Song.queued.order(created_at: :desc).includes(:genres, curator: :user)
+    @songs = Song.queued.order(created_at: :asc).includes(:genres, curator: :user)
   end
 end
