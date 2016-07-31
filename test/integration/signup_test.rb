@@ -44,7 +44,7 @@ class SignupTest < ActionDispatch::IntegrationTest
 
     # Welcome email sent
     assert_select_email do
-      assert_select 'h1', "Joe, it's almost time for music!"
+      assert_select 'h1', /Joe, /
       assert_select "a[href='#{token_url(token)}']", 'Confirm your email address'
     end
 

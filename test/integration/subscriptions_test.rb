@@ -16,7 +16,8 @@ class SubscriptionsTest < ActionDispatch::IntegrationTest
 
     # Verify the song email content and links
     assert_select_email do
-      assert_select 'p', "Here's today's song from Electropop Blues by Shannon Byrne."
+      assert_select 'p', /#{curators(:electropop).title}/
+      assert_select 'p', /#{curators(:electropop).user.name}/
       assert_select "a[href='#{admin_subscriptions_url}']", 'unsubscribe from this list'
     end
     ActionMailer::Base.deliveries.clear
