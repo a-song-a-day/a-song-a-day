@@ -32,7 +32,7 @@
       <div class="row flex-nowrap flex-items-xs-middle flex-items-xs-between">
         <div class="m-x-1 text-truncate">
           <span class="m-r-1 hidden-sm-down">Last song:</span>
-          <% song = curator.songs.sent.first %>
+          <% song = curator.songs.sent.order(:sent_at).last %>
           <% if song %>
             <%= link_to raw("&#x25b6;"), song.url, target: "_blank", class: "btn btn-primary-outline m-r-1" %>
             <strong>

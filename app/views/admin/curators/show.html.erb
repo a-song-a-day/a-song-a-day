@@ -50,7 +50,7 @@
         Please <%= link_to "add a song now", new_admin_curator_song_path(@curator) %>.
       </div>
     <% end %>
-    <%= render partial: "admin/songs/songs", object: @curator.songs.limit(3) %>
+    <%= render partial: "admin/songs/songs", object: @curator.songs.order(:created_at).last(3) %>
 
     <% unless @curator.songs.empty? %>
       <div class="m-t-3 clearfix">
