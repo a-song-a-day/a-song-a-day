@@ -2,6 +2,11 @@ desc 'Schedule song sending jobs for active subscriptions'
 task daily_song: :environment do
   date = Date.today.to_s(:long)
 
+  if Date.today.saturday? or Date.today.sunday?
+    Rails.logger.info "Skipping daily song for #{date} (it's the weekend!)"
+    next
+  end
+
   Rails.logger.info "Daily song for #{date}: START"
 
   Curator.all.each do |curator|
