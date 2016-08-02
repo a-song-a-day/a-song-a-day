@@ -1,4 +1,9 @@
+require 'sidekiq/web'
+require 'admin_constraint'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq', constraints: AdminConstraint.new
+
   root to: 'home#index'
 
   namespace :signup do

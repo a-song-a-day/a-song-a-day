@@ -57,4 +57,43 @@ class CuratorTest < ActiveSupport::TestCase
       assert_includes curator.errors, :random
     end
   end
+
+  def song_params(name, age, sent_ago=nil)
+    {
+      url: name,
+      title: name,
+      description: name,
+      created_at: Time.now - age,
+      sent_at: sent_ago ? Time.now - sent_ago : nil
+    }
+  end
+
+  test 'next song' do
+    curator = curators(:random)
+
+    assert_equal 0, curator.songs.count
+
+    pop = genres(:pop)
+    songs = [
+      ['0', 5.days, 4.days],
+      ['1', 5.days, 3.days],
+      ['2', 5.days],
+      ['3', 2.days],
+      ['4', 3.days],
+    ].map {|args| curator.songs.create(song_params(*args)) }
+
+    assert_equal songs[2], curator.next_song
+
+    songs[2].sent!
+
+    assert_equal songs[4], curator.next_song
+
+    songs[4].sent!
+
+    assert_equal songs[3], curator.next_song
+
+    songs[3].sent!
+
+    assert_equal nil, curator.next_song
+  end
 end
