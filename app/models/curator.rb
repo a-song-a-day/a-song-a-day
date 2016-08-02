@@ -9,8 +9,8 @@ class Curator < ApplicationRecord
   validates_uniqueness_of :random, conditions: -> { where(random: true) }
 
   def self.empty_queue
-    left_outer_joins(:songs, :subscriptions).where(songs: { sent_at: nil })
-      .group('curators.id').having('count(songs.id) < 2 AND count(subscriptions.id) > 0')
+    left_outer_joins(:songs).where(songs: { sent_at: nil })
+      .group('curators.id').having('count(songs.id) < 2')
   end
 
   def self.random
