@@ -13,3 +13,7 @@ Requires Ruby 2.3.1. Some basics:
     bin/rails db:setup
     bin/rails test
     bin/rails server
+
+## Maintenance notes
+
+TODO
