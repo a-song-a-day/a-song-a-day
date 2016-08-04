@@ -30,6 +30,6 @@ class SubscriptionMailer < ApplicationMailer
     @preheader = "Today's song: #{@song.title}"
 
     mail to: subscription.user.email,
-      subject: "Song for #{date} from #{@curator.title} by #{@curator.user.name}"
+      subject: "Today's #{@curator.title} song is..."
   end
 end
