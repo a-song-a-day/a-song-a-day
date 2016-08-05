@@ -8,6 +8,8 @@ class SubscriptionMailer < ApplicationMailer
     title = @curator.random? ? "great music" : @curator.title
     @preheader = "Yay! You're now subscribed to #{title} on A Song A Day"
 
+    headers['X-Mailgun-Campaign-Id'] = 'subscribe'
+
     mail to: subscription.user.email, subject: 'Subscribed to A Song A Day'
   end
 
@@ -17,6 +19,8 @@ class SubscriptionMailer < ApplicationMailer
 
     title = @curator.random? ? "great music" : @curator.title
     @preheader = "Aww! You've unsubscribed from #{title} on A Song A Day"
+
+    headers['X-Mailgun-Campaign-Id'] = 'unsubscribe'
 
     mail to: subscription.user.email, subject: 'Unsubscribed from A Song A Day'
   end
@@ -29,6 +33,10 @@ class SubscriptionMailer < ApplicationMailer
     @day = day
 
     @preheader = "#{day}'s song: #{@song.title}"
+
+    headers['X-Mailgun-Tag'] = "song-#{song.id}"
+    headers['X-Mailgun-Tag'] = "curator-#{subscription.curator.id}"
+    headers['X-Mailgun-Campaign-Id'] = 'daily-song'
 
     mail to: subscription.user.email,
       subject: "#{day}'s #{@curator.title} song is..."

@@ -5,6 +5,8 @@ class TransactionalMailer < ApplicationMailer
     @token = token
     @preheader = "Here's your magic log in link!"
 
+    headers['X-Mailgun-Campaign-Id'] = 'login'
+
     mail to: user.email, subject: 'Log in to A Song A Day'
   end
 
@@ -12,6 +14,8 @@ class TransactionalMailer < ApplicationMailer
     @name = user.name
     @token = token
     @preheader = "Just confirm your email address to start receiving great music."
+
+    headers['X-Mailgun-Campaign-Id'] = 'welcome'
 
     mail to: user.email, subject: 'Welcome to A Song A Day!'
   end
