@@ -34,7 +34,6 @@ class SubscriptionMailer < ApplicationMailer
 
     @preheader = "#{day}'s song: #{@song.title}"
 
-    headers['X-Mailgun-Tag'] = "song-#{song.id}"
     headers['X-Mailgun-Tag'] = "curator-#{subscription.curator.id}"
     headers['X-Mailgun-Campaign-Id'] = 'daily-song'
 
