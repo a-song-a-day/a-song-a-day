@@ -21,15 +21,16 @@ class SubscriptionMailer < ApplicationMailer
     mail to: subscription.user.email, subject: 'Unsubscribed from A Song A Day'
   end
 
-  def song(song, date, subscription)
+  def song(song, subscription, date, day)
     @song = song
     @curator = subscription.curator
-    @date = date
     @subscription = subscription
+    @date = date
+    @day = day
 
-    @preheader = "Today's song: #{@song.title}"
+    @preheader = "#{day}'s song: #{@song.title}"
 
     mail to: subscription.user.email,
-      subject: "Today's #{@curator.title} song is..."
+      subject: "#{day}'s #{@curator.title} song is..."
   end
 end

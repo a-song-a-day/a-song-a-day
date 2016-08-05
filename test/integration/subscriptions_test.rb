@@ -12,7 +12,7 @@ class SubscriptionsTest < ActionDispatch::IntegrationTest
     subscription = user.subscriptions.create(curator: curators(:electropop))
     song = songs(:two_moons)
 
-    SubscriptionMailer.song(song, Date.today.to_s, subscription).deliver
+    SubscriptionMailer.song(song, subscription, Date.today.to_s, 'Tuesday').deliver
 
     # Verify the song email content and links
     assert_select_email do

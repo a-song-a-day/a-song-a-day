@@ -32,11 +32,12 @@ class SubscriptionMailerTest < ActionMailer::TestCase
     subscription = Subscription.create!(curator: curator, user: user)
     song = songs(:two_moons)
     date = 'July 24, 2016'
+    day = 'Tuesday'
 
     curator.songs.push song
 
-    mail = SubscriptionMailer.song(song, date, subscription)
-    assert_equal "Song for #{date} from #{curator.title} by #{curator.user.name}", mail.subject
+    mail = SubscriptionMailer.song(song, subscription, date, day)
+    assert_match /#{curator.title}/, mail.subject
     assert_equal [user.email], mail.to
     assert_equal ['curators@asongaday.co'], mail.from
     assert_match song.title, mail.body.encoded

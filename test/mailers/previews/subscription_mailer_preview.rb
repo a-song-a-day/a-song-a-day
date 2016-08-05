@@ -16,9 +16,10 @@ class SubscriptionMailerPreview < ActionMailer::Preview
   # http://a-song-a-day.dev/rails/mailers/subscription_mailer/song
   def song
     song = Song.first!
-    date = Date.today.to_s(:long)
     subscription = song.curator.subscriptions.first!
-    SubscriptionMailer.song(song, date, subscription)
+    date = Date.today.to_s(:long)
+    day = Date::DAYNAMES[Date.today.day]
+    SubscriptionMailer.song(song, subscription, date, day)
   end
 
 end

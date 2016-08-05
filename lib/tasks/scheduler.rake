@@ -1,6 +1,7 @@
 desc 'Schedule song sending jobs for active subscriptions'
 task daily_song: :environment do
   date = Date.today.to_s(:long)
+  day = Date::DAYNAMES[Date.today.day]
 
   if Date.today.saturday? or Date.today.sunday?
     Rails.logger.info "Skipping daily song for #{date} (it's the weekend!)"
@@ -19,7 +20,7 @@ task daily_song: :environment do
       "'#{curator.title}' by #{curator.user.name}…"
 
     curator.subscriptions.order(:created_at).each do |subscription|
-      SendSongToSubscriptionWorker.perform_async(song.id, date, subscription.id)
+      SendSongToSubscriptionWorker.perform_async(song.id, subscription.id, date, day)
     end
 
     song.sent!

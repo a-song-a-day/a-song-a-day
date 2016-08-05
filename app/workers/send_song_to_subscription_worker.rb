@@ -4,13 +4,13 @@ class SendSongToSubscriptionWorker
   # Exponential backoff: ten retries is about 7 hours
   sidekiq_options retry: 10
 
-  def perform(song_id, date, subscription_id)
+  def perform(song_id, subscription_id, date, day)
     song = Song.find(song_id)
     subscription = Subscription.find(subscription_id)
 
     return if song.sent_subscription_ids.include? subscription.id
 
-    SubscriptionMailer.song(song, date, subscription).deliver
+    SubscriptionMailer.song(song, subscription, date, day).deliver
     song.append_sent_subscription_id subscription.id
 
   rescue ActiveRecord::RecordNotFound
