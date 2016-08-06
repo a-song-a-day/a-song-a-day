@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get '/welcome', to: 'welcome#index'
   end
 
+  resources :curators, only: [:show]
+
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
 
