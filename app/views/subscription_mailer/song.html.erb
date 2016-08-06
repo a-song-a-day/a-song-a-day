@@ -1,6 +1,7 @@
 <%= render "layouts/mailer_body" do %>
   <p>
-    Here's <%= @day %>'s <b><%= @curator.title %></b> song curated by <b><%= @curator.user.name %></b>.
+    Here's <%= @day %>'s <b><%= @curator.title %></b> song curated by 
+    <%= link_to curator_url(@curator) do %><b><%= @curator.user.name %></b><% end %>.
   </p>
 <% end %>
 
