@@ -36,7 +36,7 @@
           </th>
           <td class="text-xs-right">
             <%= button_to "Masquerade", admin_masquerade_path(user_id: curator.user),
-              method: "post", class: "btn btn-sm btn-secondary",
+              method: "post", class: "btn btn-outline-info",
               data: { disable: true } %>
           </td>
         </tr>
@@ -98,7 +98,7 @@
           </td>
           <td class="text-xs-right">
             <%= button_to "Random!", admin_random_copy_path(song_id: song.id),
-              method: "post", class: "btn btn-sm btn-secondary",
+              method: "post", class: "btn btn-secondary",
               disabled: song.curator == Curator.random,
               data: {
                 confirm: "Really copy to random song queue?",

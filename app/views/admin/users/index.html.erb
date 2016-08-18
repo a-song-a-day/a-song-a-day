@@ -6,9 +6,9 @@
   <h1 class="pull-sm-left"><%= yield :title %></h1>
   <div class="btn-group pull-sm-right">
     <%= link_to "Export CSV", admin_users_path(format: :csv), target: "_blank",
-      class: "btn btn-sm btn-secondary" %>
+      class: "btn btn-secondary" %>
     <%= link_to "Add new user", new_admin_user_path,
-      class: "btn btn-sm btn-primary" %>
+      class: "btn btn-primary" %>
   </div>
 </div>
 
