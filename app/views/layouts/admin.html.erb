@@ -50,7 +50,7 @@
       <% else %>
         <ol class="breadcrumb m-b-2">
           <% crumbs.each do |crumb| %>
-            <li class="<%= "active" if current_page? crumb.path %>">
+            <li class="breadcrumb-item <%= "active" if current_page? crumb.path %>">
               <%= link_to_unless crumb == crumbs.last, crumb.name, crumb.path %>
             </li>
           <% end %>

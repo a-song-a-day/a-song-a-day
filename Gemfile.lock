@@ -68,9 +68,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (7.0.0)
-    autoprefixer-rails (6.3.7)
+    autoprefixer-rails (6.4.0.2)
       execjs
-    bootstrap (4.0.0.alpha3)
+    bootstrap (4.0.0.alpha3.1)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
     builder (3.2.2)
@@ -230,7 +230,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap (= 4.0.0.alpha3)
+  bootstrap (= 4.0.0.alpha3.1)
   coveralls
   faker
   jquery-rails

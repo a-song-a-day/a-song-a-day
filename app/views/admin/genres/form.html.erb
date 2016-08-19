@@ -9,7 +9,7 @@
   <% unless @genre.new_record? %>
     <%= button_to "Delete genre", [:admin, @genre], method: :delete,
       data: { confirm: "Really delete #{@genre.name}?", disable_with: "Deleting…" },
-      class: "btn btn-sm btn-danger-outline pull-sm-right" %>
+      class: "btn btn-outline-danger pull-sm-right" %>
   <% end %>
 </div>
 

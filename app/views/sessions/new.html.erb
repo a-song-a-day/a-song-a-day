@@ -6,7 +6,7 @@
 
 <%= form_tag session_path do %>
   <div class="form-group">
-    <label class="form-control-label form-control-lg" for="email">
+    <label class="form-control-static form-control-lg" for="email">
       Email
     </label>
     <%= text_field_tag :email, @email, class: "form-control form-control-lg", placeholder: "your@email.com", type: "email", autofocus: true %>

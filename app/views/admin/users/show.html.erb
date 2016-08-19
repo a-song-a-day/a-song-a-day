@@ -7,14 +7,14 @@
   <div class="pull-sm-right">
     <%= form_tag admin_masquerade_path(user_id: @user), class: "btn-group" do %>
       <% if current_user.admin? %>
-        <button type="submit" class="btn btn-sm btn-sm btn-secondary" data-disable-with="Masquerading…">
+        <button type="submit" class="btn btn-secondary" data-disable-with="Masquerading…">
           Masquerade
         </button>
         <%= link_to "Subscriptions", admin_user_subscriptions_path(@user),
-          class: "btn btn-sm btn-sm btn-secondary" %>
+          class: "btn btn-secondary" %>
       <% end %>
       <%= link_to "Edit profile", edit_admin_user_path(@user),
-        class: "btn btn-sm btn-sm btn-primary" %>
+        class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

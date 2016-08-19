@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-block">
     <div class="row">
-      <div class="col-sm-3 col-xs-4 center-block">
+      <div class="col-sm-3 col-xs-4 m-x-auto">
         <%= image_tag gravatar_url(curator.user.email), alt: "Avatar for #{curator.user.name}", class: "img-rounded img-fluid gravatar" %>
       </div>
       <div class="col-sm-9 col-xs-8">
@@ -34,7 +34,7 @@
           <span class="m-r-1 hidden-sm-down">Last song:</span>
           <% song = curator.songs.sent.order(:sent_at).last %>
           <% if song %>
-            <%= link_to raw("&#x25b6;"), song.url, target: "_blank", class: "btn btn-primary-outline m-r-1" %>
+            <%= link_to raw("&#x25b6;"), song.url, target: "_blank", class: "btn btn-outline-primary m-r-1" %>
             <strong>
               <%= link_to song.title, song.url, target: "_blank" %>
             </strong>
