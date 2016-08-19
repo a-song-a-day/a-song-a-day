@@ -11,7 +11,7 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'form-control-label form-control-lg'
+    b.use :label, class: 'form-control-static form-control-lg'
 
     b.use :input, class: 'form-control form-control-lg'
     b.use :error, wrap_with: { tag: 'p', class: 'text-help m-l-2' }
@@ -25,7 +25,7 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'form-control-label'
+    b.use :label
 
     b.use :input, class: 'form-control'
     b.use :error, wrap_with: { tag: 'p', class: 'text-help' }
@@ -37,7 +37,7 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.optional :maxlength
     b.optional :readonly
-    b.use :label, class: 'form-control-label'
+    b.use :label
 
     b.use :input
     b.use :error, wrap_with: { tag: 'p', class: 'text-help' }
@@ -59,7 +59,7 @@ SimpleForm.setup do |config|
   config.wrappers :vertical_radio_and_checkboxes, tag: 'div', class: 'form-group', error_class: 'has-danger' do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'form-control-label'
+    b.use :label
 
     b.wrapper tag: 'div', class: 'd-block' do |ba|
       ba.use :input
@@ -76,7 +76,7 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 form-control-label'
+    b.use :label, class: 'col-sm-3 col-form-label'
 
     b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input, class: 'form-control'
@@ -91,7 +91,7 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.optional :maxlength
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 form-control-label'
+    b.use :label, class: 'col-sm-3 col-form-label'
 
     b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input
@@ -119,7 +119,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.optional :readonly
 
-    b.use :label, class: 'col-sm-3 form-control-label'
+    b.use :label, class: 'col-sm-3 col-form-label'
 
     b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input
@@ -146,7 +146,7 @@ SimpleForm.setup do |config|
   config.wrappers :multi_select, tag: 'div', class: 'form-group', error_class: 'has-danger' do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'form-control-label'
+    b.use :label
     b.wrapper tag: 'div', class: 'form-inline' do |ba|
       ba.use :input, class: 'form-control'
       ba.use :error, wrap_with: { tag: 'p', class: 'text-help' },
