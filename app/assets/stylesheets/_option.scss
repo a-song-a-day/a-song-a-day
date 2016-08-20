@@ -1,5 +1,6 @@
 .option {
   margin: 0 0.5rem 0 0;
+  user-select: none;
 
   input {
     display: none;
@@ -11,6 +12,11 @@
     border-radius: $border-radius-sm;
     display: inline-block;
     padding: 0.5rem;
+
+    &-wide {
+      min-width: 5em;
+      text-align: center;
+    }
 
     &:hover {
       border-color: darken($gray-lighter, 15%);

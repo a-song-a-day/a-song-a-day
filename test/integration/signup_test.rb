@@ -23,7 +23,7 @@ class SignupTest < ActionDispatch::IntegrationTest
       assert_select 'input[type=text]', 1
       assert_select 'input[type=email]', 1
       assert_select 'textarea', 1
-      assert_select 'button', 'Send me great music!'
+      assert_select 'button', 'Just send me great music!'
     end
 
     # Create a user with name and email
