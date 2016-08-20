@@ -8,6 +8,8 @@ class Curator < ApplicationRecord
   validates_presence_of :user, :title, :description, :genre
   validates_uniqueness_of :random, conditions: -> { where(random: true) }
 
+  scope :nonrandom, -> { where(random: false ) }
+
   def self.empty_queue
     left_outer_joins(:songs).where(songs: { sent_at: nil })
       .group('curators.id').having('count(songs.id) < 2')

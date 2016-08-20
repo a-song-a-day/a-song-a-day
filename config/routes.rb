@@ -11,10 +11,9 @@ Rails.application.routes.draw do
     post '/start', to: 'start#create'
 
     get '/genres', to: 'genres#new'
-    get '/genres', to: 'genres#create'
 
-    get '/curators', to: 'curators#new'
-    get '/curators', to: 'curators#create'
+    get '/curators', to: 'curators#index'
+    post '/curators', to: 'curators#create'
 
     get '/welcome', to: 'welcome#index'
   end
