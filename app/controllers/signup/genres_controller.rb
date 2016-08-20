@@ -2,10 +2,8 @@ class Signup::GenresController < ApplicationController
   before_action :require_login
 
   def new
-    render :form
-  end
+    @genres = Genre.where(id: Curator.all.pluck(:genre_id).uniq).order(:name)
 
-  def create
     render :form
   end
 end

@@ -1,0 +1,37 @@
+<h1 class="display-4 m-b-3 text-sm-center">Find your match</h1>
+
+<p class="lead m-b-3">
+  <% if @curators.empty? %>
+    Oops! No curator matches, but you'll love our random list:
+  <% else %>
+    So you like
+    <span class="text-info"><%= @genres.pluck(:name).to_sentence %></span>?
+    Okay, here you go:
+  <% end %>
+</p>
+
+<% @curators.each do |curator| %>
+  <div class="m-b-2">
+    <%= render layout: "admin/curators/curator", object: curator, as: :curator do %>
+      <%= form_for Subscription.new(curator_id: curator.id), url: signup_curators_path do |f| %>
+        <%= f.hidden_field :curator_id %>
+        <button class="btn btn-primary btn-block" data-disable-with="Signing up…">
+          Choose this curator
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<% unless @curators.empty? %>
+  <p class="lead m-y-3 text-xs-center text-muted">
+    Don't see a great match? Leave it up to us:
+  </p>
+<% end %>
+
+<%= form_for Subscription.new(curator_id: @random.id), url: signup_curators_path do |f| %>
+  <%= f.hidden_field :curator_id %>
+  <button class="btn btn-lg btn-warning btn-block" data-disable-with="Signing up…">
+    Just send me great music!
+  </button>
+<% end %>

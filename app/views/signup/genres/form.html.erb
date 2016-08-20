@@ -1,3 +1,18 @@
 <h1 class="display-4 m-b-3 text-sm-center">Your favorite music</h1>
 
-<p class="text-danger">Genre picker coming soon</p>
+<p class="lead text-xs-center m-b-3">Select genres that you love to find the best curator for you:</p>
+
+<%= form_tag signup_curators_path, method: :get, id: "signup_curators_form" do %>
+  <div class="text-xs-center m-b-3">
+    <% @genres.each do |genre| %>
+      <label class="option m-b-1">
+        <input type="checkbox" name="genre_ids[]" value="<%= genre.id %>">
+        <span class="option-name option-name-wide"><%= genre.name %></span>
+      </label>
+    <% end %>
+  </div>
+
+  <button type="submit" class="btn btn-lg btn-primary btn-block" data-disable-with="Working on it…">
+    Show me some curators!
+  </button>
+<% end %>

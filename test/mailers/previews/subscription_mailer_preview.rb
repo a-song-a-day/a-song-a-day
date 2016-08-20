@@ -18,7 +18,7 @@ class SubscriptionMailerPreview < ActionMailer::Preview
     song = Song.first!
     subscription = song.curator.subscriptions.first!
     date = Date.today.to_s(:long)
-    day = Date::DAYNAMES[Date.today.day]
+    day = Date::DAYNAMES[Date.today.wday]
     SubscriptionMailer.song(song, subscription, date, day)
   end
 

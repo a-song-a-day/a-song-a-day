@@ -1,7 +1,7 @@
 desc 'Schedule song sending jobs for active subscriptions'
 task daily_song: :environment do
   date = Date.today.to_s(:long)
-  day = Date::DAYNAMES[Date.today.day]
+  day = Date::DAYNAMES[Date.today.wday]
 
   if Date.today.saturday? or Date.today.sunday?
     Rails.logger.info "Skipping daily song for #{date} (it's the weekend!)"

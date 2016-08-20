@@ -2,4 +2,8 @@
 
 <p class="lead">We've sent you an email to confirm your address. Click on the link there to start receiving your songs.</p>
 
-<p>You chose <strong>random good music</strong>, so we'll be sending you something exciting soon. Check your email tomorrow!</p>
+<% if @curator %>
+  <p>Here's what you subscribed to:</p>
+
+  <%= render partial: "admin/curators/curator", object: @curator, as: :curator %>
+<% end %>
