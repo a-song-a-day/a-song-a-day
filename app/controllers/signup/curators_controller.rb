@@ -5,7 +5,7 @@ class Signup::CuratorsController < ApplicationController
     @random = Curator.random
 
     @genres = Genre.where(id: params[:genre_ids])
-    @curators = @genres.includes(:curators).map(&:curators).flatten - [@random]
+    @curators = @genres.includes(:curators).map(&:curators).flatten.uniq - [@random]
     @curators = @curators.sort_by &:title
   end
 
