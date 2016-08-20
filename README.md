@@ -14,7 +14,7 @@ Requires Ruby 2.3.1. Some basics:
     bin/rails test
     bin/rails server
 
-Visit http://localhost:3000/ to see the app.
+Visit [http://localhost:3000/](http://localhost:3000/) to see the app.
 
 ## Getting started
 
