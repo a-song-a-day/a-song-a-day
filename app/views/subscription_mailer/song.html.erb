@@ -1,6 +1,6 @@
 <%= render "layouts/mailer_body" do %>
   <p>
-    Here's <%= @day %>'s <b><%= @curator.title %></b> song curated by 
+    Here's <%= @day %>'s <b><%= @curator.title %></b> song curated by
     <%= link_to curator_url(@curator) do %><b><%= @curator.user.name %></b><% end %>.
   </p>
 <% end %>
@@ -16,11 +16,10 @@
         <span class="tag tag-warning"><%= genre.name %></span>
       <% end %>
     </p>
+    <%= render "layouts/mailer_button" do %>
+      <%= link_to "Listen Now", @song.url, target: "_blank" %>
+    <% end %>
   <% end %>
-<% end %>
-
-<%= render "layouts/mailer_button" do %>
-  <%= link_to "Listen Now", @song.url, target: "_blank" %>
 <% end %>
 
 <%= render "layouts/mailer_body" do %>
