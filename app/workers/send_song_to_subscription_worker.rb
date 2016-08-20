@@ -9,6 +9,7 @@ class SendSongToSubscriptionWorker
     subscription = Subscription.find(subscription_id)
 
     return if song.sent_subscription_ids.include? subscription.id
+    return unless subscription.user.confirmed_email?
 
     SubscriptionMailer.song(song, subscription, date, day).deliver
     song.append_sent_subscription_id subscription.id
