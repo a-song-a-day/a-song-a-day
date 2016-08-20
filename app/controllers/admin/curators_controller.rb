@@ -30,6 +30,8 @@ class Admin::CuratorsController < Admin::AdminController
   end
 
   def show
+    # Our job queues sends at midday UTC
+    @next_send = Time.now.utc.hour < 12 ? Date.today : Date.tomorrow
   end
 
   def edit
