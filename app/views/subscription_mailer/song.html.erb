@@ -13,7 +13,7 @@
   <% unless @song.genres.empty? %>
     <p>
       <% @song.genres.each do |genre| %>
-        <span class="label label-warning"><%= genre.name %></span>
+        <span class="tag tag-warning"><%= genre.name %></span>
       <% end %>
     </p>
   <% end %>

@@ -84,10 +84,10 @@
             <div><%= link_to song.title, song.url, target: "_blank" %></div>
             <div>
               <% if song.genres.empty? %>
-                <span class="label label-default">No genres</span>
+                <span class="tag tag-default">No genres</span>
               <% else %>
                 <% song.genres.each do |genre| %>
-                  <span class="label label-info"><%= genre.name %></span>
+                  <span class="tag tag-info"><%= genre.name %></span>
                 <% end %>
               <% end %>
             </div>
