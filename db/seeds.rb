@@ -1,15 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 shannon = User.create!(name: 'Shannon Byrne',
                        email: 'shannon@asongaday.co',
                        curator: true,
                        admin: true)
+
 
 genres = <<EOF.split("\n")
 Classical
@@ -57,3 +50,12 @@ random = Curator.create!(title: 'Random',
                          user: shannon,
                          random: true,
                          genre: Genre.find_by_name('Pop'))
+
+# Make sure the database isn't completely empty
+user = User.create!(name: 'Name', email: 'test12345@example.com')
+random.subscriptions.create!(user: user)
+random.songs.create!(url: 'https://www.youtube.com/watch?v=kk0WRHV_vt8',
+                     image_url: 'https://i.ytimg.com/vi/kk0WRHV_vt8/maxresdefault.jpg',
+                     title: 'Snarky Puppy - Shofukan (We Like It Here)',
+                     description: 'Description goes here',
+                     sent_at: Time.now)
