@@ -14,6 +14,15 @@ Requires Ruby 2.3.1. Some basics:
     bin/rails test
     bin/rails server
 
+Visit http://localhost:3000/ to see the app.
+
+## Getting started
+
+- Sign up for a new account locally using the normal sign-up flow
+- At the end, you should get a fake email opening in your browser (via the letter_opener gem)
+- Log out, then sign in as shannon@asongaday.co (default admin), again by the fake email
+- Browse around the admin dashboard and enjoy
+
 ## Maintenance notes
 
 - You can check out sample email templates at [http://localhost:3000/rails/mailers/](http://localhost:3000/rails/mailers/)
@@ -23,4 +32,4 @@ Requires Ruby 2.3.1. Some basics:
 - This repository has Heroku auto deployments on PRs, which is handy
 - If a Travis build on master succeeds, it goes to production
 
-This was originally built by @alisdair. If you have problems, he might be able to help.
+This was originally built by [@alisdair](https://github.com/alisdair). If you have problems, he might be able to help.
