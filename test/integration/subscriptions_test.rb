@@ -39,7 +39,7 @@ class SubscriptionsTest < ActionDispatch::IntegrationTest
 
     # Should receive email notification of unsubscribing
     assert_select_email do
-      assert_select 'p', "You're now unsubscribed, and you won't receive any more songs."
+      assert_select 'p', /You're now unsubscribed/
     end
 
     follow_redirect!
