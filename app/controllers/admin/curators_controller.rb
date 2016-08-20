@@ -32,6 +32,9 @@ class Admin::CuratorsController < Admin::AdminController
   def show
     # Our job queues sends at midday UTC
     @next_send = Time.now.utc.hour < 12 ? Date.today : Date.tomorrow
+
+    # Skip weekends
+    @next_send = @next_send.next_weekday if @next_send.on_weekend?
   end
 
   def edit

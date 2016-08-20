@@ -51,10 +51,11 @@
       </div>
     <% end %>
 
-    <% @curator.songs.queued.order(:created_at).first(5).each_with_index do |song, index| %>
+    <% @curator.songs.queued.order(:created_at).first(5).each do |song| %>
       <%= render song do %>
         <%= render partial: "admin/songs/song_footer",
-                   locals: { song: song, date: @next_send + index.days } %>
+                   locals: { song: song, date: @next_send } %>
+        <% @next_send = @next_send.next_weekday %>
       <% end %>
     <% end %>
 

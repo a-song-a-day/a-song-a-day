@@ -113,6 +113,36 @@ class CuratorsTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'shows dates for queued songs' do
+    user = users(:janet)
+    curator = user.curators.first
+
+    7.times do |i|
+      curator.songs.create!(url: "https://youtube.com/#{i}",
+                            title: "Queued Song #{i}",
+                            description: 'Music noises')
+    end
+
+    login_as user
+
+    travel_to DateTime.parse('Wednesday 17th August 2016 17:00 +0100') do
+      get admin_curator_path(curator)
+      assert_response :success
+
+      assert_select '.card', 5 do |cards|
+        cards.each_with_index do |card, i|
+          assert_select card, 'a', "Queued Song #{i}"
+        end
+
+        assert_select cards[0], '.text-warning', 'Queued for August 18, 2016'
+        assert_select cards[1], '.text-warning', 'Queued for August 19, 2016'
+        assert_select cards[2], '.text-warning', 'Queued for August 22, 2016'
+        assert_select cards[3], '.text-warning', 'Queued for August 23, 2016'
+        assert_select cards[4], '.text-warning', 'Queued for August 24, 2016'
+      end
+    end
+  end
+
   test 'edit curator profile' do
     user = users(:janet)
     curator = user.curators.first
