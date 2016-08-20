@@ -7,6 +7,11 @@
 <div class="clearfix m-b-2">
   <h1 class="pull-sm-left"><%= yield :title %></h1>
   <div class="pull-sm-right">
+    <div class="btn-group m-r-2">
+      <%= link_to "All", url_for(type: nil), class: "btn btn-secondary #{"active" if @type.nil?}" %>
+      <%= link_to "Queued", url_for(type: "queued"), class: "btn btn-secondary #{"active" if @type == "queued"}" %>
+      <%= link_to "Sent", url_for(type: "sent"), class: "btn btn-secondary #{"active" if @type == "sent"}" %>
+    </div>
     <%= link_to "Add song", new_admin_curator_song_path(@curator), class: "btn btn-primary" %>
   </div>
 </div>
