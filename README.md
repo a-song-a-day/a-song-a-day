@@ -16,4 +16,11 @@ Requires Ruby 2.3.1. Some basics:
 
 ## Maintenance notes
 
-TODO
+- You can check out sample email templates at [http://localhost:3000/rails/mailers/](http://localhost:3000/rails/mailers/)
+- There are no user passwords; login is via "magic links" sent by email
+- Test coverage isn't too bad, except for the genre-based setup flow
+- The app uses a pre-release of Bootstrap v4, which still has a fairly unstable API; upgrading is risky, so be careful
+- This repository has Heroku auto deployments on PRs, which is handy
+- If a Travis build on master succeeds, it goes to production
+
+This was originally built by @alisdair. If you have problems, he might be able to help.
