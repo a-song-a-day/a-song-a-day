@@ -1,6 +1,8 @@
 <%= render "layouts/mailer_body" do %>
   <p>
-    You're now unsubscribed, and you won't receive any more songs.
+    You're now unsubscribed from
+    <% if @curator && !@curator.random? %><strong><%= @curator.title %></strong> on<%end %>
+    A Song A Day, and you won't receive any more songs.
   </p>
 
   <p>
