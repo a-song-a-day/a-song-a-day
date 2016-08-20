@@ -5,6 +5,17 @@ class Admin::SongsController < Admin::AdminController
   def index
     @search = params[:q]
     @songs = @curator.songs
+
+    @type = params[:type]
+    case @type
+    when 'queued'
+      @songs = @songs.queued
+    when 'sent'
+      @songs = @songs.sent
+    else
+      @type = nil
+    end
+
     @songs = @songs.search(@search) unless @search.blank?
     @songs = @songs.order(created_at: :desc).page(params[:page]).per(5)
   end
