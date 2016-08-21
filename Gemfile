@@ -46,6 +46,9 @@ gem 'coveralls', require: false
 gem 'puma', '~> 3.0'
 gem 'rollbar'
 
+# For Rake tasks
+gem 'ruby-progressbar', '1.8.1'
+
 group :production do
   gem 'rails_12factor'
 end
