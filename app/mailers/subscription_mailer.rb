@@ -38,6 +38,6 @@ class SubscriptionMailer < ApplicationMailer
     headers['X-Mailgun-Campaign-Id'] = 'daily-song'
 
     mail to: subscription.user.email,
-      subject: "#{day}'s #{@curator.title} song is..."
+      subject: "#{day}'s song is..."
   end
 end
