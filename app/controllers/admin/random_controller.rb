@@ -3,14 +3,17 @@ class Admin::RandomController < Admin::AdminController
 
   def copy
     song = Song.find(params[:song_id])
-    song_params = %i(url title description image_url genre_ids).map do |attr|
-      [attr, song.send(attr)]
-    end.to_h
+    attributes = song.attributes.slice(*%w[url title image_url genre_ids])
+    attributes['description'] = <<-EOF.strip_heredoc.chomp
+      #{song.description}
+      
+      (Originally curated by #{song.curator.user.name})
+    EOF
 
     random = Curator.random
-    random.songs.create!(song_params)
+    random.songs.create!(attributes)
 
     redirect_to admin_curator_path(random),
-      notice: "Copied song to random song queue"
+      notice: 'Copied song to random song queue'
   end
 end

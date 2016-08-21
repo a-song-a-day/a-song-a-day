@@ -34,8 +34,12 @@ class RandomTest < ActionDispatch::IntegrationTest
 
     # Verify that the song was copied correctly
     new_song = Curator.random.songs.queued.order(created_at: :desc).first
-    %i(url title description image_url genre_ids).each do |attr|
+    %i(url title image_url genre_ids).each do |attr|
       assert_equal song[attr], new_song[attr]
     end
+
+    # Check that the description has attribution
+    description = "#{song.description}\n\n(Originally curated by #{curator.user.name})"
+    assert_equal description, new_song.description
   end
 end
