@@ -60,7 +60,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = { host: 'www.asongaday.co' }
-  config.action_mailer.asset_host = 'https://www.asongaday.co'
+  config.action_mailer.asset_host = 'http://www.asongaday.co'
 
   ActionMailer::Base.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
