@@ -45,6 +45,8 @@ class Admin::CuratorsController < Admin::AdminController
     @curator.attributes = curator_params
 
     if params[:commit] and @curator.save
+      genre = @curator.genre
+      @curator.genres << genre unless @curator.genres.include? genre
       redirect_to admin_curator_path(@curator), notice: "Curator profile updated"
       return
     end

@@ -176,7 +176,7 @@ class CuratorsTest < ActionDispatch::IntegrationTest
     assert_equal curator.title, 'Neo Classical'
     assert_equal curator.description, 'Old but new?'
     assert_equal curator.genre, genres(:pop)
-    assert_equal curator.genres, [ genres(:classical) ]
+    assert_equal curator.genres.sort, [ genres(:pop), genres(:classical) ].sort
 
     follow_redirect!
     assert_response :success
