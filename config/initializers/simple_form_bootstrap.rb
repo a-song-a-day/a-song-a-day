@@ -14,8 +14,8 @@ SimpleForm.setup do |config|
     b.use :label, class: 'form-control-static form-control-lg'
 
     b.use :input, class: 'form-control form-control-lg'
-    b.use :error, wrap_with: { tag: 'p', class: 'text-help m-l-2' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'text-muted m-l-2' } # Don't use .text-help here, since this will apply the error color which we dont want for the hint
+    b.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback m-l-2' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'text-muted m-l-2' } # Don't use .form-control-feedback here, since this will apply the error color which we dont want for the hint
   end
 
   config.wrappers :vertical_form, tag: 'div', class: 'form-group', error_class: 'has-danger' do |b|
@@ -28,8 +28,8 @@ SimpleForm.setup do |config|
     b.use :label
 
     b.use :input, class: 'form-control'
-    b.use :error, wrap_with: { tag: 'p', class: 'text-help' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' } # Don't use .text-help here, since this will apply the error color which we dont want for the hint
+    b.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' } # Don't use .form-control-feedback here, since this will apply the error color which we dont want for the hint
   end
 
   config.wrappers :vertical_file_input, tag: 'div', class: 'form-group', error_class: 'has-danger' do |b|
@@ -40,7 +40,7 @@ SimpleForm.setup do |config|
     b.use :label
 
     b.use :input
-    b.use :error, wrap_with: { tag: 'p', class: 'text-help' }
+    b.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
   end
 
@@ -52,7 +52,7 @@ SimpleForm.setup do |config|
       ba.use :label_input
     end
 
-    b.use :error, wrap_with: { tag: 'p', class: 'text-help' }
+    b.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
   end
 
@@ -65,7 +65,7 @@ SimpleForm.setup do |config|
       ba.use :input
     end
 
-    b.use :error, wrap_with: { tag: 'p', class: 'text-help' }
+    b.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
   end
 
@@ -80,7 +80,7 @@ SimpleForm.setup do |config|
 
     b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input, class: 'form-control'
-      ba.use :error, wrap_with: { tag: 'p', class: 'text-help' },
+      ba.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' },
         class: 'form-control-danger'
       ba.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
     end
@@ -95,7 +95,7 @@ SimpleForm.setup do |config|
 
     b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input
-      ba.use :error, wrap_with: { tag: 'p', class: 'text-help' },
+      ba.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' },
         class: 'form-control-danger'
       ba.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
     end
@@ -110,7 +110,7 @@ SimpleForm.setup do |config|
         ba.use :label_input
       end
 
-      wr.use :error, wrap_with: { tag: 'p', class: 'text-help' }
+      wr.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' }
       wr.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
     end
   end
@@ -123,7 +123,7 @@ SimpleForm.setup do |config|
 
     b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input
-      ba.use :error, wrap_with: { tag: 'p', class: 'text-help' },
+      ba.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' },
         class: 'form-control-danger'
       ba.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
     end
@@ -139,7 +139,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'sr-only'
 
     b.use :input, class: 'form-control'
-    b.use :error, wrap_with: { tag: 'p', class: 'text-help' }
+    b.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
   end
 
@@ -149,7 +149,7 @@ SimpleForm.setup do |config|
     b.use :label
     b.wrapper tag: 'div', class: 'form-inline' do |ba|
       ba.use :input, class: 'form-control'
-      ba.use :error, wrap_with: { tag: 'p', class: 'text-help' },
+      ba.use :error, wrap_with: { tag: 'p', class: 'form-control-feedback' },
         class: 'form-control-danger'
       ba.use :hint,  wrap_with: { tag: 'p', class: 'text-muted' }
     end
