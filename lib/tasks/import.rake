@@ -62,7 +62,8 @@ task import_csv: :environment do
 
     User.transaction do
       user = User.find_by_email(attributes[:email]) || User.new
-      user.attributes = attributes
+      user.name ||= attributes[:name]
+      user.attributes = attributes.except(:name)
       user.save!
 
       curator = find_curator(row[:curator_name], curators, random)
