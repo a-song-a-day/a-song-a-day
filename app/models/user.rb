@@ -18,6 +18,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true, on: [:create, :update]
   validates :email, presence: true, uniqueness: true
+  validates :twitter_url, :instagram_url, :spotify_url, :soundcloud_url,
+    url: true, allow_blank: true
 
   def self.to_csv
     CSV.generate(headers: true, encoding: 'utf-8') do |csv|

@@ -4,6 +4,13 @@
 
 <h1 class="m-b-2"><%= yield :title %></h1>
 
+<% if current_user.errors.any? %>
+  <div class="alert alert-danger">
+    <strong>Whoops!</strong>
+    We couldn't save your profile. Please fix the errors below.
+  </div>
+<% end %>
+
 <%= simple_form_for current_user, url: [:admin, :profile], html: { class: "clearfix m-b-3" } do |f| %>
   <%= f.input :name, autofocus: true %>
   <%= f.input :email, hint: "Your profile picture is based on your Gravatar email." %>

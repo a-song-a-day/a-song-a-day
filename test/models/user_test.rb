@@ -52,6 +52,40 @@ class UserTest < ActiveSupport::TestCase
     ], user.social_links
   end
 
+  test 'social link validation' do
+    user = users(:alisdair)
+
+    user.attributes = {
+      twitter_url: nil,
+      instagram_url: nil,
+      spotify_url: '',
+      soundcloud_url: ' '
+    }
+
+    assert user.valid?
+
+    user.twitter_url = 'https://twitter.com user'
+    assert_not user.valid?
+    assert_includes user.errors, :twitter_url, 'URL must parse'
+    assert_equal user.errors[:twitter_url], ['is an invalid URL']
+
+    user.twitter_url = 'https://twitter.com/username'
+    assert user.valid?, 'normal URL is valid'
+
+    user.twitter_url = 'twitter.com/user'
+    assert_not user.valid?
+    assert_includes user.errors, :twitter_url, 'URL must have a scheme'
+    assert_equal user.errors[:twitter_url], ['is an invalid URL']
+
+    user.twitter_url = 'http://twitter.com/user'
+    assert user.valid?, 'domain is not validated'
+
+    user.twitter_url = 'http://'
+    assert_not user.valid?
+    assert_includes user.errors, :twitter_url, 'URL must have a hostname'
+    assert_equal user.errors[:twitter_url], ['is an invalid URL']
+  end
+
   test 'export to CSV' do
     users = User.where(id: [users(:alisdair).id, users(:shannon).id]).order(:name)
     csv = users.to_csv
