@@ -59,15 +59,15 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "a-song-a-day_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'a-song-a-day.herokuapp.com' }
-  config.action_mailer.asset_host = 'https://a-song-a-day.herokuapp.com'
+  config.action_mailer.default_url_options = { host: 'www.asongaday.co' }
+  config.action_mailer.asset_host = 'https://www.asongaday.co'
 
   ActionMailer::Base.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'a-song-a-day.heroku.com',
+    :domain         => 'asongaday.co',
     :authentication => :plain,
   }
   ActionMailer::Base.delivery_method = :smtp
