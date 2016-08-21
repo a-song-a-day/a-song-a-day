@@ -19,8 +19,8 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
+      <th class="text-xs-center">Confirmed?</th>
       <th class="text-xs-center">Curator</th>
-      <th class="text-xs-center">Admin</th>
       <th class="text-xs-right">Created</th>
     </tr>
   </thead>
@@ -36,8 +36,8 @@
       <tr>
         <th scope="row"><%= link_to user.name, admin_user_path(user) %></th>
         <td><%= link_to user.email, admin_user_path(user) %></td>
+        <td class="text-xs-center"><%= check_mark user.confirmed_email? %></td>
         <td class="text-xs-center"><%= check_mark user.curator? %></td>
-        <td class="text-xs-center"><%= check_mark user.admin? %></td>
         <td class="text-xs-right"><%= user.created_at.to_s(:short) %></td>
       </tr>
     <% end %>
