@@ -1,8 +1,8 @@
 class SendSongToSubscriptionWorker
   include Sidekiq::Worker
 
-  # Exponential backoff: ten retries is about 7 hours
-  sidekiq_options retry: 10
+  # Exponential backoff: 11 retries is about 12 hours
+  sidekiq_options retry: 11
 
   def perform(song_id, subscription_id, date, day)
     song = Song.find(song_id)
