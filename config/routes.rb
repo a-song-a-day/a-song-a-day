@@ -1,5 +1,6 @@
 require 'sidekiq/web'
 require 'admin_constraint'
+require 'params_constraint'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq', constraints: AdminConstraint.new
@@ -28,6 +29,9 @@ Rails.application.routes.draw do
     end
 
     resources :subscriptions, only: [:index, :create, :destroy]
+    constraints(ParamsConstraint.new(lambda {|params| ! params['token'].blank? })) do
+      get '/subscriptions/:id', to: 'subscriptions#destroy'
+    end
 
     resources :genres
 
