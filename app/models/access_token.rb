@@ -10,7 +10,7 @@ class AccessToken < ApplicationRecord
   validates_uniqueness_of :token
 
   def self.from_param(token)
-    unexpired.where(token: token).first!
+    unexpired.where(token: token).first
   end
 
   def to_param

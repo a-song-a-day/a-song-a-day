@@ -21,3 +21,9 @@ janet:
   email: janet@asongaday.co
   curator: true
   admin: false
+
+thomas:
+  name: Thomas R. Koll
+  email: thomas@asongaday.co
+  curator: false
+  admin: false

@@ -145,4 +145,10 @@ class LoginTest < ActionDispatch::IntegrationTest
     # Check we're logged out by looking for log in link
     assert_select "a[href='#{new_session_path}']", 'Log In'
   end
+  test 'can\'t login wit bad token' do
+    oldtoken = users(:thomas).access_tokens.create!(updated_at: Time.now - 5.weeks)
+    get token_path(id: oldtoken.token)
+    follow_redirect!
+    assert_select '.alert.alert-danger', /Bad token, try to login again/
+  end
 end
