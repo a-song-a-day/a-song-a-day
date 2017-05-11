@@ -21,7 +21,13 @@ class Admin::SubscriptionsController < Admin::AdminController
   end
 
   def destroy
-    @subscription = @user.subscriptions.find(params[:id])
+    begin
+      @subscription = @user.subscriptions.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      # In case the user hits the unsubscribe link multiple times
+      redirect_to action: :index
+      return
+    end
 
     if @subscription.destroy
       SubscriptionMailer.destroyed(@subscription).deliver

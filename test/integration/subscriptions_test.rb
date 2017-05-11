@@ -72,4 +72,12 @@ class SubscriptionsTest < ActionDispatch::IntegrationTest
       assert_select 'a', {text: 'Resubscribe?'}
     end
   end
+  test 'destroying it more than once' do
+    subscription = subscriptions(:thomas_electropop)
+    unsubscribe_url = admin_subscription_url(subscription, token: subscription.unsubscribe_token)
+    get unsubscribe_url
+    assert_redirected_to admin_subscriptions_path
+    get unsubscribe_url
+    assert_redirected_to admin_subscriptions_path
+  end
 end
