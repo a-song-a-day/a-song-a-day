@@ -11,13 +11,18 @@ class Signup::StartController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    render :form and return unless @user.save
+    unless @user.save
+      render :form and return
+    end
 
     session[:user_id] = @user.id
 
-    redirect_to signup_genres_url and return if params[:curator]
+    if params[:curator]
+      redirect_to signup_genres_url and return
+    else
+      @user.subscriptions.create(curator: Curator.random)
+    end
 
-    @user.subscriptions.create(curator: Curator.random)
     token = @user.access_tokens.create!
 
     TransactionalMailer.welcome(@user, token).deliver
