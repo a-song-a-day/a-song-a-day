@@ -8,6 +8,18 @@
         <div class="row m-x-0 flex-items-xs-top flex-items-xs-between">
           <h3><%= curator.title %></h3>
           <span class="text-muted small"><%= pluralize curator.subscriptions.count, "subscriber" %></span>
+          <br/>
+          <% if current_user %>
+            <% if !current_user.subscribed_to?(curator) %>
+              <%= form_for current_user.subscriptions.new(curator: curator), url: admin_subscriptions_path, html: {class: "btn-group"} do |form| %>
+                <%= form.hidden_field :curator_id %>
+                <%= form.submit 'Subscribe', name: nil, class: "btn btn-primary" %>
+              <% end %>
+            <% end %>
+          <% else %>
+            Signup and subscribe
+          <% end %>
+
         </div>
         <p class="lead"><%= curator.user.name %></p>
         <%= simple_format curator.description %>
