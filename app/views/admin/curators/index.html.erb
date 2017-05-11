@@ -44,7 +44,7 @@
           </span>
         </td>
         <td class="text-xs-center"><%= number_with_delimiter curator.songs.count %></td>
-        <td class="text-xs-right"><%= curator.created_at.to_s(:short) %></td>
+        <td class="text-xs-right"><%= curator.created_at.to_s(:db) %></td>
       </tr>
     <% end %>
   </tbody>
