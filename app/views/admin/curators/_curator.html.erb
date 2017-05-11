@@ -17,7 +17,7 @@
               <% end %>
             <% end %>
           <% else %>
-            Signup and subscribe
+            <%= link_to('Signup and subscribe', signup_start_path(curator_id: curator.id)) %>
           <% end %>
 
         </div>
