@@ -1,7 +1,7 @@
 module SigninFromToken
   extend ActiveSupport::Concern
   def signin_from_token
-    token = AccessToken.from_param(params[:id])
+    token = AccessToken.from_param(params[:token] || params[:id])
     if token.nil?
       flash[:alert] = "Bad token, try to login again"
       return false

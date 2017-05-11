@@ -1,4 +1,7 @@
 class Admin::SubscriptionsController < Admin::AdminController
+  include SigninFromToken
+  prepend_before_action :signin_from_token, only: :destroy
+
   before_action :find_user
 
   def index

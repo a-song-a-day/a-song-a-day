@@ -6,6 +6,6 @@ class Subscription < ApplicationRecord
   validates_uniqueness_of :curator, scope: :user
 
   def unsubscribe_token
-    user.access_tokens.unexpired_for_two_weeks.find_or_create.token
+    @token ||= user.access_tokens.unexpired_for_two_weeks.find_or_create.token
   end
 end
