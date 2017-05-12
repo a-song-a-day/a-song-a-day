@@ -26,7 +26,7 @@
         </div>
 
         <div class="m-b-2 text-muted">
-          <%= simple_format @curator.description %>
+          <%= markdown(@curator.description).html_safe %>
         </div>
         <% unless @curator.genre.nil? and @curator.genres.empty? %>
           <p>

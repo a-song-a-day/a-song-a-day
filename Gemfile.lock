@@ -176,6 +176,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    redcarpet (3.4.0)
     redis (3.3.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -248,6 +249,7 @@ DEPENDENCIES
   rails (>= 5.0.0, < 5.1)
   rails-assets-tether (>= 1.1.0)!
   rails_12factor
+  redcarpet
   rollbar
   ruby-progressbar (= 1.8.1)
   sass-rails (~> 5.0)

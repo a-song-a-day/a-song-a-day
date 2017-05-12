@@ -31,7 +31,8 @@ gem 'opengraph', github:'lawadvisor/opengraph', ref: '56820b3'
 
 # Rails helpers
 gem 'simple_form'
-gem 'kaminari'
+gem 'kaminari' # pagination
+gem 'redcarpet' # markdown
 
 # Inlining CSS and generating text emails
 gem 'premailer-rails'

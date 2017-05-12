@@ -8,7 +8,7 @@
   <h2><%= @curator.title %></h2>
   <h3><%= @curator.user.name %></h3>
 
-  <%= simple_format @curator.description %>
+  <%= markdown(@curator.description).html_safe %>
 
   <% unless @curator.genre.nil? and @curator.genres.empty? %>
     <p>

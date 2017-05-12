@@ -24,7 +24,7 @@
         <p class="lead"><%= curator.user.name %></p>
       </div>
       <div class="col-sm-9 col-xs-12 offset-sm-3">
-        <%= simple_format curator.description %>
+        <%= markdown(curator.description).html_safe %>
         <% unless curator.genre.nil? and curator.genres.empty? %>
           <p>
             <% if curator.genre %>
