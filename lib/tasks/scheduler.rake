@@ -13,7 +13,12 @@ task daily_song: :environment do
   Curator.all.each do |curator|
     song = curator.next_song
     subscriptions = curator.subscriptions
-    next if song.nil? or subscriptions.empty?
+    if subscriptions.empty?
+      next
+    end
+    if song.nil?
+      next
+    end
 
     Rails.logger.info "#{date}: Sending '#{song.title}' " +
       "to #{subscriptions.count} subscribers of " +
