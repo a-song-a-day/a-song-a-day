@@ -19,7 +19,10 @@ task daily_song: :environment do
       "to #{subscriptions.count} subscribers of " +
       "'#{curator.title}' by #{curator.user.name}…"
 
-    curator.subscriptions.order(:created_at).each do |subscription|
+    curator.subscriptions.includes(:user).order(:created_at).each do |subscription|
+      if user.bounced
+        next
+      end
       SendSongToSubscriptionWorker.perform_async(song.id, subscription.id, date, day)
     end
 

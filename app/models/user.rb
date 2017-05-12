@@ -39,4 +39,8 @@ class User < ApplicationRecord
   def subscribed_to?(curator)
     subscriptions.where(curator_id: curator.id).exists?
   end
+
+  def receiving_mails?
+    confirmed_email? & !bounced?
+  end
 end

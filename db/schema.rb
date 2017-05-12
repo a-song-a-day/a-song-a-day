@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731211357) do
+ActiveRecord::Schema.define(version: 20170512044655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20160731211357) do
     t.string   "instagram_url"
     t.string   "spotify_url"
     t.string   "soundcloud_url"
+    t.boolean  "bounced",           default: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

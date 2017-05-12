@@ -68,7 +68,8 @@ class Admin::UsersController < Admin::AdminController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :extra_information, :curator, :admin,
+    # TODO remove the admin param, only allow via console
+    params.require(:user).permit(:name, :email, :extra_information, :curator, :admin, :bounced,
                                  :twitter_url, :instagram_url, :spotify_url,
                                  :soundcloud_url)
   end
