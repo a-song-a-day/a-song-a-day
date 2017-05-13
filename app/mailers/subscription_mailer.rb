@@ -1,5 +1,6 @@
 class SubscriptionMailer < ApplicationMailer
   add_template_helper GravatarUrlHelper
+  add_template_helper MarkdownHelper
 
   def created(subscription)
     @subscription = subscription

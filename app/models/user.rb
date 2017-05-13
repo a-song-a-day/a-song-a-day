@@ -35,4 +35,12 @@ class User < ApplicationRecord
       [provider, url] unless url.blank?
     end.compact
   end
+
+  def subscribed_to?(curator)
+    subscriptions.where(curator_id: curator.id).exists?
+  end
+
+  def receiving_mails?
+    confirmed_email? & !bounced?
+  end
 end

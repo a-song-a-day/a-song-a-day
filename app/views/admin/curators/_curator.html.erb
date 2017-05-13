@@ -8,9 +8,23 @@
         <div class="row m-x-0 flex-items-xs-top flex-items-xs-between">
           <h3><%= curator.title %></h3>
           <span class="text-muted small"><%= pluralize curator.subscriptions.count, "subscriber" %></span>
+          <br/>
+          <% if current_user %>
+            <% if !current_user.subscribed_to?(curator) %>
+              <%= form_for current_user.subscriptions.new(curator: curator), url: admin_subscriptions_path, html: {class: "btn-group"} do |form| %>
+                <%= form.hidden_field :curator_id %>
+                <%= form.submit 'Subscribe', name: nil, class: "btn btn-primary" %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to('Signup and subscribe', signup_start_path(curator_id: curator.id)) %>
+          <% end %>
+
         </div>
         <p class="lead"><%= curator.user.name %></p>
-        <%= simple_format curator.description %>
+      </div>
+      <div class="col-sm-9 col-xs-12 offset-sm-3">
+        <%= markdown(curator.description).html_safe %>
         <% unless curator.genre.nil? and curator.genres.empty? %>
           <p>
             <% if curator.genre %>

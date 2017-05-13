@@ -35,7 +35,7 @@
 
   <%= f.input :description, input_html: { rows: 4 },
     wrapper_html: { data: { word_count: "20:50" } },
-    hint: "Pitch your song queue to listeners! Aim for around 20–50 words." %>
+    hint: "Pitch your song queue to listeners! Aim for around 20–50 words. You can use #{link_to 'Markdown', 'https://daringfireball.net/projects/markdown/syntax', target: '_blank' }.".html_safe %>
 
   <div class="form-inline m-t-2 m-b-1">
     <div class="row flex-items-xs-middle m-x-0 <%= "has-danger" if @curator.errors[:genre].any? %>">

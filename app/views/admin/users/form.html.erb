@@ -28,6 +28,8 @@
       <p class="text-info small">Curators can queue songs and have subscribers.</p>
       <%= f.input :admin, inline_label: "Administrator?" %>
       <p class="text-danger small">Administrators can do <strong>anything</strong>. Be careful!</p>
+      <%= f.input :bounced, inline_label: "Bounced email?" %>
+      <p class="text-info small">Once bounced or otherwise blocked they won't get the daily songs</p>
     </div>
   </div>
 

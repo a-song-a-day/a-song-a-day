@@ -34,6 +34,12 @@
             <span class="pull-xs-right">&#x2714;</span>
           </li>
         <% end %>
+        <% if user.bounced? %>
+          <li class="list-group-item text-info">
+            Email has bounced
+            <span class="pull-xs-right">&#x2714;</span>
+          </li>
+        <% end %>
         <%= render partial: "admin/users/social", object: user, as: :user %>
       </ul>
     </div>

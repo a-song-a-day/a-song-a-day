@@ -3,8 +3,7 @@ require 'test_helper'
 class SubscriptionTest < ActiveSupport::TestCase
   test 'can create' do
     assert_difference -> { Subscription.count }, 1 do
-      subscription = Subscription.create(user: users(:alisdair),
-                                         curator: curators(:electropop))
+      Subscription.create(user: users(:alisdair), curator: curators(:electropop))
     end
   end
 
@@ -24,5 +23,8 @@ class SubscriptionTest < ActiveSupport::TestCase
       subscription = Subscription.create(user: users(:alisdair),
                                          curator: curators(:electropop))
     end
+  end
+  test 'unsubscribe_token' do
+    assert_not_nil subscriptions(:thomas_electropop).unsubscribe_token
   end
 end

@@ -1,4 +1,7 @@
 class Admin::SubscriptionsController < Admin::AdminController
+  include SigninFromToken
+  prepend_before_action :signin_from_token, only: :destroy
+
   before_action :find_user
 
   def index
@@ -18,7 +21,13 @@ class Admin::SubscriptionsController < Admin::AdminController
   end
 
   def destroy
-    @subscription = @user.subscriptions.find(params[:id])
+    begin
+      @subscription = @user.subscriptions.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      # In case the user hits the unsubscribe link multiple times
+      redirect_to action: :index
+      return
+    end
 
     if @subscription.destroy
       SubscriptionMailer.destroyed(@subscription).deliver

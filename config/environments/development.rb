@@ -33,7 +33,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'a-song-a-day.dev' }
+  config.action_mailer.default_url_options = { host: 'a-song-a-day.dev', port: '4000'}
   config.action_mailer.asset_host = 'http://a-song-a-day.dev'
 
   # Print deprecation notices to the Rails logger.

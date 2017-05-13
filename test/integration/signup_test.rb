@@ -69,4 +69,15 @@ class SignupTest < ActionDispatch::IntegrationTest
     user.reload
     assert user.confirmed_email
   end
+  test 'signup with curator' do
+    curator = curators(:electropop)
+    get curator_url(curator.id)
+    signup_url = signup_start_path(curator_id: curator.id)
+    assert_select "a[href='#{signup_url}']", {text: 'Signup and subscribe'}
+
+    assert_difference -> { curator.subscriptions.count }, 1 do
+      post signup_start_url, params: {
+        user: { name: 'Joe', email: 'test@example.com' }, curator_id: curator.id }
+    end
+  end
 end

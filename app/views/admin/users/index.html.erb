@@ -20,6 +20,7 @@
       <th>Name</th>
       <th>Email</th>
       <th class="text-xs-center">Confirmed?</th>
+      <th class="text-xs-center">Receiving</th>
       <th class="text-xs-center">Curator</th>
       <th class="text-xs-right">Created</th>
     </tr>
@@ -33,12 +34,12 @@
       </tr>
     <% end %>
     <% @users.each do |user| %>
-      <tr>
         <th scope="row"><%= link_to user.name, admin_user_path(user) %></th>
         <td><%= link_to user.email, admin_user_path(user) %></td>
         <td class="text-xs-center"><%= check_mark user.confirmed_email? %></td>
+        <td class="text-xs-center"><%= check_mark user.receiving_mails? %></td>
         <td class="text-xs-center"><%= check_mark user.curator? %></td>
-        <td class="text-xs-right"><%= user.created_at.to_s(:short) %></td>
+        <td class="text-xs-right"><%= user.created_at.to_s(:db) %></td>
       </tr>
     <% end %>
   </tbody>

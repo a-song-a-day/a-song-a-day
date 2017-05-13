@@ -1,15 +1,10 @@
 class TokensController < ApplicationController
+  include SigninFromToken
   def show
-    token = AccessToken.from_param(params[:id])
-    user = token.user
-
-    user.confirmed_email = true
-    user.save!
-
-    next_url = session.delete(:return_to) || admin_profile_path
-    reset_session
-
-    session[:user_id] = user.id
-    redirect_to next_url
+    if signin_from_token
+      next_url = session.delete(:return_to) || admin_profile_path
+      redirect_to next_url and return
+    end
+    redirect_to new_session_url
   end
 end
