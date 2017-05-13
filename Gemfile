@@ -39,6 +39,7 @@ gem 'premailer-rails'
 
 # For testing
 gem 'nokogiri'
+gem 'timecop' # Enable time travel
 
 # CI driven code coverage
 gem 'coveralls', require: false
