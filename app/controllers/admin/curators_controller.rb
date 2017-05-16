@@ -1,7 +1,8 @@
 class Admin::CuratorsController < Admin::AdminController
   before_action :require_curator
   before_action :find_curators
-  before_action :find_curator, only: [:show, :edit, :update]
+  before_action :find_curator, only: [:show, :edit, :update, :merge]
+  before_action :require_admin, only: [:merge]
 
   def index
     @curators = @curators.order(:title)
@@ -52,6 +53,18 @@ class Admin::CuratorsController < Admin::AdminController
     end
 
     render "form"
+  end
+
+  def merge
+    if request.get?
+      return
+    end
+    @other_curator = find_curators.where(id: params[:other_curator_id]).first
+    if @other_curator.nil?
+      return
+    end
+    @curator.merge_and_delete!(@other_curator)
+    redirect_to action: 'show', id: @other_curator.id
   end
 
   private

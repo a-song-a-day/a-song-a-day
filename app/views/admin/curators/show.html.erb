@@ -5,11 +5,15 @@
 <div class="clearfix m-b-2">
   <h1 class="pull-sm-left"><%= yield :title %></h1>
   <div class="pull-sm-right btn-group">
+    <%= link_to 'Delete', admin_curator_path(@curator), method: 'delete', data: {confirm: 'Are you sure? This cannot be undone'}, class: 'btn btn-secondary' %>
+    <% if current_user.admin? %>
+      <%= link_to 'Merge', merge_admin_curator_path(@curator), class: 'btn btn-secondary' %>
+    <% end %>
     <%= link_to "Edit profile", edit_admin_curator_path(@curator), class: "btn btn-secondary" %>
     <%= link_to "Song queue", admin_curator_songs_path(@curator), class: "btn btn-secondary" %>
     <%= link_to "Add song", new_admin_curator_song_path(@curator), class: "btn btn-primary" %>
   </div>
-</div>
+</div
 
 <div class="p-y-1 hidden-md-up"></div>
 

@@ -1,0 +1,17 @@
+- content_for :title do 
+  = 'Merge Curator Profile'
+- crumb "Curate", admin_curators_path
+- crumb yield(:title), url_for
+
+%h1.m-b-2= yield :title
+
+= simple_form_for [:admin, @curator], url: merge_admin_curator_path(@curator), html: { class: "clearfix m-b-3" } do |form|
+  = label_tag :other_curator_id, "Choose curator"
+  = select_tag :other_curator_id, options_for_select(@curators.order('title').collect{|c| [c.title, c.id] unless c.id == @curator.id}.compact), include_blank: true, class: 'form-control c-select'
+  .alert.alert-warning
+    This will
+    %strong merge #{@curator.title} into the curator
+    you select &mdash; with all song and subscribers &mdash; and is not reversible!
+  .pull-xs-right.m-t-2
+    = submit_tag "Merge", class: 'btn btn-primary'
+

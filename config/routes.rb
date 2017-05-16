@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 
     resources :curators do
       resources :songs
+      member do
+        match 'merge', via: [:patch, :get]
+      end
     end
 
     resources :subscriptions, only: [:index, :create, :destroy]

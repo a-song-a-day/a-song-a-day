@@ -3,7 +3,7 @@ require 'test_helper'
 class CuratorTest < ActiveSupport::TestCase
   test 'can create' do
     assert_difference -> { Curator.count }, 1 do
-      curator = Curator.create(user: users(:shannon),
+      Curator.create(user: users(:shannon),
                                title: 'Title here',
                                description: 'Description blurb here',
                                genre: genres(:pop))
@@ -73,7 +73,7 @@ class CuratorTest < ActiveSupport::TestCase
 
     assert_equal 0, curator.songs.count
 
-    pop = genres(:pop)
+    genres(:pop)
     songs = [
       ['0', 5.days, 4.days],
       ['1', 5.days, 3.days],
@@ -95,5 +95,15 @@ class CuratorTest < ActiveSupport::TestCase
     songs[3].sent!
 
     assert_equal nil, curator.next_song
+  end
+  test "merge_and_delete!" do
+    curator = curators(:electropop)
+    subscription = subscriptions(:thomas_electropop)
+    song = songs(:two_moons)
+    other_curator = curators(:random)
+    curator.merge_and_delete!(other_curator)
+    assert_equal subscription.reload.curator, other_curator
+    assert_equal song.reload.curator, other_curator
+    assert_nil Curator.where(id: curator.id).first
   end
 end

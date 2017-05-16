@@ -19,6 +19,12 @@ class Curator < ApplicationRecord
     where(random: true).first
   end
 
+  def merge_and_delete!(other_curator)
+    self.songs.update_all(curator_id: other_curator.id)
+    self.subscriptions.update_all(curator_id: other_curator.id)
+    self.delete
+  end
+
   def next_song
     songs.queued.order(:created_at).first
   end
