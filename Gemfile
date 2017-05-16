@@ -37,6 +37,8 @@ gem 'redcarpet' # markdown
 # Inlining CSS and generating text emails
 gem 'premailer-rails'
 
+gem 'haml'
+
 # For testing
 gem 'nokogiri'
 gem 'timecop' # Enable time travel
