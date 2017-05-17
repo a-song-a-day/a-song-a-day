@@ -98,11 +98,14 @@ class CuratorTest < ActiveSupport::TestCase
   end
   test "merge_and_delete!" do
     curator = curators(:electropop)
-    subscription = subscriptions(:thomas_electropop)
+    subscription = curator.subscriptions.create(user: users(:shannon))
+    subscriptions(:thomas_electropop)
     song = songs(:two_moons)
     other_curator = curators(:random)
+    other_curator.subscriptions.create(user: users(:thomas))
     curator.merge_and_delete!(other_curator)
     assert_equal subscription.reload.curator, other_curator
+    assert_equal curator.subscriptions.size, 2
     assert_equal song.reload.curator, other_curator
     assert_nil Curator.where(id: curator.id).first
   end

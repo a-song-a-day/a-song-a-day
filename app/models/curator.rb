@@ -21,7 +21,13 @@ class Curator < ApplicationRecord
 
   def merge_and_delete!(other_curator)
     self.songs.update_all(curator_id: other_curator.id)
-    self.subscriptions.update_all(curator_id: other_curator.id)
+    other_user_ids = other_curator.subscriptions.collect(&:user_id)
+    user_ids = self.subscriptions.collect(&:user_id)
+    duplicates = other_user_ids & user_ids
+    if duplicates.any?
+      self.subscriptions.where(user_id: duplicates).delete_all
+    end
+    self.subscriptions.where.not(curator_id: other_curator.id).update_all(curator_id: other_curator.id)
     self.delete
   end
 
