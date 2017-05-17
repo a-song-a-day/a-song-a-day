@@ -46,6 +46,8 @@ Rails.application.routes.draw do
 
     resource :masquerade, only: [:create, :destroy]
 
+    resources :daily_messages
+
     post '/random/:song_id', to: 'random#copy', as: 'random_copy'
   end
 

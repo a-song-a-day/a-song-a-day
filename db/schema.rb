@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512044655) do
+ActiveRecord::Schema.define(version: 20170517200135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 20170512044655) do
     t.integer "curator_id", null: false
     t.integer "genre_id",   null: false
     t.index ["curator_id"], name: "index_curators_genres_on_curator_id", using: :btree
+  end
+
+  create_table "daily_messages", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.text     "message",                    null: false
+    t.integer  "receivers",  default: 0
+    t.date     "send_at"
+    t.boolean  "sent",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["creator_id"], name: "index_daily_messages_on_creator_id", using: :btree
   end
 
   create_table "genres", force: :cascade do |t|

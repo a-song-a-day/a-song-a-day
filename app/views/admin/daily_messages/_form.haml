@@ -1,0 +1,5 @@
+.row
+  .col-xs-12
+    = form.input :message, autofocus: true, input_html: { rows: 4 }, hint: 'You can use Markdown.'
+  .col-xs-12
+    = form.input :send_at, as: 'string', placeholder: (Date.today + 1.day).to_s(:db)

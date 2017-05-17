@@ -1,0 +1,9 @@
+## 2017.05
+
+* Allow admin to merge curators
+* Allow Markdown on the curator profile
+* HTTPS is now enforced
+* Keep track of bouncing email addresses
+* Improve unsubscribe process
+* Thomas takes over development
+

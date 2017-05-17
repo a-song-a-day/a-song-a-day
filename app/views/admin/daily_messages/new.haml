@@ -1,0 +1,14 @@
+- content_for :title, "Create message"
+
+- crumb "Daily Messages", admin_daily_messages_path
+- crumb yield(:title), url_for
+
+.clearfix.m-b-2
+  %h1.pull-sm-left= yield :title
+
+= simple_form_for [:admin, resource], html: { class: "clearfix" } do |form|
+  = render form
+
+  .pull-xs-right.m-t-2
+    = link_to "Cancel", admin_daily_messages_path, class: "btn btn-link"
+    = form.submit "Create message", class: "btn btn-primary", data: { disable_with: "Saving…" }

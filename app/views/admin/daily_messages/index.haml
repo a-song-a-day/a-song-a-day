@@ -1,0 +1,22 @@
+- content_for :title, 'Daily Messages'
+- crumb yield(:title), url_for
+
+.clearfix.m-b-2
+  %h1.pull-sm-left= yield :title
+  = link_to "Add new message", new_admin_daily_message_path, class: "btn btn-primary pull-sm-right"
+
+.list-group
+  - collection.each do |daily_message|
+    .list-group-item
+      .row
+        .col-sm-2
+          - if daily_message.send_at
+            = l(daily_message.send_at)
+          - else
+            Unscheduled
+          - if daily_message.receivers > 0
+            %strong= daily_message.receivers
+        .col-sm-2= daily_message.creator.name
+        .col-sm-4= link_to daily_message.message.truncate(40), [:edit, :admin, daily_message]
+        %hr
+        .clearfix.col-sm-8= markdown(daily_message.message).html_safe
