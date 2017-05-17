@@ -19,7 +19,8 @@ class SubscriptionMailerPreview < ActionMailer::Preview
     subscription = song.curator.subscriptions.first!
     date = Date.today.to_s(:long)
     day = Date::DAYNAMES[Date.today.wday]
-    SubscriptionMailer.song(song, subscription, date, day)
+    daily_message = DailyMessage.create!(creator: User.where(admin: true).first, message: 'This is a message with [link](http://asongaday.co) and *bold* text.')
+    SubscriptionMailer.song(song, subscription, date, day, daily_message)
   end
 
 end
