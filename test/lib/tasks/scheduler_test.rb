@@ -3,12 +3,14 @@ require 'test_helper'
 class SchedulerTaskTest < ActiveSupport::TestCase
   setup do
     ASongADay::Application.load_tasks
+    Rake::Task['daily_song'].reenable
   end
   test 'daily song' do
     # Friday the 12th
     Timecop.freeze(Time.new(2017, 5, 12, 10, 0, 0)) do
       song = songs(:two_moons)
-      subscriptions(:thomas_electropop)
+      subscription = subscriptions(:thomas_electropop)
+      assert_equal song.curator, subscription.curator
       assert_nil song.reload.sent_at
       Rake::Task['daily_song'].invoke
       assert_not_nil song.reload.sent_at
@@ -27,12 +29,14 @@ class SchedulerTaskTest < ActiveSupport::TestCase
   end
 
   test 'skip bounced users' do
-    song = songs(:two_moons)
+    songs(:two_moons)
     user = subscriptions(:thomas_electropop).user
     user.update_attributes(bounced: true)
 
+    def SendSongToSubscriptionWorker.perform_async(args)
+      raise "Mail sent!"
+    end
     Rake::Task['daily_song'].invoke
-    assert_nil song.reload.sent_at
   end
   test 'daily message' do
     Timecop.freeze(Time.new(2017, 5, 12, 10, 0, 0)) do
