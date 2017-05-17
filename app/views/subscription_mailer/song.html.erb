@@ -27,4 +27,7 @@
   <p>
     We hope you love today's song! <%= mail_to "curators@asongaday.co", "Let us know what you think!", subject: "A Song A Day: song for #{@date} from #{@curator.title}" %>
   </p>
+  <% if @daily_message %>
+    <%= markdown(@daily_message.message).html_safe %>
+  <% end %>
 <% end %>

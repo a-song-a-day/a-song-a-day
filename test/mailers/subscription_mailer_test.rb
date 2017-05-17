@@ -37,11 +37,18 @@ class SubscriptionMailerTest < ActionMailer::TestCase
     curator.songs.push song
 
     mail = SubscriptionMailer.song(song, subscription, date, day)
-    assert_match /#{day}/, mail.subject
+    assert_match(/#{day}/, mail.subject)
     assert_equal [user.email], mail.to
     assert_equal ['curators@asongaday.co'], mail.from
     assert_match song.title, mail.body.encoded
     assert_match date, mail.body.encoded
   end
+  test "song with daily message" do
+    subscription = subscriptions(:thomas_electropop)
+    daily_message = DailyMessage.create!(creator: users(:shannon), send_at: Date.today, message: 'Today is the best day!')
+    song = songs(:two_moons)
 
+    mail = SubscriptionMailer.song(song, subscription, Date.today.to_s, 'Monday', daily_message)
+    assert_match(/Today is the best day!/, mail.body.encoded)
+  end
 end

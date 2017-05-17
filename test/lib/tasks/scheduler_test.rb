@@ -32,4 +32,14 @@ class SchedulerTaskTest < ActiveSupport::TestCase
     Rake::Task['daily_song'].invoke
     assert_nil song.reload.sent_at
   end
+  test 'daily message' do
+    Timecop.travel(Time.new(2017, 5, 12, 10, 0, 0)) # Friday the 12th
+    songs(:two_moons)
+    subscriptions(:thomas_electropop)
+    daily_message = DailyMessage.create!(creator: users(:shannon), send_at: Date.today, message: 'Today is the best day!')
+
+    Rake::Task['daily_song'].invoke
+    assert_equal daily_message.reload.receivers, 1
+    Timecop.return
+  end
 end

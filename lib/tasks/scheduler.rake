@@ -2,6 +2,8 @@ desc 'Schedule song sending jobs for active subscriptions'
 task daily_song: :environment do
   date = Date.today.to_s(:long)
   day = Date::DAYNAMES[Date.today.wday]
+  daily_message = DailyMessage.where(send_at: Date.today).first
+  receivers_count = 0
 
   if Date.today.saturday? or Date.today.sunday?
     Rails.logger.info "Skipping daily song for #{date} (it's the weekend!)"
@@ -28,11 +30,15 @@ task daily_song: :environment do
       if subscription.user.bounced
         next
       end
-      SendSongToSubscriptionWorker.perform_async(song.id, subscription.id, date, day)
+      receivers_count += 1
+      SendSongToSubscriptionWorker.perform_async(song.id, subscription.id, date, day, daily_message)
     end
 
     song.sent!
     Rails.logger.info "Song '#{song.title}' sent!"
+    if daily_message
+      daily_message.update_attribute(:receivers, receivers_count)
+    end
   end
 
   Rails.logger.info "Daily song for #{date}: END"
