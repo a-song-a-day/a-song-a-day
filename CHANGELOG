@@ -1,5 +1,6 @@
 ## 2017.05
 
+* Add daily messages system to write something along the song mails
 * Allow admin to merge curators
 * Allow Markdown on the curator profile
 * HTTPS is now enforced

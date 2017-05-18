@@ -48,13 +48,13 @@ gem 'coveralls', require: false
 
 # Deployment
 gem 'puma', '~> 3.0'
-gem 'rollbar'
 
 # For Rake tasks
 gem 'ruby-progressbar', '1.8.1'
 
 group :production do
   gem 'rails_12factor'
+  gem 'rollbar'
 end
 
 group :development do
