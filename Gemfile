@@ -41,7 +41,10 @@ gem 'haml'
 
 # For testing
 gem 'nokogiri'
-gem 'timecop' # Enable time travel
+group :test do
+  gem 'timecop' # Enable time travel
+  gem 'mocha'
+end
 
 # CI driven code coverage
 gem 'coveralls', require: false

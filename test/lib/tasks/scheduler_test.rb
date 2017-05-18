@@ -33,9 +33,7 @@ class SchedulerTaskTest < ActiveSupport::TestCase
     user = subscriptions(:thomas_electropop).user
     user.update_attributes(bounced: true)
 
-    def SendSongToSubscriptionWorker.perform_async(args)
-      raise "Mail sent!"
-    end
+    SendSongToSubscriptionWorker.expects(:perform_async).never
     Rake::Task['daily_song'].invoke
   end
   test 'daily message' do
