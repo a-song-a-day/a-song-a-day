@@ -54,6 +54,8 @@ gem 'ruby-progressbar', '1.8.1'
 
 group :production do
   gem 'rails_12factor'
+end
+group :production, :test do
   gem 'rollbar'
 end
 
