@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class SchedulerTaskTest < ActiveSupport::TestCase
-  setup do
-    ASongADay::Application.load_tasks
-    Rake::Task['daily_song'].reenable
-  end
   test 'daily song' do
     # Friday the 12th
     Timecop.freeze(Time.new(2017, 5, 12, 10, 0, 0)) do
@@ -12,7 +8,7 @@ class SchedulerTaskTest < ActiveSupport::TestCase
       subscription = subscriptions(:thomas_electropop)
       assert_equal song.curator, subscription.curator
       assert_nil song.reload.sent_at
-      Rake::Task['daily_song'].invoke
+      Rake::Task['daily_song'].execute
       assert_not_nil song.reload.sent_at
     end
   end
@@ -23,7 +19,7 @@ class SchedulerTaskTest < ActiveSupport::TestCase
 
       song = songs(:two_moons)
       subscriptions(:thomas_electropop)
-      Rake::Task['daily_song'].invoke
+      Rake::Task['daily_song'].execute
       assert_nil song.reload.sent_at
     end
   end
@@ -34,7 +30,7 @@ class SchedulerTaskTest < ActiveSupport::TestCase
     user.update_attributes(bounced: true)
 
     SendSongToSubscriptionWorker.expects(:perform_async).never
-    Rake::Task['daily_song'].invoke
+    Rake::Task['daily_song'].execute
   end
   test 'daily message' do
     Timecop.freeze(Time.new(2017, 5, 12, 10, 0, 0)) do
@@ -42,7 +38,7 @@ class SchedulerTaskTest < ActiveSupport::TestCase
       subscriptions(:thomas_electropop)
       daily_message = DailyMessage.create!(creator: users(:shannon), send_at: Date.today, message: 'Today is the best day!')
 
-      Rake::Task['daily_song'].invoke
+      Rake::Task['daily_song'].execute
       assert_equal daily_message.reload.receivers, 1
     end
   end
