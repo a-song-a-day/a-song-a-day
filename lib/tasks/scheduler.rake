@@ -30,7 +30,7 @@ task daily_song: :environment do
       "'#{curator.title}' by #{curator.user.name}…"
 
     curator.subscriptions.includes(:user).order(:created_at).each do |subscription|
-      if subscription.user.bounced
+      unless subscription.user.receiving_mails?
         next
       end
       receivers_count += 1

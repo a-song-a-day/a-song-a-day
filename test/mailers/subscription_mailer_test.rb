@@ -48,7 +48,7 @@ class SubscriptionMailerTest < ActionMailer::TestCase
     daily_message = DailyMessage.create!(creator: users(:shannon), send_at: Date.today, message: 'Today is the best day!')
     song = songs(:two_moons)
 
-    mail = SubscriptionMailer.song(song, subscription, Date.today.to_s, 'Monday', daily_message)
+    mail = SubscriptionMailer.song(song, subscription, Date.today.to_s, 'Monday', daily_message.id)
     assert_match(/Today is the best day!/, mail.body.encoded)
   end
 end

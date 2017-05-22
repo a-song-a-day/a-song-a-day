@@ -27,3 +27,4 @@ thomas:
   email: thomas@asongaday.co
   curator: false
   admin: false
+  confirmed_email: true
