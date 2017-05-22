@@ -3,6 +3,9 @@ task daily_song: :environment do
   date = Date.today.to_s(:long)
   day = Date::DAYNAMES[Date.today.wday]
   daily_message = DailyMessage.where(send_at: Date.today).first
+  if daily_message
+    daily_message_id = daily_message.id
+  end
   receivers_count = 0
 
   if Date.today.saturday? or Date.today.sunday?
@@ -31,7 +34,7 @@ task daily_song: :environment do
         next
       end
       receivers_count += 1
-      SendSongToSubscriptionWorker.perform_async(song.id, subscription.id, date, day, daily_message)
+      SendSongToSubscriptionWorker.perform_async(song.id, subscription.id, date, day, daily_message_id)
     end
 
     song.sent!
