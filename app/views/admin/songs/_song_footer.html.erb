@@ -25,8 +25,15 @@
           } %>
       <% end %>
       <% unless song.sent_at? %>
-        <% %w[Next Earlier Later Last].each do |position| %>
-          <%= link_to position, reposition_admin_curator_song_path(curator_id: song.curator_id, id: song.id, position: position.downcase), method: 'post', class: 'btn btn-secondary' %>
+        <% @min_posiiton ||= song.curator.songs.queued.minimum(:position) %>
+        <% @max_posiiton ||= song.curator.songs.queued.maximum(:position) %>
+        <% unless @min_posiiton == song.position %>
+          <%= link_to 'Next', reposition_admin_curator_song_path(curator_id: song.curator_id, id: song.id, position: 'next'), method: 'post', class: 'btn btn-secondary' %>
+          <%= link_to 'Earlier', reposition_admin_curator_song_path(curator_id: song.curator_id, id: song.id, position: 'earlier'), method: 'post', class: 'btn btn-secondary' %>
+        <% end %>
+        <% unless @max_posiiton == song.position %>
+          <%= link_to 'Later', reposition_admin_curator_song_path(curator_id: song.curator_id, id: song.id, position: 'later'), method: 'post', class: 'btn btn-secondary' %>
+          <%= link_to 'Last', reposition_admin_curator_song_path(curator_id: song.curator_id, id: song.id, position: 'last'), method: 'post', class: 'btn btn-secondary' %>
         <% end %>
         &nbsp;
       <% end %>
