@@ -17,7 +17,7 @@ class Admin::SongsController < Admin::AdminController
     end
 
     @songs = @songs.search(@search) unless @search.blank?
-    @songs = @songs.order(created_at: :desc).page(params[:page]).per(5)
+    @songs = @songs.order(position: :desc).page(params[:page]).per(5)
   end
 
   def new
@@ -74,9 +74,28 @@ class Admin::SongsController < Admin::AdminController
     end
   end
 
+  def reposition
+    song = find_curator.songs.find(params[:id])
+    position = case params[:position].downcase
+    when 'next'
+      find_curator.songs.queued.minimum(:position)
+    when 'earlier'
+      song.position - 1
+    when 'later'
+      song.position + 1
+    when 'last'
+      find_curator.songs.queued.maximum(:position)
+    else
+      redirect_to action: :index, curator_id: find_curator.id and return
+    end
+    song.reposition!(position)
+    redirect_to action: :index, curator_id: find_curator.id
+  end
+
   private
 
   def find_curator
+    return @curator if @curator
     if current_user.admin?
       @curator = Curator.find(params[:curator_id])
     else

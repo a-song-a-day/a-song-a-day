@@ -24,6 +24,12 @@
             disable: true
           } %>
       <% end %>
+      <% unless song.sent_at? %>
+        <% %w[Next Earlier Later Last].each do |position| %>
+          <%= link_to position, reposition_admin_curator_song_path(id: song.id, position: position.downcase), method: 'post', class: 'btn btn-secondary' %>
+        <% end %>
+        &nbsp;
+      <% end %>
       <%= link_to "Edit song", edit_admin_curator_song_path(@curator, song), class: "btn btn-secondary" %>
     </div>
   </div>

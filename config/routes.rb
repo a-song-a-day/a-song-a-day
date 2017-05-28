@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index', as: 'dashboard'
 
     resources :curators do
-      resources :songs
+      resources :songs do
+        member do
+          post 'reposition'
+        end
+      end
       member do
         match 'merge', via: [:patch, :get]
       end

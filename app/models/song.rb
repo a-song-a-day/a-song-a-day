@@ -32,7 +32,7 @@ class Song < ApplicationRecord
   end
 
   def reposition!(new_position)
-    min, max = if new_position < position
+    min, max = if new_position.to_i < position.to_i
       [new_position, position]
     else
       [position, new_position]

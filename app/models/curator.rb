@@ -32,7 +32,7 @@ class Curator < ApplicationRecord
   end
 
   def next_song
-    songs.queued.order(:created_at).first
+    songs.queued.order(:position, :created_at).first
   end
 
   def title_and_name

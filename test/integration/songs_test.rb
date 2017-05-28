@@ -60,4 +60,24 @@ class SongsTest < ActionDispatch::IntegrationTest
       assert_select group, '.btn.active:contains("Sent")'
     end
   end
+  test "move position to next" do
+    user = users(:janet)
+    login_as user
+    curator = user.curators.first
+    curator.songs.create!(url: 'https://bandcamp.com',
+                                 title: 'Sent Song',
+                                 description: 'Music sounds',
+                                 sent_at: Time.now - 1.day)
+    queued1 = curator.songs.create!(url: 'https://youtube.com',
+                                   title: 'Queued Song 1',
+                                   description: 'Music noises')
+    queued2 = curator.songs.create!(url: 'https://youtube.com',
+                                   title: 'Queued Song 2',
+                                   description: 'Music noises')
+    assert_equal 2, queued1.position
+    assert_equal 3, queued2.position
+    post reposition_admin_curator_song_path(curator_id: curator.id, id: queued2.id, position: 'next')
+    assert_equal 3, queued1.reload.position
+    assert_equal 2, queued2.reload.position
+  end
 end
