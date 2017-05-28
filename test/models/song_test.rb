@@ -39,4 +39,19 @@ class SongTest < ActiveSupport::TestCase
       assert_equal Time.at(0), song.sent_at
     end
   end
+  test 'set_position' do
+    song = songs(:two_moons)
+    song.set_position
+    assert_equal 1, song.position
+  end
+  test 'reposition!' do
+    song = songs(:two_moons)
+    song.set_position
+    song.save
+    position = song.position
+    song2 = Song.create!(url: 'url', title: 'title', description: 'desc', curator: song.curator)
+    song2.reposition!(song.position)
+    assert_equal position, song2.position
+    assert_equal position + 1, song.reload.position
+  end
 end
