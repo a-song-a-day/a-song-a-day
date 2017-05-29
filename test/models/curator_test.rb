@@ -86,13 +86,13 @@ class CuratorTest < ActiveSupport::TestCase
 
     songs[2].sent!
 
-    assert_equal songs[4], curator.next_song
-
-    songs[4].sent!
-
     assert_equal songs[3], curator.next_song
 
     songs[3].sent!
+
+    assert_equal songs[4], curator.next_song
+
+    songs[4].sent!
 
     assert_equal nil, curator.next_song
   end
