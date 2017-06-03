@@ -25,6 +25,7 @@
           } %>
       <% end %>
       <% unless song.sent_at? %>
+        <%= song.position %>
         <% @min_posiiton ||= song.curator.songs.queued.minimum(:position) %>
         <% @max_posiiton ||= song.curator.songs.queued.maximum(:position) %>
         <% unless @min_posiiton == song.position %>
