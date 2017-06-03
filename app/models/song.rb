@@ -33,13 +33,11 @@ class Song < ApplicationRecord
   end
 
   def reposition!(new_position)
-    min, max = if new_position.to_i < position.to_i
-      [new_position, position]
+    if new_position.to_i < position.to_i
+      curator.songs.where(position: new_position..position).map{|s| s.update_attribute(:position, s.position + 1) }
     else
-      [position, new_position]
+      curator.songs.where(position: position..new_position).map{|s| s.update_attribute(:position, s.position - 1) }
     end
-
-    curator.songs.where(position: min..max).map{|s| s.update_attribute(:position, s.position + 1) }
     self.update_attribute(:position, new_position)
   end
 end
