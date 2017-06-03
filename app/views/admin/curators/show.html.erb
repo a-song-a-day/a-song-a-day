@@ -19,7 +19,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-md-3">
-    <div class="row m-b-3">
+    <div class="m-b-3">
       <div class="col-xs-4 col-md-12">
         <%= image_tag gravatar_url(@curator.user.email), alt: "Avatar for #{@curator.user.name}", class: "img-rounded img-fluid gravatar m-b-1" %>
       </div>
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-12 col-md-9">
+  <div class="col-xs-12 col-md-8">
     <% if @curator.songs.queued.empty? %>
       <div class="alert alert-warning">
         Whoops! There are no unsent songs in your queue.
