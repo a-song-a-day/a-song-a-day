@@ -9,6 +9,7 @@ class Song < ApplicationRecord
 
   scope :queued, -> { where(sent_at: nil) }
   scope :sent, -> { where.not(sent_at: nil) }
+  scope :positioned, -> { order(position: :desc) }
 
   belongs_to :curator
   has_and_belongs_to_many :genres, -> { order('name') }

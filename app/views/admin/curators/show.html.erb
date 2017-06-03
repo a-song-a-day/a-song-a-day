@@ -55,7 +55,7 @@
       </div>
     <% end %>
 
-    <% @curator.songs.queued.order(:created_at).first(5).each do |song| %>
+    <% @curator.songs.queued.positioned.first(5).each do |song| %>
       <%= render song do %>
         <%= render partial: "admin/songs/song_footer",
                    locals: { song: song, date: @next_send } %>

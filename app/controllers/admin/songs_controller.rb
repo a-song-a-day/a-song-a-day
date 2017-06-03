@@ -17,7 +17,7 @@ class Admin::SongsController < Admin::AdminController
     end
 
     @songs = @songs.search(@search) unless @search.blank?
-    @songs = @songs.order(position: :desc).page(params[:page]).per(5)
+    @songs = @songs.positioned.page(params[:page]).per(5)
   end
 
   def new
