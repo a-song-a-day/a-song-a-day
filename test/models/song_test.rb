@@ -51,7 +51,12 @@ class SongTest < ActiveSupport::TestCase
     position = song.position
     song2 = Song.create!(url: 'url', title: 'title', description: 'desc', curator: song.curator)
     song2.reposition!(song.position)
-    assert_equal position, song2.position
+    assert_equal position, song2.reload.position
     assert_equal position + 1, song.reload.position
+
+    # and back
+    song2.reposition!(song.position)
+    assert_equal position + 1, song2.reload.position
+    assert_equal position, song.reload.position
   end
 end
